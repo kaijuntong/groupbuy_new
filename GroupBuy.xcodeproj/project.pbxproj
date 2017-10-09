@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */; };
+		8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */; };
 		8C925FB41F874FD2002761AC /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB31F874FD1002761AC /* Country.swift */; };
 		8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */; };
 		8C925FB81F875B23002761AC /* CountryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB71F875B23002761AC /* CountryItems.swift */; };
@@ -24,6 +26,8 @@
 		2C547B184336C363C8178F7A /* Pods-GroupBuy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupBuy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupBuy/Pods-GroupBuy.debug.xcconfig"; sourceTree = "<group>"; };
 		590828ABB2F8C7445275B1C7 /* Pods-GroupBuy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupBuy.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupBuy/Pods-GroupBuy.release.xcconfig"; sourceTree = "<group>"; };
 		690AA01C482E5BB4F4BE37FD /* Pods_GroupBuy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupBuy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		8C925FB31F874FD1002761AC /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C925FB71F875B23002761AC /* CountryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryItems.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				8C925FBB1F875E40002761AC /* CellController */,
 				8CA167AB1F8645ED00AB6316 /* HomeViewController.swift */,
 				8C925FBC1F875E70002761AC /* CountryItemsViewController.swift */,
+				8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */,
+				8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -286,8 +292,10 @@
 			files = (
 				8C925FB81F875B23002761AC /* CountryItems.swift in Sources */,
 				8C925FBD1F875E70002761AC /* CountryItemsViewController.swift in Sources */,
+				8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */,
 				8CA167AC1F8645ED00AB6316 /* HomeViewController.swift in Sources */,
 				8C925FBA1F875D71002761AC /* ContryItemsCollectionViewCell.swift in Sources */,
+				8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */,
 				8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */,
 				8C925FB41F874FD2002761AC /* Country.swift in Sources */,
 				8CA167AA1F8645ED00AB6316 /* AppDelegate.swift in Sources */,

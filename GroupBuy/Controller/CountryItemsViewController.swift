@@ -51,4 +51,13 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
         
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showItemDetail"{
+            if let indexPath = collectionView.indexPathsForSelectedItems{
+                let destinationController = segue.destination as! ItemDetailViewController
+                destinationController.item = countryItems[indexPath.last!.row]
+            }
+        }
+    }
 }

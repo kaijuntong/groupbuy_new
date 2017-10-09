@@ -54,6 +54,9 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SellerCell", for: indexPath)
+            let imageview = cell.viewWithTag(20) as! UIImageView
+            imageview.layer.cornerRadius = 40
+            imageview.clipsToBounds = true
             return cell
         }
         
