@@ -9,9 +9,10 @@
 import UIKit
 
 class WriteReviewViewController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     @IBAction func cancelBtnClicked(_ sender: UIBarButtonItem) {
