@@ -1081,13 +1081,13 @@
         <!--My Event-->
         <scene sceneID="foH-zk-oBC">
             <objects>
-                <tableViewController id="nYN-LH-7rr" customClass="NewEventViewController" customModule="GroupBuy" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="nYN-LH-7rr" customClass="MyEventViewController" customModule="GroupBuy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Fi-LF-c8E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="176" id="FQA-gI-pOw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="176" id="FQA-gI-pOw" customClass="MyEventViewCell" customModule="GroupBuy" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="176"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FQA-gI-pOw" id="poU-ew-mC0">
@@ -1117,7 +1117,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11 Nov - 18 Nov 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clA-TM-odG">
-                                                    <rect key="frame" x="23" y="14" width="161" height="21"/>
+                                                    <rect key="frame" x="8" y="14" width="243" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1134,9 +1134,20 @@
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-1J-2pH">
+                                            <rect key="frame" x="8" y="54" width="359" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="countryImageView" destination="Ume-Yy-GiR" id="Gd9-Qy-gtd"/>
+                                    <outlet property="countryLabel" destination="Ude-1J-2pH" id="95B-2Q-5S2"/>
+                                    <outlet property="dateLabel" destination="clA-TM-odG" id="Owc-c8-NeS"/>
                                     <segue destination="N7N-6c-zAE" kind="show" id="EGJ-y2-Ira"/>
                                 </connections>
                             </tableViewCell>
@@ -1156,7 +1167,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BKp-Sc-FV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2258" y="-685"/>
+            <point key="canvasLocation" x="2256.8000000000002" y="-685.00749625187416"/>
         </scene>
         <!--Hong Kong-->
         <scene sceneID="U0v-Pu-r04">
