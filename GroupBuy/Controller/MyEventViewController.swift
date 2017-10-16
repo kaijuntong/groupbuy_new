@@ -15,13 +15,10 @@ class MyEventViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.estimatedRowHeight = 176
         tableView.rowHeight = UITableViewAutomaticDimension
         configureDatabase()
     }
-    
-    
     func configureDatabase(){
         ref = Database.database().reference()
         let user = Auth.auth().currentUser

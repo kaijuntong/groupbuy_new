@@ -15,11 +15,13 @@
 		8C925FB81F875B23002761AC /* CountryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB71F875B23002761AC /* CountryItems.swift */; };
 		8C925FBA1F875D71002761AC /* ContryItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB91F875D71002761AC /* ContryItemsCollectionViewCell.swift */; };
 		8C925FBD1F875E70002761AC /* CountryItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FBC1F875E70002761AC /* CountryItemsViewController.swift */; };
+		8CA02C5A1F94E51500E94432 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA02C591F94E51500E94432 /* ItemViewController.swift */; };
 		8CA167AA1F8645ED00AB6316 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA167A91F8645ED00AB6316 /* AppDelegate.swift */; };
 		8CA167AC1F8645ED00AB6316 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA167AB1F8645ED00AB6316 /* HomeViewController.swift */; };
 		8CA167AF1F8645ED00AB6316 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CA167AD1F8645ED00AB6316 /* Main.storyboard */; };
 		8CA167B11F8645ED00AB6316 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA167B01F8645ED00AB6316 /* Assets.xcassets */; };
 		8CA167B41F8645EE00AB6316 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CA167B21F8645EE00AB6316 /* LaunchScreen.storyboard */; };
+		8CB8175A1F9506D400EA2FFB /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */; };
 		8CC1B21E1F9406BD004A961F /* MyEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */; };
 		8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */; };
 		8CD59E641F8C4FCF00D70631 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */; };
@@ -41,6 +43,7 @@
 		8C925FB71F875B23002761AC /* CountryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryItems.swift; sourceTree = "<group>"; };
 		8C925FB91F875D71002761AC /* ContryItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContryItemsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C925FBC1F875E70002761AC /* CountryItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryItemsViewController.swift; sourceTree = "<group>"; };
+		8CA02C591F94E51500E94432 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		8CA167A61F8645ED00AB6316 /* GroupBuy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupBuy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA167A91F8645ED00AB6316 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CA167AB1F8645ED00AB6316 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 		8CA167B01F8645ED00AB6316 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CA167B31F8645EE00AB6316 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CA167B51F8645EE00AB6316 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewController.swift; sourceTree = "<group>"; };
 		8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewCell.swift; sourceTree = "<group>"; };
 		8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
@@ -91,8 +95,10 @@
 			children = (
 				8C925FBB1F875E40002761AC /* CellController */,
 				8CA167AB1F8645ED00AB6316 /* HomeViewController.swift */,
+				8CA02C591F94E51500E94432 /* ItemViewController.swift */,
 				8C3DE3831F93926700FB2B1B /* LoginViewController.swift */,
 				8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */,
+				8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */,
 				8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */,
 				8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */,
 				8C925FBC1F875E70002761AC /* CountryItemsViewController.swift */,
@@ -321,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C925FB81F875B23002761AC /* CountryItems.swift in Sources */,
+				8CA02C5A1F94E51500E94432 /* ItemViewController.swift in Sources */,
 				8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */,
 				8C925FBD1F875E70002761AC /* CountryItemsViewController.swift in Sources */,
 				8CD59E641F8C4FCF00D70631 /* NewEventViewController.swift in Sources */,
@@ -333,6 +340,7 @@
 				8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */,
 				8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */,
 				8C925FB41F874FD2002761AC /* Country.swift in Sources */,
+				8CB8175A1F9506D400EA2FFB /* MyProfileViewController.swift in Sources */,
 				8CA167AA1F8645ED00AB6316 /* AppDelegate.swift in Sources */,
 				8C3DE3841F93926700FB2B1B /* LoginViewController.swift in Sources */,
 			);
@@ -475,11 +483,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5X7GQ83AL9;
 				INFOPLIST_FILE = GroupBuy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kaijuntong.GroupBuy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -491,11 +500,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5X7GQ83AL9;
 				INFOPLIST_FILE = GroupBuy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kaijuntong.GroupBuy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
