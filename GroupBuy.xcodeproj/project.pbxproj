@@ -21,6 +21,7 @@
 		8CA167AF1F8645ED00AB6316 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CA167AD1F8645ED00AB6316 /* Main.storyboard */; };
 		8CA167B11F8645ED00AB6316 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA167B01F8645ED00AB6316 /* Assets.xcassets */; };
 		8CA167B41F8645EE00AB6316 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CA167B21F8645EE00AB6316 /* LaunchScreen.storyboard */; };
+		8CA7712C1F97A60300F86814 /* MyEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7712B1F97A60300F86814 /* MyEventDetailViewController.swift */; };
 		8CB8175A1F9506D400EA2FFB /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */; };
 		8CC1B21E1F9406BD004A961F /* MyEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */; };
 		8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */; };
@@ -51,6 +52,7 @@
 		8CA167B01F8645ED00AB6316 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CA167B31F8645EE00AB6316 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CA167B51F8645EE00AB6316 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CA7712B1F97A60300F86814 /* MyEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventDetailViewController.swift; sourceTree = "<group>"; };
 		8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewController.swift; sourceTree = "<group>"; };
 		8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewCell.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				8CA02C591F94E51500E94432 /* ItemViewController.swift */,
 				8C3DE3831F93926700FB2B1B /* LoginViewController.swift */,
 				8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */,
+				8CA7712B1F97A60300F86814 /* MyEventDetailViewController.swift */,
 				8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */,
 				8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */,
 				8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */,
@@ -330,6 +333,7 @@
 				8CA02C5A1F94E51500E94432 /* ItemViewController.swift in Sources */,
 				8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */,
 				8C925FBD1F875E70002761AC /* CountryItemsViewController.swift in Sources */,
+				8CA7712C1F97A60300F86814 /* MyEventDetailViewController.swift in Sources */,
 				8CD59E641F8C4FCF00D70631 /* NewEventViewController.swift in Sources */,
 				8CE99B031F93A5A700DC95B7 /* SettingViewController.swift in Sources */,
 				8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */,

@@ -1150,7 +1150,7 @@
                                     <outlet property="countryImageView" destination="Ume-Yy-GiR" id="Gd9-Qy-gtd"/>
                                     <outlet property="countryLabel" destination="Ude-1J-2pH" id="95B-2Q-5S2"/>
                                     <outlet property="dateLabel" destination="clA-TM-odG" id="Owc-c8-NeS"/>
-                                    <segue destination="N7N-6c-zAE" kind="show" id="EGJ-y2-Ira"/>
+                                    <segue destination="N7N-6c-zAE" kind="show" identifier="showEventDetail" id="EGJ-y2-Ira"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1174,7 +1174,7 @@
         <!--Hong Kong-->
         <scene sceneID="U0v-Pu-r04">
             <objects>
-                <tableViewController id="N7N-6c-zAE" sceneMemberID="viewController">
+                <tableViewController id="N7N-6c-zAE" customClass="MyEventDetailViewController" customModule="GroupBuy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Qay-th-m9P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1217,14 +1217,14 @@
                     <navigationItem key="navigationItem" title="Hong Kong" id="ji7-ib-GSd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0e0-H3-naS">
                             <connections>
-                                <segue destination="qV9-hz-Cip" kind="presentation" id="FDl-fT-FEA"/>
+                                <segue destination="qV9-hz-Cip" kind="presentation" identifier="addNewItem" id="FDl-fT-FEA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5g-xV-sWe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3041" y="-685"/>
+            <point key="canvasLocation" x="3065" y="-678"/>
         </scene>
         <!--New Event View Controller-->
         <scene sceneID="5Pk-YQ-HhC">
@@ -2269,13 +2269,16 @@ All Rights Reserved.</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="descriptionTextView" destination="nVW-eO-gVN" id="fwh-qf-DZ9"/>
                         <outlet property="itemimageView" destination="vVV-IW-Q0c" id="h3X-WE-PCB"/>
+                        <outlet property="priceTextField" destination="S9V-8f-qaD" id="yVQ-1a-syO"/>
                         <outlet property="productTextField" destination="65T-Bi-bvr" id="a4Q-hu-KoK"/>
+                        <outlet property="sizeTextField" destination="Sxg-6G-xvE" id="YfU-W4-arR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lgw-kA-lhJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5284" y="-633"/>
+            <point key="canvasLocation" x="4711" y="-685"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J54-CF-sHG">
@@ -2293,7 +2296,7 @@ All Rights Reserved.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbj-Hx-XdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4502.3999999999996" y="-632.38380809595208"/>
+            <point key="canvasLocation" x="3905" y="-685"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FN1-bC-Cq1">

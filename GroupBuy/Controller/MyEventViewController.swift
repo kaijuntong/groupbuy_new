@@ -11,6 +11,8 @@ import Firebase
 class MyEventViewController: UITableViewController {
     var ref:DatabaseReference!
     var messages: [DataSnapshot]! = []
+    var countryName = [String]()
+    
     fileprivate var _refHandle: DatabaseHandle!
     
     override func viewDidLoad() {
@@ -67,6 +69,7 @@ class MyEventViewController: UITableViewController {
         print(message)
         print(message["destination"])
         let destination:String = message["destination"] as! String
+        countryName.append(destination)
         let departDate:Double = message["departdate"] as! Double
         let returnDate:Double = message["returndate"] as! Double
         
@@ -94,6 +97,23 @@ class MyEventViewController: UITableViewController {
         return formatter.string(from: date)
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEventDetail"{
+            let controller = segue.destination as! MyEventDetailViewController
+            
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
+                //controller.itemToEdit = checklist.items[indexPath.row]
+                
+                let parentKey = messages[indexPath.row].key
+                
+                controller.eventID = parentKey
+                controller.countryName = countryName[indexPath.row]
+                
+                print(parentKey)
+            }
+        }
+    }
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let itemsCollectionViewController = self.storyboard!.instantiateViewController(withIdentifier: "ItemsCollectionViewController") as! ItemsCollectionViewController
 //
