@@ -112,11 +112,11 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
             
             ref = Database.database().reference()
         
-            eventItemInfo["user_id"] = userID
+            eventItemInfo["uid"] = userID
             eventItemInfo["itemName"] = productTextField.text
             eventItemInfo["itemPrice"] = priceTextField.text
             eventItemInfo["itemSize"] = sizeTextField.text
-            eventItemInfo["itemdescription"] = descriptionTextView.text
+            eventItemInfo["itemDescription"] = descriptionTextView.text
             eventItemInfo["event_id"] = eventID
         
             ref.child("eventItems").childByAutoId().setValue(eventItemInfo)

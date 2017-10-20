@@ -66,8 +66,8 @@ class MyEventViewController: UITableViewController {
        // let parentKey = messages[indexPath.row].key
         
         let message = messageSnapshot.value as! [String:AnyObject]
-        print(message)
-        print(message["destination"])
+//        print(message)
+//        print(message["destination"])
         let destination:String = message["destination"] as! String
         countryName.append(destination)
         let departDate:Double = message["departdate"] as! Double
