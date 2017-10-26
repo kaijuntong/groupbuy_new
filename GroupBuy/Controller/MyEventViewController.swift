@@ -11,14 +11,17 @@ import Firebase
 class MyEventViewController: UITableViewController {
     var ref:DatabaseReference!
     var messages: [DataSnapshot]! = []
-    var countryName = [String]()
+    var parsedResult:[String:AnyObject]!
     
-    fileprivate var _refHandle: DatabaseHandle!
+    var country = [MyCountry]()
+    
+    //fileprivate var _refHandle: DatabaseHandle!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 176
         tableView.rowHeight = UITableViewAutomaticDimension
+        parsedResult = [:]
         configureDatabase()
     }
     func configureDatabase(){
@@ -26,17 +29,58 @@ class MyEventViewController: UITableViewController {
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
-        
-        //listen for new messages in the firebase database
-        _refHandle = ref.child("events").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded){(snapshot:DataSnapshot) in
-            self.messages.append(snapshot)
-            self.tableView.reloadData()
-            //self.tableView.insertRows(at: [IndexPath(row: self.messages.count - 1 , section: 0)], with: .automatic)
-        }
+            //listen for new messages in the firebase database
+            //ref.child("events").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observeSingleEvent(of: .value, with: {(snapshot) in
+            ref.child("events").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.value){(snapshot) in
+                self.parsedResult.removeAll()
+                self.parsedResult = snapshot.value as? [String:AnyObject]
+                self.assignValue()
+                self.tableView.reloadData()
+            }
+            
+            //        ref.child("events").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observeSingleEvent(of: .value){(snapshot:DataSnapshot) in
+            //            let a = snapshot.value as? NSDictionary
+            //
+            //            let eventKey = snapshot.key
+            //            let countryName = a?["destination"] as? String ?? ""
+            //            print("------------")
+            //            print(countryName)
+            //                print("------------")
+            //           // let startDate = a["departdate"] as! Double
+            //////            let dueDate = a["returndate"] as! Double
+            //////            print("------------------")
+            //////            print(eventKey)
+            //////
+            //////            print(startDate)
+            //////            print(dueDate)
+            //////            print("------------------")
+            ////
+            ////
+            ////            //create item object
+            ////            let mycountry = MyCountry(eventKey: eventKey, countryName: countryName, startDate: startDate, dueDate: dueDate, countryImage: "")
+            ////
+            ////            self.country.append(mycountry)
+            //            self.tableView.reloadData()
+            //        }
         }
         
     }
     
+    func assignValue(){
+        if let parsedResult = parsedResult{
+        for (key,value) in parsedResult{
+            print(value)
+            let eventKey = key
+            let countryName = value["destination"] as! String
+            let startDate = value["departdate"] as! Double
+            let dueDate = value["returndate"] as! Double
+            
+            //create item object
+            let mycountry = MyCountry(eventKey: eventKey, countryName: countryName, startDate: startDate, dueDate: dueDate, countryImage: "")
+            
+            self.country.append(mycountry)
+            }}
+    }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //return UITableViewAutomaticDimension
         return 176
@@ -47,50 +91,31 @@ class MyEventViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return country.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Static Cell will be shown in a second row
-        //        if indexPath.section == 0 && indexPath.row == 0 {
-        //            var cell = tableView.dequeueReusableCell(withIdentifier: "profileCell")
-        //            cell?.selectionStyle = .none
-        //            return cell!
-        //        }
-        
-        //dynamic cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyEventViewCell
-        
-        //unpack message
-        let messageSnapshot:DataSnapshot! = messages[indexPath.row]
-       // let parentKey = messages[indexPath.row].key
-        
-        let message = messageSnapshot.value as! [String:AnyObject]
-//        print(message)
-//        print(message["destination"])
-        let destination:String = message["destination"] as! String
-        countryName.append(destination)
-        let departDate:Double = message["departdate"] as! Double
-        let returnDate:Double = message["returndate"] as! Double
-        
-        //print(destination)
-        cell.countryImageView.image = UIImage(named: destination.lowercased())
-        //cell.eventID = parentKey
-        cell.countryLabel.text = destination
-        
-        let startDate = displayTimestamp(ts: departDate)
-        let redate = displayTimestamp(ts: returnDate)
-        
-        cell.dateLabel.text = "\(startDate) to \(redate)"
-        
-        return cell
-    }
+        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyEventViewCell
+    
+            let selectedCountry = country[indexPath.row]
+    
+            let countryName = selectedCountry.countryName.lowercased()
+            let startDate = selectedCountry.startDate
+            let dueDate = selectedCountry.dueDate
+    
+            let a = displayTimestamp(ts: startDate)
+            let b = displayTimestamp(ts: dueDate)
+            cell.countryLabel.text = countryName
+            cell.dateLabel.text = "\(a) - \(b)"
+            cell.countryImageView.image = UIImage(named:"\(countryName)")
+            return cell
+        }
     
     func displayTimestamp(ts: Double) -> String {
         let date = Date(timeIntervalSince1970: ts)
         let formatter = DateFormatter()
         //formatter.timeZone = NSTimeZone.system
-
+        
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         
@@ -105,24 +130,24 @@ class MyEventViewController: UITableViewController {
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
                 //controller.itemToEdit = checklist.items[indexPath.row]
                 
-                let parentKey = messages[indexPath.row].key
+                let parentKey = country[indexPath.row].eventKey
                 
                 controller.eventID = parentKey
-                controller.countryName = countryName[indexPath.row]
+                controller.countryName = country[indexPath.row].countryName
                 
                 print(parentKey)
             }
         }
     }
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let itemsCollectionViewController = self.storyboard!.instantiateViewController(withIdentifier: "ItemsCollectionViewController") as! ItemsCollectionViewController
-//
-//        let currentCell = tableView.cellForRow(at: indexPath) as! EventTableViewCell
-//        itemsCollectionViewController.eventId = currentCell.eventID
-//        itemsCollectionViewController.countryName = currentCell.countryName.text
-//        print(currentCell.eventID)
-//
-//        self.navigationController!.pushViewController(itemsCollectionViewController, animated: true)
-//        tableView.deselectRow(at: indexPath, animated: false)
-//    }
+    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        let itemsCollectionViewController = self.storyboard!.instantiateViewController(withIdentifier: "ItemsCollectionViewController") as! ItemsCollectionViewController
+    //
+    //        let currentCell = tableView.cellForRow(at: indexPath) as! EventTableViewCell
+    //        itemsCollectionViewController.eventId = currentCell.
+    //        itemsCollectionViewController.countryName = currentCell.countryName.text
+    //        print(currentCell.eventID)
+    //
+    //        self.navigationController!.pushViewController(itemsCollectionViewController, animated: true)
+    //        tableView.deselectRow(at: indexPath, animated: false)
+    //    }
 }

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/kaijuntong/Code/GroupBuy_New/GroupBuy/GroupBuy/Controller/CellController/myCartViewCell.swift">
+   </FileRef>
+   <FileRef
       location = "group:GroupBuy.xcodeproj">
    </FileRef>
    <FileRef

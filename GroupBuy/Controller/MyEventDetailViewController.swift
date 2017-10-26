@@ -22,39 +22,45 @@ class MyEventDetailViewController: UITableViewController {
         self.title = countryName
         configureDatabase()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     func configureDatabase(){
         ref = Database.database().reference()
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
-
+            
             //listen for new messages in the firebase database
-            _refHandle = ref.child("eventItems").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.childAdded){
+            _refHandle = ref.child("eventItems").queryOrdered(byChild: "event_id").queryEqual(toValue: eventID).observe(.value){
                 (snapshot:DataSnapshot) in
+                print(snapshot)
                 
-                let a = snapshot.value as? [String:String] ?? [:]
+                //remove previous data
+                self.eventItems.removeAll()
+                let a = snapshot.value as? [String:AnyObject] ?? [:]
+                //
                 
-                let itemName = a["itemName"]
-                let itemSize = a["itemSize"]
-                let itemDescription = a["itemDescription"] ?? ""
-                let itemPrice = a["itemPrice"]
-                let itemImage = a["itemImage"]
-                
-                //create item object
-                let item = Item(itemName: itemName!, itemDescription: itemDescription, itemPrice: Double(itemPrice!)!, itemSize: itemSize!,imageLoc: itemImage!)
-                
-                
-                self.eventItems.append(item)
+                for (key,value) in a{
+                    let abc = value as![String:AnyObject]
+                    
+                    let itemName = abc["itemName"] as! String
+                    let itemSize = abc["itemSize"] as! String
+                    let itemDescription = abc["itemDescription"] as! String
+                    let itemPrice = abc["itemPrice"] as! Double
+                    let itemImage = abc["itemImage"] as! String
+                    
+                    //create item object
+                    let item = Item(itemKey:key, itemName: itemName, itemDescription: itemDescription, itemPrice: itemPrice, itemSize: itemSize,imageLoc: itemImage)
+                    
+                    self.eventItems.append(item)
+                }
                 self.test()
                 self.tableView.reloadData()
-//                    //self.tableView.insertRows(at: [IndexPath(row: self.messages.count - 1 , section: 0)], with: .automatic)
-                }
             }
+        }
         
     }
     
@@ -63,10 +69,10 @@ class MyEventDetailViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-//        return eventItems.count
+        //        return eventItems.count
         return eventItems.count
     }
     
@@ -108,6 +114,16 @@ class MyEventDetailViewController: UITableViewController {
             let controller = segue.destination as! UINavigationController
             let itemVC = controller.topViewController as! ItemViewController
             itemVC.eventID = eventID
+        }
+        if segue.identifier == "editItem"{
+            let controller = segue.destination as! UINavigationController
+            let itemVC = controller.topViewController as! ItemViewController
+            
+            itemVC.eventID = eventID
+            
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
+                itemVC.itemToEdit = eventItems[indexPath.row]
+            }
         }
     }
     

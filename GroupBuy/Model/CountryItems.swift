@@ -10,12 +10,14 @@ import UIKit
 
 class CountryItems{
     var username = ""
+    var itemKey = ""
     var itemName = ""
     var itemPrice = -1.0
     var itemSalesQuantity = -1
-    var productImage: UIImage?
+    var productImage = ""
     
-    init(username:String, itemName:String, itemPrice:Double, itemSaleQuantity:Int,productImage:UIImage!) {
+    init(itemKey:String,username:String, itemName:String, itemPrice:Double, itemSaleQuantity:Int,productImage:String) {
+        self.itemKey = itemKey
         self.username = username
         self.itemName = itemName
         self.itemPrice = itemPrice

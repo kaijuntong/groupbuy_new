@@ -23,7 +23,11 @@
 		8CA167B11F8645ED00AB6316 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA167B01F8645ED00AB6316 /* Assets.xcassets */; };
 		8CA167B41F8645EE00AB6316 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CA167B21F8645EE00AB6316 /* LaunchScreen.storyboard */; };
 		8CA7712C1F97A60300F86814 /* MyEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7712B1F97A60300F86814 /* MyEventDetailViewController.swift */; };
+		8CB3FF721F9AE2C2007CBF57 /* MyCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB3FF711F9AE2C2007CBF57 /* MyCountry.swift */; };
+		8CB6899D1FA1866A00E5F0EF /* HottestItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6899C1FA1866A00E5F0EF /* HottestItemViewCell.swift */; };
 		8CB8175A1F9506D400EA2FFB /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */; };
+		8CC0F7021FA1D7DA00F55FB9 /* myCartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F7011FA1D7DA00F55FB9 /* myCartViewCell.swift */; };
+		8CC0F7041FA1D9B500F55FB9 /* cartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F7031FA1D9B500F55FB9 /* cartViewController.swift */; };
 		8CC1B21E1F9406BD004A961F /* MyEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */; };
 		8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */; };
 		8CD59E641F8C4FCF00D70631 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */; };
@@ -55,7 +59,11 @@
 		8CA167B31F8645EE00AB6316 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CA167B51F8645EE00AB6316 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CA7712B1F97A60300F86814 /* MyEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventDetailViewController.swift; sourceTree = "<group>"; };
+		8CB3FF711F9AE2C2007CBF57 /* MyCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCountry.swift; sourceTree = "<group>"; };
+		8CB6899C1FA1866A00E5F0EF /* HottestItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HottestItemViewCell.swift; sourceTree = "<group>"; };
 		8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		8CC0F7011FA1D7DA00F55FB9 /* myCartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = myCartViewCell.swift; path = /Users/kaijuntong/Code/GroupBuy_New/GroupBuy/GroupBuy/Controller/CellController/myCartViewCell.swift; sourceTree = "<absolute>"; };
+		8CC0F7031FA1D9B500F55FB9 /* cartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartViewController.swift; sourceTree = "<group>"; };
 		8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewController.swift; sourceTree = "<group>"; };
 		8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewCell.swift; sourceTree = "<group>"; };
 		8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +87,7 @@
 		8C925FAF1F874B2C002761AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8CB3FF711F9AE2C2007CBF57 /* MyCountry.swift */,
 				8C92F5711F99BF6D00A0705E /* Item.swift */,
 				8C925FB31F874FD1002761AC /* Country.swift */,
 				8C925FB71F875B23002761AC /* CountryItems.swift */,
@@ -109,6 +118,7 @@
 				8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */,
 				8C925FBC1F875E70002761AC /* CountryItemsViewController.swift */,
 				8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */,
+				8CC0F7031FA1D9B500F55FB9 /* cartViewController.swift */,
 				8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */,
 				8CE99B021F93A5A700DC95B7 /* SettingViewController.swift */,
 			);
@@ -127,9 +137,11 @@
 		8C925FBB1F875E40002761AC /* CellController */ = {
 			isa = PBXGroup;
 			children = (
+				8CC0F7011FA1D7DA00F55FB9 /* myCartViewCell.swift */,
 				8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */,
 				8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */,
 				8C925FB91F875D71002761AC /* ContryItemsCollectionViewCell.swift */,
+				8CB6899C1FA1866A00E5F0EF /* HottestItemViewCell.swift */,
 			);
 			path = CellController;
 			sourceTree = "<group>";
@@ -333,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C925FB81F875B23002761AC /* CountryItems.swift in Sources */,
+				8CC0F7041FA1D9B500F55FB9 /* cartViewController.swift in Sources */,
 				8CA02C5A1F94E51500E94432 /* ItemViewController.swift in Sources */,
 				8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */,
 				8C925FBD1F875E70002761AC /* CountryItemsViewController.swift in Sources */,
@@ -341,11 +354,14 @@
 				8CE99B031F93A5A700DC95B7 /* SettingViewController.swift in Sources */,
 				8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */,
 				8CC1B21E1F9406BD004A961F /* MyEventViewController.swift in Sources */,
+				8CB6899D1FA1866A00E5F0EF /* HottestItemViewCell.swift in Sources */,
 				8CA167AC1F8645ED00AB6316 /* HomeViewController.swift in Sources */,
 				8C925FBA1F875D71002761AC /* ContryItemsCollectionViewCell.swift in Sources */,
 				8CE99AFF1F939F2F00DC95B7 /* SignupViewController.swift in Sources */,
+				8CB3FF721F9AE2C2007CBF57 /* MyCountry.swift in Sources */,
 				8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */,
 				8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */,
+				8CC0F7021FA1D7DA00F55FB9 /* myCartViewCell.swift in Sources */,
 				8C92F5721F99BF6D00A0705E /* Item.swift in Sources */,
 				8C925FB41F874FD2002761AC /* Country.swift in Sources */,
 				8CB8175A1F9506D400EA2FFB /* MyProfileViewController.swift in Sources */,
