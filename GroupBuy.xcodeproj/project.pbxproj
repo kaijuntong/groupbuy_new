@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */; };
 		8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */; };
+		8C2059D51FA22641008551B0 /* SellerrDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */; };
+		8C366CC51FA63CB8002D2D1C /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366CC41FA63CB8002D2D1C /* RatingControl.swift */; };
 		8C3DE3841F93926700FB2B1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DE3831F93926700FB2B1B /* LoginViewController.swift */; };
 		8C925FB41F874FD2002761AC /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB31F874FD1002761AC /* Country.swift */; };
 		8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */; };
@@ -43,6 +45,8 @@
 		690AA01C482E5BB4F4BE37FD /* Pods_GroupBuy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupBuy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
+		8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerrDetailViewController.swift; sourceTree = "<group>"; };
+		8C366CC41FA63CB8002D2D1C /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		8C3DE3831F93926700FB2B1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = /Users/kaijuntong/Code/GroupBuy_New/GroupBuy/GroupBuy/Controller/LoginViewController.swift; sourceTree = "<absolute>"; };
 		8C925FB31F874FD1002761AC /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 		8C925FB11F874B59002761AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */,
 				8C925FBB1F875E40002761AC /* CellController */,
 				8CA167AB1F8645ED00AB6316 /* HomeViewController.swift */,
 				8CA02C591F94E51500E94432 /* ItemViewController.swift */,
@@ -121,6 +126,7 @@
 				8CC0F7031FA1D9B500F55FB9 /* cartViewController.swift */,
 				8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */,
 				8CE99B021F93A5A700DC95B7 /* SettingViewController.swift */,
+				8C366CC41FA63CB8002D2D1C /* RatingControl.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -346,6 +352,7 @@
 			files = (
 				8C925FB81F875B23002761AC /* CountryItems.swift in Sources */,
 				8CC0F7041FA1D9B500F55FB9 /* cartViewController.swift in Sources */,
+				8C2059D51FA22641008551B0 /* SellerrDetailViewController.swift in Sources */,
 				8CA02C5A1F94E51500E94432 /* ItemViewController.swift in Sources */,
 				8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */,
 				8C925FBD1F875E70002761AC /* CountryItemsViewController.swift in Sources */,
@@ -361,6 +368,7 @@
 				8CB3FF721F9AE2C2007CBF57 /* MyCountry.swift in Sources */,
 				8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */,
 				8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */,
+				8C366CC51FA63CB8002D2D1C /* RatingControl.swift in Sources */,
 				8CC0F7021FA1D7DA00F55FB9 /* myCartViewCell.swift in Sources */,
 				8C92F5721F99BF6D00A0705E /* Item.swift in Sources */,
 				8C925FB41F874FD2002761AC /* Country.swift in Sources */,

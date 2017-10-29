@@ -12,6 +12,7 @@ class MyProfileViewController: UITableViewController {
 
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -36,6 +37,7 @@ class MyProfileViewController: UITableViewController {
             //get user value
             let value = snapshot.value as? NSDictionary
             let username = value?["username"] as? String ?? ""
+            let description = value?["description"] as? String ?? ""
             let firstname = value?["firstname"] as? String ?? ""
             let lastname = value?["lastname"] as? String ?? ""
             let address1 = value?["address1"] as? String ?? ""
@@ -53,8 +55,9 @@ class MyProfileViewController: UITableViewController {
                 }
             }
             
-            self.usernameTextField.text = username
+           // self.usernameTextField.text = username
             self.emailTextField.text = self.email
+            self.descriptionTextField.text = description
             self.firstNameTextField.text = firstname
             self.lastNameTextField.text = lastname
             self.address1TextField.text = address1
@@ -74,7 +77,8 @@ class MyProfileViewController: UITableViewController {
     }
     
     @IBAction func saveBtnClicked(_ sender: UIBarButtonItem) {
-        let user = ["username":usernameTextField.text?.lowercased(),
+        let user = ["email":self.email,
+                    "description": descriptionTextField.text?.uppercased(),
                     "firstname":firstNameTextField.text?.uppercased(),
                     "lastname":lastNameTextField.text?.uppercased(),
                     "address1":address1TextField.text?.uppercased(),
@@ -86,7 +90,7 @@ class MyProfileViewController: UITableViewController {
         ]
         let childUpdated = ["/users/\(userID!)": user]
         ref.updateChildValues(childUpdated)
-
+        dismiss(animated: true, completion: nil)
     }
     
 }

@@ -14,6 +14,7 @@ class MyEventViewController: UITableViewController {
     var parsedResult:[String:AnyObject]!
     
     var country = [MyCountry]()
+    var eventDetails = [[String:Any]]()
     
     //fileprivate var _refHandle: DatabaseHandle!
     
@@ -21,7 +22,7 @@ class MyEventViewController: UITableViewController {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 176
         tableView.rowHeight = UITableViewAutomaticDimension
-        parsedResult = [:]
+        parsedResult = [String:AnyObject]()
         configureDatabase()
     }
     func configureDatabase(){
@@ -75,6 +76,11 @@ class MyEventViewController: UITableViewController {
             let startDate = value["departdate"] as! Double
             let dueDate = value["returndate"] as! Double
             
+            let eventDetail = ["destination": countryName,
+                               "departdate": startDate,
+                               "returndate": dueDate] as [String : Any]
+            
+            eventDetails.append(eventDetail)
             //create item object
             let mycountry = MyCountry(eventKey: eventKey, countryName: countryName, startDate: startDate, dueDate: dueDate, countryImage: "")
             
@@ -134,7 +140,7 @@ class MyEventViewController: UITableViewController {
                 
                 controller.eventID = parentKey
                 controller.countryName = country[indexPath.row].countryName
-                
+                controller.eventDetail = eventDetails[indexPath.row]
                 print(parentKey)
             }
         }

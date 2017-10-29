@@ -14,6 +14,7 @@ class MyEventDetailViewController: UITableViewController {
     var eventID:String!
     var countryName:String!
     var eventItems = [Item]()
+    var eventDetail:[String:Any]!
     
     fileprivate var _refHandle: DatabaseHandle!
     
@@ -51,7 +52,7 @@ class MyEventDetailViewController: UITableViewController {
                     let itemDescription = abc["itemDescription"] as! String
                     let itemPrice = abc["itemPrice"] as! Double
                     let itemImage = abc["itemImage"] as! String
-                    
+                    let sellerID = abc["uid"] as! String
                     //create item object
                     let item = Item(itemKey:key, itemName: itemName, itemDescription: itemDescription, itemPrice: itemPrice, itemSize: itemSize,imageLoc: itemImage)
                     
@@ -114,12 +115,14 @@ class MyEventDetailViewController: UITableViewController {
             let controller = segue.destination as! UINavigationController
             let itemVC = controller.topViewController as! ItemViewController
             itemVC.eventID = eventID
+            itemVC.eventDetail = eventDetail
         }
         if segue.identifier == "editItem"{
             let controller = segue.destination as! UINavigationController
             let itemVC = controller.topViewController as! ItemViewController
             
             itemVC.eventID = eventID
+            itemVC.eventDetail = eventDetail
             
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
                 itemVC.itemToEdit = eventItems[indexPath.row]

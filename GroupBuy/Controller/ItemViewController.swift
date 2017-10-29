@@ -20,6 +20,7 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
     var ref:DatabaseReference!
     let userID = Auth.auth().currentUser?.uid
     
+    var eventDetail:[String:Any]!
     
     var eventID:String!
     var imageData:Data?
@@ -165,6 +166,17 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
             eventItemInfo["itemSize"] = sizeTextField.text
             eventItemInfo["itemDescription"] = descriptionTextView.text
             eventItemInfo["event_id"] = eventID
+        
+        //event_id1
+        let countryName = eventDetail["destination"] as! String
+        let startDate = eventDetail["departdate"] as! Double
+        let dueDate = eventDetail["returndate"] as! Double
+        
+        eventItemInfo["event_id1"] = [
+            "departdate": startDate,
+            "returndate": dueDate,
+            "destination": countryName
+        ]
         
         if let item = itemToEdit{
             ref.child("eventItems").child(item.itemKey).setValue(eventItemInfo)

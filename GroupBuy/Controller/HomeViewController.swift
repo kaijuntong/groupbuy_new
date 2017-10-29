@@ -119,6 +119,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
                 
                 //remove previous data
                 //self.eventItems.removeAll()
+                self.countryItems.removeAll()
                 let a = snapshot.value as? [String:AnyObject] ?? [:]
                 
                 
@@ -131,10 +132,11 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
                     let itemDescription = abc["itemDescription"] as! String
                     let itemPrice = abc["itemPrice"] as! Double
                     let itemImage = abc["itemImage"] as! String
+                    let sellerID = abc["uid"] as! String
                     
                     //create item object
                     
-                    let countryItem = CountryItems(itemKey:key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage)
+                    let countryItem = CountryItems(itemKey:key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID)
                     
                     self.countryItems.append(countryItem)
                 }

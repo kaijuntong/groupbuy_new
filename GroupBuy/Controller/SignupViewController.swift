@@ -19,13 +19,25 @@ class SignupViewController: UIViewController {
     }
 
     @IBAction func signUpBtnClicked(_ sender: UIButton) {
-        print("TEsaaaaaaat")
-
-        if let email = self.emailTextField.text, let password = passwordTextField.text, password == confirmPasswordTextField.text{
-            print("TEst")
+        
+        if emailTextField.text == ""{
+            let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }else if let email = self.emailTextField.text, let password = passwordTextField.text, password == confirmPasswordTextField.text{
+            
             Auth.auth().createUser(withEmail: email, password:password){
                 (user,error) in
                 if let error = error {
+                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    
+                    let defaultAlert = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(defaultAlert)
+                    
+                    self.present(alertController,animated: true, completion: nil)
                     return
                 }
                 //Login
@@ -43,6 +55,13 @@ class SignupViewController: UIViewController {
                 }
 
             }
+        }else{
+            let alertController = UIAlertController(title: "Error", message: "Password not match, Please try again.", preferredStyle: .alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            present(alertController, animated: true, completion: nil)
         }
     }
     
