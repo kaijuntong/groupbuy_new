@@ -7,8 +7,18 @@
 //
 
 import UIKit
+import Firebase
+
+protocol RatingControlDelegate:class{
+    func ratingPicker(_ picker:RatingControl, didPick rating: Int)
+}
 
 @IBDesignable class RatingControl: UIStackView {
+    weak var delegate:RatingControlDelegate?
+    
+    var ref:DatabaseReference!
+    let userID = Auth.auth().currentUser?.uid
+    
     @IBInspectable var starSize:CGSize = CGSize(width: 44.0, height: 44.0){
         didSet{
             setupButtons()
@@ -87,9 +97,11 @@ import UIKit
         if selectedRating == rating{
             // If the selected star represents the current rating, reset the rating to 0.
             rating = 0
+            updateFirebase(rating:rating)
         }else{
             // Otherwise set the rating to the selected star
             rating = selectedRating
+            updateFirebase(rating:rating)
         }
     }
     
@@ -100,4 +112,12 @@ import UIKit
         }
     }
     
+    func updateFirebase(rating:Int){
+        print("rating \(rating)")
+        if let delegate = delegate{
+            print("rating \(rating)")
+            delegate.ratingPicker(self, didPick: rating)
+        }
+        print("rating \(rating)")
+    }
 }
