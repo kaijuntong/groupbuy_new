@@ -80,6 +80,7 @@ class MyEventViewController: UITableViewController {
                                "departdate": startDate,
                                "returndate": dueDate] as [String : Any]
             
+
             eventDetails.append(eventDetail)
             //create item object
             let mycountry = MyCountry(eventKey: eventKey, countryName: countryName, startDate: startDate, dueDate: dueDate, countryImage: "")

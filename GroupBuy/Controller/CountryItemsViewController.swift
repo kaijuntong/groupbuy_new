@@ -117,7 +117,7 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
                     
                     //create item object
                     
-                    let countryItem = CountryItems(itemKey: key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID)
+                    let countryItem = CountryItems(itemKey: key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize)
                     
                     self.countryItems.append(countryItem)
                 }

@@ -13,18 +13,22 @@ protocol RatingControlDelegate:class{
     func ratingPicker(_ picker:RatingControl, didPick rating: Int)
 }
 
-@IBDesignable class RatingControl: UIStackView {
+@IBDesignable
+class RatingControl: UIStackView {
     weak var delegate:RatingControlDelegate?
     
     var ref:DatabaseReference!
     let userID = Auth.auth().currentUser?.uid
     
-    @IBInspectable var starSize:CGSize = CGSize(width: 44.0, height: 44.0){
+    @IBInspectable
+    var starSize:CGSize = CGSize(width: 44.0, height: 44.0){
         didSet{
             setupButtons()
         }
     }
-    @IBInspectable var starCount:Int = 5{
+    
+    @IBInspectable
+    var starCount:Int = 5{
         didSet{
             setupButtons()
         }
@@ -46,6 +50,7 @@ protocol RatingControlDelegate:class{
         super.init(coder: coder)
         setupButtons()
     }
+    
     
     //MARK: Private Methods
     private func setupButtons(){

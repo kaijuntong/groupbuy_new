@@ -40,7 +40,8 @@ class ItemDetailViewController: UITableViewController {
 
         productLabel.text = item.itemName
         priceLabel.text = "\(item.itemPrice)"
-        sizeLabel.text = "250 ml"
+        sizeLabel.text = "\(item.itemSize)"
+        descriptionLabel.text = "\(item.itemDescription)"
         
         ref = Database.database().reference()
         ref.child("users").child(self.item.sellerID).observeSingleEvent(of: .value, with: {(snapshot) in
@@ -87,6 +88,10 @@ class ItemDetailViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showUserDetail"{
+            print(item.sellerID)
+            print(item.sellerID)
+            print(item.sellerID)
+
             let controller = segue.destination as! SellerDetailViewController
             controller.sellerID = item.sellerID
             print(item.sellerID)

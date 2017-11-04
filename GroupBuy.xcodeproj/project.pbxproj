@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */; };
 		8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */; };
+		8C1BADBE1FAB338D00CDFA6A /* CommentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BADBD1FAB338D00CDFA6A /* CommentObject.swift */; };
 		8C2059D51FA22641008551B0 /* SellerrDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */; };
 		8C224A201FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C224A1F1FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift */; };
+		8C31C59A1FAADAB700C857EA /* ReviewRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31C5991FAADAB700C857EA /* ReviewRatingViewController.swift */; };
+		8C31C59C1FAAE14D00C857EA /* RatingCommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31C59B1FAAE14D00C857EA /* RatingCommentViewCell.swift */; };
 		8C366CC51FA63CB8002D2D1C /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366CC41FA63CB8002D2D1C /* RatingControl.swift */; };
 		8C3DE3841F93926700FB2B1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DE3831F93926700FB2B1B /* LoginViewController.swift */; };
+		8C5916541FAB0E190071FDFA /* ratingStarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5916531FAB0E190071FDFA /* ratingStarViewCell.swift */; };
 		8C925FB41F874FD2002761AC /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB31F874FD1002761AC /* Country.swift */; };
 		8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */; };
 		8C925FB81F875B23002761AC /* CountryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB71F875B23002761AC /* CountryItems.swift */; };
@@ -46,10 +50,14 @@
 		690AA01C482E5BB4F4BE37FD /* Pods_GroupBuy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupBuy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
+		8C1BADBD1FAB338D00CDFA6A /* CommentObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentObject.swift; sourceTree = "<group>"; };
 		8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerrDetailViewController.swift; sourceTree = "<group>"; };
 		8C224A1F1FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ratingCommentCellTableViewCell.swift; sourceTree = "<group>"; };
+		8C31C5991FAADAB700C857EA /* ReviewRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReviewRatingViewController.swift; path = GroupBuy/Controller/ReviewRatingViewController.swift; sourceTree = SOURCE_ROOT; };
+		8C31C59B1FAAE14D00C857EA /* RatingCommentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCommentViewCell.swift; sourceTree = "<group>"; };
 		8C366CC41FA63CB8002D2D1C /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		8C3DE3831F93926700FB2B1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = /Users/kaijuntong/Code/GroupBuy_New/GroupBuy/GroupBuy/Controller/LoginViewController.swift; sourceTree = "<absolute>"; };
+		8C5916531FAB0E190071FDFA /* ratingStarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ratingStarViewCell.swift; sourceTree = "<group>"; };
 		8C925FB31F874FD1002761AC /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C925FB71F875B23002761AC /* CountryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryItems.swift; sourceTree = "<group>"; };
@@ -97,6 +105,7 @@
 				8C92F5711F99BF6D00A0705E /* Item.swift */,
 				8C925FB31F874FD1002761AC /* Country.swift */,
 				8C925FB71F875B23002761AC /* CountryItems.swift */,
+				8C1BADBD1FAB338D00CDFA6A /* CommentObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -116,6 +125,7 @@
 				8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */,
 				8C925FBB1F875E40002761AC /* CellController */,
 				8CA167AB1F8645ED00AB6316 /* HomeViewController.swift */,
+				8C31C5991FAADAB700C857EA /* ReviewRatingViewController.swift */,
 				8CA02C591F94E51500E94432 /* ItemViewController.swift */,
 				8C3DE3831F93926700FB2B1B /* LoginViewController.swift */,
 				8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */,
@@ -145,10 +155,12 @@
 		8C925FBB1F875E40002761AC /* CellController */ = {
 			isa = PBXGroup;
 			children = (
+				8C31C59B1FAAE14D00C857EA /* RatingCommentViewCell.swift */,
 				8C224A1F1FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift */,
 				8CC0F7011FA1D7DA00F55FB9 /* myCartViewCell.swift */,
 				8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */,
 				8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */,
+				8C5916531FAB0E190071FDFA /* ratingStarViewCell.swift */,
 				8C925FB91F875D71002761AC /* ContryItemsCollectionViewCell.swift */,
 				8CB6899C1FA1866A00E5F0EF /* HottestItemViewCell.swift */,
 			);
@@ -353,8 +365,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C5916541FAB0E190071FDFA /* ratingStarViewCell.swift in Sources */,
 				8C925FB81F875B23002761AC /* CountryItems.swift in Sources */,
 				8CC0F7041FA1D9B500F55FB9 /* cartViewController.swift in Sources */,
+				8C31C59A1FAADAB700C857EA /* ReviewRatingViewController.swift in Sources */,
 				8C2059D51FA22641008551B0 /* SellerrDetailViewController.swift in Sources */,
 				8CA02C5A1F94E51500E94432 /* ItemViewController.swift in Sources */,
 				8C224A201FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift in Sources */,
@@ -369,12 +383,14 @@
 				8CA167AC1F8645ED00AB6316 /* HomeViewController.swift in Sources */,
 				8C925FBA1F875D71002761AC /* ContryItemsCollectionViewCell.swift in Sources */,
 				8CE99AFF1F939F2F00DC95B7 /* SignupViewController.swift in Sources */,
+				8C31C59C1FAAE14D00C857EA /* RatingCommentViewCell.swift in Sources */,
 				8CB3FF721F9AE2C2007CBF57 /* MyCountry.swift in Sources */,
 				8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */,
 				8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */,
 				8C366CC51FA63CB8002D2D1C /* RatingControl.swift in Sources */,
 				8CC0F7021FA1D7DA00F55FB9 /* myCartViewCell.swift in Sources */,
 				8C92F5721F99BF6D00A0705E /* Item.swift in Sources */,
+				8C1BADBE1FAB338D00CDFA6A /* CommentObject.swift in Sources */,
 				8C925FB41F874FD2002761AC /* Country.swift in Sources */,
 				8CB8175A1F9506D400EA2FFB /* MyProfileViewController.swift in Sources */,
 				8CA167AA1F8645ED00AB6316 /* AppDelegate.swift in Sources */,
