@@ -52,6 +52,9 @@ class ReviewRatingViewController: UITableViewController {
             //get user value
             let value = snapshot.value as? NSDictionary
             if let value1 = value as? [String:NSDictionary]{
+                //remove old array
+                self.commentArray.removeAll()
+
                 for (key,value) in value1{
                     if value["rating"] as! Int != 0{
                         let rate = value["rating"] as! Int
@@ -111,53 +114,4 @@ class ReviewRatingViewController: UITableViewController {
         
         return formatter.string(from: date)
     }
-    
-    //    func configureDatabase(){
-    //        //ref.child("user_rating").child(self.sellerID!).observeSingleEvent(of: .value, with: {(snapshot) in
-    //        ref.child("user_rating").child(self.sellerID!).observe(DataEventType.value, with: {(snapshot) in
-    //            //get user value
-    //            let value = snapshot.value as? NSDictionary
-    //            if let value1 = value as? [String:NSDictionary]{
-    //                for (key,value) in value1{
-    //                    if value["rating"] as! Int != 0{
-    //                        print("00000000")
-    //                        print(value)
-    //                        print("00000000")
-    //                        if let comment = value["comment"]{
-    //                            let userdata = self.ref.child("user").child("\(key)").observeSingleEvent(of: .value, with: {
-    //                                (snapshot) in
-    //                                print(snapshot)
-    //                                let value2 = snapshot.value as? NSDictionary
-    //                                if let value3 = value2 as? [String:AnyObject]{
-    //                                    print(value3)
-    //                                    for(key1, value1) in value3{
-    //
-    //                                        if value1["email"] as! String != ""{
-    //                                            let email = value1["email"]
-    //                                            let commentItem = CommentObject.init(username: email as! String, comment: comment as! String)
-    //                                            self.commentArray.append(commentItem)
-    //
-    //                                        }else{
-    //                                            let  commentItem = CommentObject.init(username: key, comment: comment as! String)
-    //                                            self.commentArray.append(commentItem)
-    //                                        }
-    //                                    }
-    //                                }
-    //                            })
-    //
-    //                            //  let commentItem = CommentObject.init(username: key, comment: value["comment"] as! String)
-    //                            // self.commentArray.append(commentItem)
-    //                        }else{
-    //                            let commentItem = CommentObject.init(username: key, comment: "")
-    //                            self.commentArray.append(commentItem)
-    //                        }
-    //                    }
-    //                    self.tableView.reloadData()
-    //                }
-    //            }
-    //        }){
-    //            (error) in
-    //            print(error.localizedDescription)
-    //        }
-    //    }
 }

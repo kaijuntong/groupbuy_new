@@ -122,7 +122,9 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
                 self.countryItems.removeAll()
                 let a = snapshot.value as? [String:AnyObject] ?? [:]
                 
-                
+                print("-------a")
+                print(a)
+                print("-------a")
                 
                 for (key,value) in a{
                     let abc = value as![String:AnyObject]

@@ -79,10 +79,11 @@ class ItemDetailViewController: UITableViewController {
             let uid = user.uid
             var cartItem = [String:Any]()
 
-            cartItem["item_id"] = item.itemKey
+            //cartItem["item_id"] = item.itemKey
             cartItem["quantity"] = 1
 //
-            ref.child("cart_item").child(uid).childByAutoId().setValue(cartItem)
+            //ref.child("cart_item").child(uid).childByAutoId().setValue(cartItem)
+            ref.child("cart_item").child(uid).child("\(item.itemKey)").setValue(cartItem)
         }
     }
     

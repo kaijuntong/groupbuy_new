@@ -16,6 +16,7 @@
 		8C31C59C1FAAE14D00C857EA /* RatingCommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31C59B1FAAE14D00C857EA /* RatingCommentViewCell.swift */; };
 		8C366CC51FA63CB8002D2D1C /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366CC41FA63CB8002D2D1C /* RatingControl.swift */; };
 		8C3DE3841F93926700FB2B1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DE3831F93926700FB2B1B /* LoginViewController.swift */; };
+		8C4E27501FAE11A000042652 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E274F1FAE11A000042652 /* Cart.swift */; };
 		8C5916541FAB0E190071FDFA /* ratingStarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5916531FAB0E190071FDFA /* ratingStarViewCell.swift */; };
 		8C925FB41F874FD2002761AC /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB31F874FD1002761AC /* Country.swift */; };
 		8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */; };
@@ -57,6 +58,7 @@
 		8C31C59B1FAAE14D00C857EA /* RatingCommentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCommentViewCell.swift; sourceTree = "<group>"; };
 		8C366CC41FA63CB8002D2D1C /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		8C3DE3831F93926700FB2B1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = /Users/kaijuntong/Code/GroupBuy_New/GroupBuy/GroupBuy/Controller/LoginViewController.swift; sourceTree = "<absolute>"; };
+		8C4E274F1FAE11A000042652 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		8C5916531FAB0E190071FDFA /* ratingStarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ratingStarViewCell.swift; sourceTree = "<group>"; };
 		8C925FB31F874FD1002761AC /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		8C925FB51F875202002761AC /* CountryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		8C925FAF1F874B2C002761AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8C4E274F1FAE11A000042652 /* Cart.swift */,
 				8CB3FF711F9AE2C2007CBF57 /* MyCountry.swift */,
 				8C92F5711F99BF6D00A0705E /* Item.swift */,
 				8C925FB31F874FD1002761AC /* Country.swift */,
@@ -367,6 +370,7 @@
 			files = (
 				8C5916541FAB0E190071FDFA /* ratingStarViewCell.swift in Sources */,
 				8C925FB81F875B23002761AC /* CountryItems.swift in Sources */,
+				8C4E27501FAE11A000042652 /* Cart.swift in Sources */,
 				8CC0F7041FA1D9B500F55FB9 /* cartViewController.swift in Sources */,
 				8C31C59A1FAADAB700C857EA /* ReviewRatingViewController.swift in Sources */,
 				8C2059D51FA22641008551B0 /* SellerrDetailViewController.swift in Sources */,
