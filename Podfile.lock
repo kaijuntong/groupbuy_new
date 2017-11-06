@@ -5,6 +5,20 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Braintree/Card (4.9.4):
+    - Braintree/Core
+  - Braintree/Core (4.9.4)
+  - Braintree/UnionPay (4.9.4):
+    - Braintree/Card
+    - Braintree/Core
+  - BraintreeDropIn (5.2.3):
+    - BraintreeDropIn/DropIn (= 5.2.3)
+  - BraintreeDropIn/DropIn (5.2.3):
+    - Braintree/Card (~> 4.0)
+    - Braintree/Core (~> 4.0)
+    - Braintree/UnionPay (~> 4.0)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (5.2.3)
   - FBSDKCoreKit (4.27.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.27.1):
@@ -62,6 +76,7 @@ PODS:
 
 DEPENDENCIES:
   - Bolts
+  - BraintreeDropIn
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Auth
@@ -71,6 +86,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Braintree: de7e58b8df95bf6514813cbc510578e3737b1c3b
+  BraintreeDropIn: 20109bea730b9bd31d71792ca84545265b7d27e4
   FBSDKCoreKit: 03365dad5d790249196ffad8be4f6d8a2d98f932
   FBSDKLoginKit: 66ff53b73cffd967ab773e32fac39e90a60e6d46
   Firebase: 83283761a1ef6dc9846e03d08059f51421afbd65
@@ -85,6 +102,6 @@ SPEC CHECKSUMS:
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: badb6ac7e4d11d57932c8603f3f0ecd6cfc719df
+PODFILE CHECKSUM: 46b6390f271867601c1c0f591bab776a668f9938
 
 COCOAPODS: 1.3.1

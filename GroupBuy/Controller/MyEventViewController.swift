@@ -24,6 +24,7 @@ class MyEventViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         parsedResult = [String:AnyObject]()
         configureDatabase()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     func configureDatabase(){
         ref = Database.database().reference()

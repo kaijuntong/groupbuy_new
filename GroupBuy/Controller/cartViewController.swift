@@ -14,7 +14,7 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
     var cartArray = [Cart]()
     var ref:DatabaseReference!
     var userID:String?
-    
+    var localEstimatedTotal = 0.0
     
     fileprivate var _refHandle1: DatabaseHandle!
     fileprivate var _refHandle2: DatabaseHandle!
@@ -49,13 +49,15 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"Cell" , for: indexPath) as! MyCartViewCell
         
-        cell.itemName.text = "\(cartArray[indexPath.row].itemName)"
-        cell.itemPrice.text = "\(cartArray[indexPath.row].itemPrice)"
+        cell.itemName.text = "\(cartArray[indexPath.row].itemName.uppercased())"
+        cell.itemPrice.text = "RM \(cartArray[indexPath.row].itemPrice)"
         cell.quantityLabel.text = "\(cartArray[indexPath.row].itemQuantity)"
         
         cell.selfObject = cartArray[indexPath.row]
         cell.setStepperValue(num: cartArray[indexPath.row].itemQuantity)
+        cell.myrow = indexPath.row
         cell.delegate = self
+        
         //load image
         let imageURL = cartArray[indexPath.row].itemImage
         if imageURL.hasPrefix("gs://") {
@@ -118,6 +120,7 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
                     
                     
                 }
+                
                 self.tableView.reloadData()
             }
             
@@ -158,8 +161,47 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
         }
     }
     
-    func updateTableView() {
-        print("Done")
-        self.configureDatabase()
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FooterCell") as! cartFooterViewCell
+        cell.estimatedPriceLabel.text = "RM \(calculatedEstimatedPrice())"
+       
+        let gradient = CAGradientLayer()
+        gradient.frame.size = CGSize(width: 375, height: 3)
+        
+        let stopColor = UIColor.white.cgColor
+        let startColor = UIColor.lightGray.cgColor
+        
+        gradient.colors = [stopColor, startColor]
+        gradient.locations = [0.0,0.8]
+        
+        cell.layer.addSublayer(gradient)
+        print("--------")
+        print(section)
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 106
+    }
+    
+    func removeRow(row:Int){
+        cartArray.remove(at: row)
+        tableView.reloadData()
+    }
+    
+    func updateFooterView(quantity:Double, row:Int){
+        cartArray[row].itemQuantity = Int(quantity)
+        tableView.reloadData()
+    }
+    
+    func calculatedEstimatedPrice() -> Double{
+        var estimatedTotal = 0.0
+
+        for item in cartArray{
+            estimatedTotal += Double(item.itemQuantity) * item.itemPrice
+        }
+        
+        localEstimatedTotal = estimatedTotal
+        return estimatedTotal
     }
 }
