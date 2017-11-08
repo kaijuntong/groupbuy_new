@@ -204,4 +204,12 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
         localEstimatedTotal = estimatedTotal
         return estimatedTotal
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPaymentTable"{
+            let controller = segue.destination as! PaymentTableViewController
+            controller.cartArray = cartArray
+            controller.totalPrice = localEstimatedTotal
+        }
+    }
 }

@@ -9,12 +9,26 @@
 import UIKit
 import BraintreeDropIn
 import Braintree
+import Firebase
 
 class PaymentTableViewController: UITableViewController {
-
+    var cartArray:[Cart]!
+    var totalPrice: Double!
+    let userID = Auth.auth().currentUser?.uid
+    var submitDate = Date()
+    var ref:DatabaseReference!
+    
+    var deliveryAddress = ""
+    
+    @IBOutlet weak var deliveryAddressLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        priceLabel.text = "RM \(totalPrice!)"
+        getAddress()
     }
 
     let toKinizationKey = "sandbox_qd7bxfd3_dqtd4cp5nkbqp69p"
@@ -62,7 +76,7 @@ class PaymentTableViewController: UITableViewController {
             } //else if let nonce = result?.paymentMethod?.nonce, let amount = self.amountTextField.text {
                 else if let nonce = result?.paymentMethod?.nonce{
                 //self.sendRequestPaymentToServer(nonce: nonce, amount: amount)
-                self.sendRequestPaymentToServer(nonce: nonce, amount: "12")
+                self.sendRequestPaymentToServer(nonce: nonce, amount: "\(self.totalPrice!)")
             }
             controller.dismiss(animated: true, completion: nil)
         }
@@ -89,8 +103,10 @@ class PaymentTableViewController: UITableViewController {
                 self?.show(message: "Transaction failed. Please try again.")
                 return
             }
-            
+            print(result)
+            self?.submitToFirebase()
             self?.show(message: "Successfully charged. Thanks So Much :)")
+            
             }.resume()
     }
     
@@ -102,6 +118,60 @@ class PaymentTableViewController: UITableViewController {
             alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    func submitToFirebase(){
+        var dataToInsert = [String:Any]()
+        
+        let submiTimeInterval = Int(submitDate.timeIntervalSince1970)
+        
+        dataToInsert["buyer_id"] = userID!
+        dataToInsert["order_date"] = submiTimeInterval
+        dataToInsert["paymentPrice"] = totalPrice
+        
+        var itemArray = [String:Any]()
+        
+        for i in cartArray{
+            var item = [String:Any]()
+            item["itemPrice"] = i.itemPrice
+            item["itemName"] = i.itemName
+            item["itemQuantity"] = i.itemQuantity
+            item["itemCurrentStatus"] = 0
+            
+            itemArray[i.itemKey] = item
+        }
+        
+        dataToInsert["orderItems"] = itemArray
+        dataToInsert["deliveryAddress"] = deliveryAddress
+        ref.child("orderlist").childByAutoId().setValue(dataToInsert)
+    }
+    
+    func getAddress(){
+        ref.child("users").child(self.userID!).observeSingleEvent(of: .value, with: {(snapshot) in
+            //get user value
+            let value = snapshot.value as? NSDictionary
+
+            let firstname = value?["firstname"] as? String ?? ""
+            let lastname = value?["lastname"] as? String ?? ""
+            let address1 = value?["address1"] as? String ?? ""
+            let address2 = value?["address2"] as? String ?? ""
+            let city = value?["city"] as? String ?? ""
+            let country = value?["country"] as? String ?? ""
+            let postcode = value?["postcode"] as? String ?? ""
+            //let phone = value?["phone"] as? String ?? ""
+            
+            let addressString = """
+            \(firstname) \(lastname)
+            \(address1),\(address2)
+            \(postcode), \(city) \(country)
+            """
+            self.deliveryAddress = addressString
+            self.deliveryAddressLabel.text = addressString
+        }){
+            (error) in
+            print(error.localizedDescription)
+        }
+        
     }
     
 }
