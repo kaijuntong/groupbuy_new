@@ -107,12 +107,12 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
                             let value2 = snapshot.value as? NSDictionary
                             if let value3 = value2 as? [String:AnyObject]{
                                 //print(value3)
-                                
+                                let eventKey = value3["event_id"] as! String
                                 let itemName = value3["itemName"] as! String
                                 let itemPrice = value3["itemPrice"] as! Double
                                 let itemImage = value3["itemImage"] as! String
                                 
-                                let cartItem = Cart.init(itemKey:key, itemName: itemName, itemPrice: itemPrice, itemImage: itemImage, itemQuantity: quantity)
+                                let cartItem = Cart.init(eventKey: eventKey,itemKey:key, itemName: itemName, itemPrice: itemPrice, itemImage: itemImage, itemQuantity: quantity)
                                 self.cartArray.append(cartItem)
                             }
                             self.tableView.reloadData()
@@ -211,5 +211,9 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
             controller.cartArray = cartArray
             controller.totalPrice = localEstimatedTotal
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

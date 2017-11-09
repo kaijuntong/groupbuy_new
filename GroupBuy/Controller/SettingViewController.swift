@@ -13,6 +13,7 @@ class SettingViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Setting"
     }
 
     override func didReceiveMemoryWarning() {

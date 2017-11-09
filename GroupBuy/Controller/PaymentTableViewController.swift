@@ -103,7 +103,7 @@ class PaymentTableViewController: UITableViewController {
                 self?.show(message: "Transaction failed. Please try again.")
                 return
             }
-            print(result)
+            //print(result)
             self?.submitToFirebase()
             self?.show(message: "Successfully charged. Thanks So Much :)")
             
@@ -131,6 +131,8 @@ class PaymentTableViewController: UITableViewController {
         
         var itemArray = [String:Any]()
         
+        var purchaserCheckListArray = [String:Any]()
+        
         for i in cartArray{
             var item = [String:Any]()
             item["itemPrice"] = i.itemPrice
@@ -139,11 +141,18 @@ class PaymentTableViewController: UITableViewController {
             item["itemCurrentStatus"] = 0
             
             itemArray[i.itemKey] = item
+            
+            //let dataArray = ["\(userID!)": i.itemQuantity] as [String : Any]
+            
+            ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(userID!)").setValue(i.itemQuantity)
         }
         
         dataToInsert["orderItems"] = itemArray
         dataToInsert["deliveryAddress"] = deliveryAddress
         ref.child("orderlist").childByAutoId().setValue(dataToInsert)
+        
+        ref.child("cart_item").child("\(userID!)").setValue("")
+        dismiss(animated: true, completion: nil)
     }
     
     func getAddress(){

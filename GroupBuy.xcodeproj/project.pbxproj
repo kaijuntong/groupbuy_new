@@ -16,6 +16,8 @@
 		8C31C59A1FAADAB700C857EA /* ReviewRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31C5991FAADAB700C857EA /* ReviewRatingViewController.swift */; };
 		8C31C59C1FAAE14D00C857EA /* RatingCommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31C59B1FAAE14D00C857EA /* RatingCommentViewCell.swift */; };
 		8C366CC51FA63CB8002D2D1C /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366CC41FA63CB8002D2D1C /* RatingControl.swift */; };
+		8C38A8D01FB34ACC00128507 /* MyOrderlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C38A8CF1FB34ACC00128507 /* MyOrderlistViewController.swift */; };
+		8C38A8D21FB3507900128507 /* Orderlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C38A8D11FB3507900128507 /* Orderlist.swift */; };
 		8C3DE3841F93926700FB2B1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DE3831F93926700FB2B1B /* LoginViewController.swift */; };
 		8C4E27501FAE11A000042652 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E274F1FAE11A000042652 /* Cart.swift */; };
 		8C5916541FAB0E190071FDFA /* ratingStarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5916531FAB0E190071FDFA /* ratingStarViewCell.swift */; };
@@ -33,6 +35,11 @@
 		8CA167B41F8645EE00AB6316 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CA167B21F8645EE00AB6316 /* LaunchScreen.storyboard */; };
 		8CA7712C1F97A60300F86814 /* MyEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7712B1F97A60300F86814 /* MyEventDetailViewController.swift */; };
 		8CADDC7D1FB0AC5900E34D49 /* PaymentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CADDC7C1FB0AC5900E34D49 /* PaymentTableViewController.swift */; };
+		8CB107321FB47E2E00F39D46 /* PurchasingCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB107311FB47E2E00F39D46 /* PurchasingCheckListViewController.swift */; };
+		8CB107341FB48A0800F39D46 /* PurchasingChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB107331FB48A0800F39D46 /* PurchasingChecklistItem.swift */; };
+		8CB107381FB49EAC00F39D46 /* ChecklistDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB107371FB49EAC00F39D46 /* ChecklistDetailViewController.swift */; };
+		8CB210701FB44D3D00F32654 /* MyPurchasingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2106F1FB44D3D00F32654 /* MyPurchasingListViewController.swift */; };
+		8CB210721FB460E900F32654 /* PurchasingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB210711FB460E900F32654 /* PurchasingList.swift */; };
 		8CB3FF721F9AE2C2007CBF57 /* MyCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB3FF711F9AE2C2007CBF57 /* MyCountry.swift */; };
 		8CB6899D1FA1866A00E5F0EF /* HottestItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6899C1FA1866A00E5F0EF /* HottestItemViewCell.swift */; };
 		8CB8175A1F9506D400EA2FFB /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */; };
@@ -60,6 +67,8 @@
 		8C31C5991FAADAB700C857EA /* ReviewRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReviewRatingViewController.swift; path = GroupBuy/Controller/ReviewRatingViewController.swift; sourceTree = SOURCE_ROOT; };
 		8C31C59B1FAAE14D00C857EA /* RatingCommentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCommentViewCell.swift; sourceTree = "<group>"; };
 		8C366CC41FA63CB8002D2D1C /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		8C38A8CF1FB34ACC00128507 /* MyOrderlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderlistViewController.swift; sourceTree = "<group>"; };
+		8C38A8D11FB3507900128507 /* Orderlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderlist.swift; sourceTree = "<group>"; };
 		8C3DE3831F93926700FB2B1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = /Users/kaijuntong/Code/GroupBuy_New/GroupBuy/GroupBuy/Controller/LoginViewController.swift; sourceTree = "<absolute>"; };
 		8C4E274F1FAE11A000042652 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		8C5916531FAB0E190071FDFA /* ratingStarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ratingStarViewCell.swift; sourceTree = "<group>"; };
@@ -79,6 +88,11 @@
 		8CA167B51F8645EE00AB6316 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CA7712B1F97A60300F86814 /* MyEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventDetailViewController.swift; sourceTree = "<group>"; };
 		8CADDC7C1FB0AC5900E34D49 /* PaymentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableViewController.swift; sourceTree = "<group>"; };
+		8CB107311FB47E2E00F39D46 /* PurchasingCheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasingCheckListViewController.swift; sourceTree = "<group>"; };
+		8CB107331FB48A0800F39D46 /* PurchasingChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasingChecklistItem.swift; sourceTree = "<group>"; };
+		8CB107371FB49EAC00F39D46 /* ChecklistDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistDetailViewController.swift; sourceTree = "<group>"; };
+		8CB2106F1FB44D3D00F32654 /* MyPurchasingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPurchasingListViewController.swift; sourceTree = "<group>"; };
+		8CB210711FB460E900F32654 /* PurchasingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasingList.swift; sourceTree = "<group>"; };
 		8CB3FF711F9AE2C2007CBF57 /* MyCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCountry.swift; sourceTree = "<group>"; };
 		8CB6899C1FA1866A00E5F0EF /* HottestItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HottestItemViewCell.swift; sourceTree = "<group>"; };
 		8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +121,9 @@
 		8C925FAF1F874B2C002761AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8CB107331FB48A0800F39D46 /* PurchasingChecklistItem.swift */,
+				8C38A8D11FB3507900128507 /* Orderlist.swift */,
+				8CB210711FB460E900F32654 /* PurchasingList.swift */,
 				8C4E274F1FAE11A000042652 /* Cart.swift */,
 				8CB3FF711F9AE2C2007CBF57 /* MyCountry.swift */,
 				8C92F5711F99BF6D00A0705E /* Item.swift */,
@@ -129,6 +146,9 @@
 		8C925FB11F874B59002761AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8CB107311FB47E2E00F39D46 /* PurchasingCheckListViewController.swift */,
+				8CB2106F1FB44D3D00F32654 /* MyPurchasingListViewController.swift */,
+				8C38A8CF1FB34ACC00128507 /* MyOrderlistViewController.swift */,
 				8CADDC7C1FB0AC5900E34D49 /* PaymentTableViewController.swift */,
 				8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */,
 				8C925FBB1F875E40002761AC /* CellController */,
@@ -138,6 +158,7 @@
 				8C3DE3831F93926700FB2B1B /* LoginViewController.swift */,
 				8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */,
 				8CA7712B1F97A60300F86814 /* MyEventDetailViewController.swift */,
+				8CB107371FB49EAC00F39D46 /* ChecklistDetailViewController.swift */,
 				8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */,
 				8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */,
 				8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */,
@@ -387,11 +408,16 @@
 				8CA02C5A1F94E51500E94432 /* ItemViewController.swift in Sources */,
 				8C2BF9241FAFC39900406896 /* cartFooterViewCell.swift in Sources */,
 				8C224A201FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift in Sources */,
+				8C38A8D21FB3507900128507 /* Orderlist.swift in Sources */,
+				8C38A8D01FB34ACC00128507 /* MyOrderlistViewController.swift in Sources */,
+				8CB210721FB460E900F32654 /* PurchasingList.swift in Sources */,
+				8CB107341FB48A0800F39D46 /* PurchasingChecklistItem.swift in Sources */,
 				8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */,
 				8C925FBD1F875E70002761AC /* CountryItemsViewController.swift in Sources */,
 				8CA7712C1F97A60300F86814 /* MyEventDetailViewController.swift in Sources */,
 				8CD59E641F8C4FCF00D70631 /* NewEventViewController.swift in Sources */,
 				8CE99B031F93A5A700DC95B7 /* SettingViewController.swift in Sources */,
+				8CB210701FB44D3D00F32654 /* MyPurchasingListViewController.swift in Sources */,
 				8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */,
 				8CC1B21E1F9406BD004A961F /* MyEventViewController.swift in Sources */,
 				8CB6899D1FA1866A00E5F0EF /* HottestItemViewCell.swift in Sources */,
@@ -399,10 +425,12 @@
 				8C925FBA1F875D71002761AC /* ContryItemsCollectionViewCell.swift in Sources */,
 				8CE99AFF1F939F2F00DC95B7 /* SignupViewController.swift in Sources */,
 				8C31C59C1FAAE14D00C857EA /* RatingCommentViewCell.swift in Sources */,
+				8CB107381FB49EAC00F39D46 /* ChecklistDetailViewController.swift in Sources */,
 				8CADDC7D1FB0AC5900E34D49 /* PaymentTableViewController.swift in Sources */,
 				8CB3FF721F9AE2C2007CBF57 /* MyCountry.swift in Sources */,
 				8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */,
 				8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */,
+				8CB107321FB47E2E00F39D46 /* PurchasingCheckListViewController.swift in Sources */,
 				8C366CC51FA63CB8002D2D1C /* RatingControl.swift in Sources */,
 				8CC0F7021FA1D7DA00F55FB9 /* myCartViewCell.swift in Sources */,
 				8C92F5721F99BF6D00A0705E /* Item.swift in Sources */,

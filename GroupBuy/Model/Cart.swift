@@ -14,8 +14,10 @@ class Cart{
     var itemImage = ""
     var itemQuantity = 0
     var itemKey = ""
+    var eventKey = ""
     
-    init(itemKey:String,itemName:String, itemPrice:Double, itemImage:String, itemQuantity:Int) {
+    init(eventKey:String, itemKey:String,itemName:String, itemPrice:Double, itemImage:String, itemQuantity:Int) {
+        self.eventKey = eventKey
         self.itemKey = itemKey
         self.itemName = itemName
         self.itemPrice = itemPrice
