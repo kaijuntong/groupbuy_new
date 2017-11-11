@@ -14,11 +14,11 @@ import Firebase
 class PaymentTableViewController: UITableViewController {
     var cartArray:[Cart]!
     var totalPrice: Double!
-    let userID = Auth.auth().currentUser?.uid
-    var submitDate = Date()
+    let userID:String? = Auth.auth().currentUser?.uid
+    var submitDate:Date = Date()
     var ref:DatabaseReference!
     
-    var deliveryAddress = ""
+    var deliveryAddress:String = ""
     
     @IBOutlet weak var deliveryAddressLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -31,7 +31,7 @@ class PaymentTableViewController: UITableViewController {
         getAddress()
     }
 
-    let toKinizationKey = "sandbox_qd7bxfd3_dqtd4cp5nkbqp69p"
+    let toKinizationKey:String = "sandbox_qd7bxfd3_dqtd4cp5nkbqp69p"
     
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -145,6 +145,7 @@ class PaymentTableViewController: UITableViewController {
             //let dataArray = ["\(userID!)": i.itemQuantity] as [String : Any]
             
             ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(userID!)").setValue(i.itemQuantity)
+            ref.child("customer_list").child("\(i.eventKey)").child("\(userID!)/item_info/\(i.itemKey)").setValue(i.itemQuantity)
         }
         
         dataToInsert["orderItems"] = itemArray
