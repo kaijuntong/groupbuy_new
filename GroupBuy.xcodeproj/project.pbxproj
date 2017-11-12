@@ -56,6 +56,7 @@
 		8CE99AFD1F939DF000DC95B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE99AFC1F939DE100DC95B7 /* GoogleService-Info.plist */; };
 		8CE99AFF1F939F2F00DC95B7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */; };
 		8CE99B031F93A5A700DC95B7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE99B021F93A5A700DC95B7 /* SettingViewController.swift */; };
+		8CED95831FB85D3A009B941B /* PasswordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CED95821FB85D3A009B941B /* PasswordTableViewController.swift */; };
 		8CF4D5B51FB826F000D86DC5 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */; };
 		8CF4D5B61FB826F000D86DC5 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */; };
 		8CF4D5B71FB826F000D86DC5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */; };
@@ -122,6 +123,7 @@
 		8CE99AFC1F939DE100DC95B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		8CE99B021F93A5A700DC95B7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8CED95821FB85D3A009B941B /* PasswordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTableViewController.swift; sourceTree = "<group>"; };
 		8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		8C925FB11F874B59002761AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8CED95821FB85D3A009B941B /* PasswordTableViewController.swift */,
 				8CF4D5BC1FB827A700D86DC5 /* SearchViewController.swift */,
 				8C3EB2481FB774FE0097B55D /* CustomerCheckListViewController.swift */,
 				8C3EB2441FB74D120097B55D /* MyCustomerListViewController.swift */,
@@ -464,6 +467,7 @@
 				8CE99B031F93A5A700DC95B7 /* SettingViewController.swift in Sources */,
 				8CB210701FB44D3D00F32654 /* MyPurchasingListViewController.swift in Sources */,
 				8CF4D5C11FB8291F00D86DC5 /* TableViewCellIdentifiers.swift in Sources */,
+				8CED95831FB85D3A009B941B /* PasswordTableViewController.swift in Sources */,
 				8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */,
 				8CC1B21E1F9406BD004A961F /* MyEventViewController.swift in Sources */,
 				8CB6899D1FA1866A00E5F0EF /* HottestItemViewCell.swift in Sources */,
