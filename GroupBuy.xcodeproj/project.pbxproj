@@ -56,6 +56,14 @@
 		8CE99AFD1F939DF000DC95B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE99AFC1F939DE100DC95B7 /* GoogleService-Info.plist */; };
 		8CE99AFF1F939F2F00DC95B7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */; };
 		8CE99B031F93A5A700DC95B7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE99B021F93A5A700DC95B7 /* SettingViewController.swift */; };
+		8CF4D5B51FB826F000D86DC5 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */; };
+		8CF4D5B61FB826F000D86DC5 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */; };
+		8CF4D5B71FB826F000D86DC5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */; };
+		8CF4D5B91FB8278200D86DC5 /* UIIMageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B81FB8278200D86DC5 /* UIIMageView+DownloadImage.swift */; };
+		8CF4D5BB1FB8279200D86DC5 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF4D5BA1FB8279200D86DC5 /* SearchResult.swift */; };
+		8CF4D5BD1FB827A800D86DC5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF4D5BC1FB827A700D86DC5 /* SearchViewController.swift */; };
+		8CF4D5BF1FB827B900D86DC5 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF4D5BE1FB827B800D86DC5 /* SearchResultCell.swift */; };
+		8CF4D5C11FB8291F00D86DC5 /* TableViewCellIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF4D5C01FB8291F00D86DC5 /* TableViewCellIdentifiers.swift */; };
 		8F14B49ADACB49430A25F2F4 /* Pods_GroupBuy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690AA01C482E5BB4F4BE37FD /* Pods_GroupBuy.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +122,14 @@
 		8CE99AFC1F939DE100DC95B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		8CE99B021F93A5A700DC95B7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		8CF4D5B81FB8278200D86DC5 /* UIIMageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIIMageView+DownloadImage.swift"; sourceTree = "<group>"; };
+		8CF4D5BA1FB8279200D86DC5 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		8CF4D5BC1FB827A700D86DC5 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8CF4D5BE1FB827B800D86DC5 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		8CF4D5C01FB8291F00D86DC5 /* TableViewCellIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellIdentifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +147,9 @@
 		8C925FAF1F874B2C002761AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8CF4D5BA1FB8279200D86DC5 /* SearchResult.swift */,
+				8CF4D5C01FB8291F00D86DC5 /* TableViewCellIdentifiers.swift */,
+				8CF4D5B81FB8278200D86DC5 /* UIIMageView+DownloadImage.swift */,
 				8C3EB2461FB76BD40097B55D /* CustomerList.swift */,
 				8C3EB24C1FB7E6780097B55D /* CustomerBuyItem.swift */,
 				8CB107331FB48A0800F39D46 /* PurchasingChecklistItem.swift */,
@@ -152,6 +171,9 @@
 			children = (
 				8CA167AD1F8645ED00AB6316 /* Main.storyboard */,
 				8CA167B21F8645EE00AB6316 /* LaunchScreen.storyboard */,
+				8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */,
+				8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */,
+				8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,6 +181,7 @@
 		8C925FB11F874B59002761AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8CF4D5BC1FB827A700D86DC5 /* SearchViewController.swift */,
 				8C3EB2481FB774FE0097B55D /* CustomerCheckListViewController.swift */,
 				8C3EB2441FB74D120097B55D /* MyCustomerListViewController.swift */,
 				8CB107311FB47E2E00F39D46 /* PurchasingCheckListViewController.swift */,
@@ -199,6 +222,7 @@
 		8C925FBB1F875E40002761AC /* CellController */ = {
 			isa = PBXGroup;
 			children = (
+				8CF4D5BE1FB827B800D86DC5 /* SearchResultCell.swift */,
 				8C2BF9231FAFC39900406896 /* cartFooterViewCell.swift */,
 				8C31C59B1FAAE14D00C857EA /* RatingCommentViewCell.swift */,
 				8C224A1F1FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift */,
@@ -330,7 +354,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF4D5B71FB826F000D86DC5 /* LoadingCell.xib in Resources */,
 				8CA167B41F8645EE00AB6316 /* LaunchScreen.storyboard in Resources */,
+				8CF4D5B51FB826F000D86DC5 /* SearchResultCell.xib in Resources */,
+				8CF4D5B61FB826F000D86DC5 /* NothingFoundCell.xib in Resources */,
 				8CE99AFD1F939DF000DC95B7 /* GoogleService-Info.plist in Resources */,
 				8CA167B11F8645ED00AB6316 /* Assets.xcassets in Resources */,
 				8CA167AF1F8645ED00AB6316 /* Main.storyboard in Resources */,
@@ -426,6 +453,7 @@
 				8C224A201FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift in Sources */,
 				8C3EB2451FB74D120097B55D /* MyCustomerListViewController.swift in Sources */,
 				8C38A8D21FB3507900128507 /* Orderlist.swift in Sources */,
+				8CF4D5BB1FB8279200D86DC5 /* SearchResult.swift in Sources */,
 				8C38A8D01FB34ACC00128507 /* MyOrderlistViewController.swift in Sources */,
 				8CB210721FB460E900F32654 /* PurchasingList.swift in Sources */,
 				8CB107341FB48A0800F39D46 /* PurchasingChecklistItem.swift in Sources */,
@@ -435,11 +463,13 @@
 				8CD59E641F8C4FCF00D70631 /* NewEventViewController.swift in Sources */,
 				8CE99B031F93A5A700DC95B7 /* SettingViewController.swift in Sources */,
 				8CB210701FB44D3D00F32654 /* MyPurchasingListViewController.swift in Sources */,
+				8CF4D5C11FB8291F00D86DC5 /* TableViewCellIdentifiers.swift in Sources */,
 				8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */,
 				8CC1B21E1F9406BD004A961F /* MyEventViewController.swift in Sources */,
 				8CB6899D1FA1866A00E5F0EF /* HottestItemViewCell.swift in Sources */,
 				8CA167AC1F8645ED00AB6316 /* HomeViewController.swift in Sources */,
 				8C3EB24B1FB7E2CF0097B55D /* CustomerChecklistItem.swift in Sources */,
+				8CF4D5B91FB8278200D86DC5 /* UIIMageView+DownloadImage.swift in Sources */,
 				8C925FBA1F875D71002761AC /* ContryItemsCollectionViewCell.swift in Sources */,
 				8CE99AFF1F939F2F00DC95B7 /* SignupViewController.swift in Sources */,
 				8C31C59C1FAAE14D00C857EA /* RatingCommentViewCell.swift in Sources */,
@@ -447,6 +477,7 @@
 				8CADDC7D1FB0AC5900E34D49 /* PaymentTableViewController.swift in Sources */,
 				8CB3FF721F9AE2C2007CBF57 /* MyCountry.swift in Sources */,
 				8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */,
+				8CF4D5BF1FB827B900D86DC5 /* SearchResultCell.swift in Sources */,
 				8C925FB61F875202002761AC /* CountryCollectionViewCell.swift in Sources */,
 				8CB107321FB47E2E00F39D46 /* PurchasingCheckListViewController.swift in Sources */,
 				8C366CC51FA63CB8002D2D1C /* RatingControl.swift in Sources */,
@@ -454,6 +485,7 @@
 				8CC0F7021FA1D7DA00F55FB9 /* myCartViewCell.swift in Sources */,
 				8C92F5721F99BF6D00A0705E /* Item.swift in Sources */,
 				8C1BADBE1FAB338D00CDFA6A /* CommentObject.swift in Sources */,
+				8CF4D5BD1FB827A800D86DC5 /* SearchViewController.swift in Sources */,
 				8C3EB2471FB76BD40097B55D /* CustomerList.swift in Sources */,
 				8C925FB41F874FD2002761AC /* Country.swift in Sources */,
 				8CB8175A1F9506D400EA2FFB /* MyProfileViewController.swift in Sources */,

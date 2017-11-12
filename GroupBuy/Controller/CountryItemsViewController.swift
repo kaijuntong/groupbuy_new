@@ -16,9 +16,6 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
     
     private var countryItems =  [CountryItems]()
     
-    
-        //= [CountryItems.init(username: "KaiJun", itemName: "鸡蛋仔", itemPrice: 123.0, itemSaleQuantity: 9,productImage:UIImage(named: "usa")),CountryItems.init(username: "KaiJun", itemName: "鸡蛋仔", itemPrice: 123.0, itemSaleQuantity: 9,productImage:UIImage(named: "usa")),CountryItems.init(username: "KaiJun", itemName: "鸡蛋仔", itemPrice: 123.0, itemSaleQuantity: 9,productImage:UIImage(named: "usa")),CountryItems.init(username: "KaiJun", itemName: "鸡蛋仔", itemPrice: 123.0, itemSaleQuantity: 9,productImage:UIImage(named: "usa")),CountryItems.init(username: "KaiJun", itemName: "鸡蛋仔", itemPrice: 123.0, itemSaleQuantity: 9,productImage:UIImage(named: "usa")),CountryItems.init(username: "KaiJun", itemName: "鸡蛋仔", itemPrice: 123.0, itemSaleQuantity: 9,productImage:UIImage(named: "usa")),CountryItems.init(username: "KaiJun", itemName: "鸡蛋仔", itemPrice: 123.0, itemSaleQuantity: 9,productImage:UIImage(named: "usa"))]
-    
     var countryName:String!
     
     override func viewDidLoad() {
