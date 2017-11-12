@@ -3507,19 +3507,10 @@ All Rights Reserved.</string>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dYq-ah-aqp">
                                             <rect key="frame" x="202" y="18" width="150" height="52"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ItemName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiO-vq-f2a">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="52"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ItemName" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiO-vq-f2a">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="52"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="Geh-q1-LsO"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1p-tq-Iva">
-                                                    <rect key="frame" x="105" y="0.0" width="45" height="52"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="45" id="fkB-tJ-RoJ"/>
+                                                        <constraint firstAttribute="width" constant="150" id="Geh-q1-LsO"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -3527,13 +3518,10 @@ All Rights Reserved.</string>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="R1p-tq-Iva" secondAttribute="trailing" id="CIT-H6-Yqu"/>
-                                                <constraint firstAttribute="bottom" secondItem="R1p-tq-Iva" secondAttribute="bottom" id="D6I-Ag-J8s"/>
                                                 <constraint firstAttribute="bottom" secondItem="KiO-vq-f2a" secondAttribute="bottom" id="M4q-vm-VbB"/>
                                                 <constraint firstAttribute="width" constant="150" id="PkM-2R-FgK"/>
                                                 <constraint firstItem="KiO-vq-f2a" firstAttribute="top" secondItem="dYq-ah-aqp" secondAttribute="top" id="oXA-8d-OJl"/>
                                                 <constraint firstItem="KiO-vq-f2a" firstAttribute="leading" secondItem="dYq-ah-aqp" secondAttribute="leading" id="ubt-ps-TY8"/>
-                                                <constraint firstItem="R1p-tq-Iva" firstAttribute="top" secondItem="dYq-ah-aqp" secondAttribute="top" id="wES-Ho-Dvv"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>

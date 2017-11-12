@@ -128,6 +128,13 @@ class PaymentTableViewController: UITableViewController {
         dataToInsert["buyer_id"] = userID!
         dataToInsert["order_date"] = submiTimeInterval
         dataToInsert["paymentPrice"] = totalPrice
+        dataToInsert["deliveryAddress"] = deliveryAddress
+
+        var postRef = ref.child("orderlist").childByAutoId()
+        postRef.setValue(dataToInsert)
+
+        var postID = postRef.key
+
         
         var itemArray = [String:Any]()
         
@@ -145,13 +152,12 @@ class PaymentTableViewController: UITableViewController {
             //let dataArray = ["\(userID!)": i.itemQuantity] as [String : Any]
             
             ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(userID!)").setValue(i.itemQuantity)
+            
             ref.child("customer_list").child("\(i.eventKey)").child("\(userID!)/item_info/\(i.itemKey)").setValue(i.itemQuantity)
         }
         
-        dataToInsert["orderItems"] = itemArray
-        dataToInsert["deliveryAddress"] = deliveryAddress
-        ref.child("orderlist").childByAutoId().setValue(dataToInsert)
         
+        ref.child("orderlist").child("\(postID)/orderItems").setValue(itemArray)
         ref.child("cart_item").child("\(userID!)").setValue("")
         dismiss(animated: true, completion: nil)
     }
