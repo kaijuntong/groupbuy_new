@@ -49,7 +49,7 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:MyCartViewCell = tableView.dequeueReusableCell(withIdentifier:"Cell" , for: indexPath) as! MyCartViewCell
         
-        cell.itemName.text = "\(cartArray[indexPath.row].itemName.uppercased())"
+        cell.itemName.text = "\(cartArray[indexPath.row].itemName.capitalized)"
         cell.itemPrice.text = "RM \(cartArray[indexPath.row].itemPrice)"
         cell.quantityLabel.text = "\(cartArray[indexPath.row].itemQuantity)"
         

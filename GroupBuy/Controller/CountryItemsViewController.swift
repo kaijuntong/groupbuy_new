@@ -39,8 +39,8 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
             ContryItemsCollectionViewCell
         
         // Configure the cell
-        cell.productNameLabel.text = countryItems[indexPath.row].itemName
-        cell.usernameLabel.text = countryItems[indexPath.row].username
+        cell.productNameLabel.text = countryItems[indexPath.row].itemName.capitalized
+        cell.usernameLabel.text = countryItems[indexPath.row].username.capitalized
         cell.quantityLabel.text = "\(countryItems[indexPath.row].itemSalesQuantity)"
         cell.priceLabel.text = "\(countryItems[indexPath.row].itemPrice)"
         

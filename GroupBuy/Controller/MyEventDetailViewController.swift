@@ -20,7 +20,7 @@ class MyEventDetailViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = countryName
+        self.title = countryName.capitalized
         configureDatabase()
     }
     
@@ -88,7 +88,7 @@ class MyEventDetailViewController: UITableViewController {
         let itemImageView:UIImageView = cell.viewWithTag(100) as! UIImageView
         let priceLabel:UILabel = cell.viewWithTag(102) as! UILabel
         
-        nameLabel.text = itemName
+        nameLabel.text = itemName.capitalized
         priceLabel.text = String(itemPrice)
         
         if imageURL.hasPrefix("gs://") {

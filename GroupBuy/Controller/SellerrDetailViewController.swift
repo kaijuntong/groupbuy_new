@@ -36,8 +36,8 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate{
             let email:String = value?["email"] as? String ?? ""
             let description:String = value?["description"] as? String ?? ""
 
-            self.usernameLabel.text = email
-            self.userDescription.text = description
+            self.usernameLabel.text = email.lowercased()
+            self.userDescription.text = description.capitalized
             self.ratingStackView.delegate = self
         }){
             (error) in

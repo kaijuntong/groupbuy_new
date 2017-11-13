@@ -13,22 +13,19 @@ protocol RatingControlDelegate:class{
     func ratingPicker(_ picker:RatingControl, didPick rating: Int)
 }
 
-@IBDesignable
-class RatingControl: UIStackView {
+@IBDesignable class RatingControl: UIStackView {
     weak var delegate:RatingControlDelegate?
     
     var ref:DatabaseReference!
     let userID:String? = Auth.auth().currentUser?.uid
     
-    @IBInspectable
-    var starSize:CGSize = CGSize(width: 44.0, height: 44.0){
+    @IBInspectable var starSize:CGSize = CGSize(width: 44.0, height: 44.0){
         didSet{
             setupButtons()
         }
     }
     
-    @IBInspectable
-    var starCount:Int = 5{
+    @IBInspectable var starCount:Int = 5{
         didSet{
             setupButtons()
         }
@@ -62,9 +59,9 @@ class RatingControl: UIStackView {
         ratingButtons.removeAll()
         
         let bundle:Bundle = Bundle(for: type(of: self))
-        let filledStar:UIImage = UIImage(named:"highlightedStar", in:bundle, compatibleWith:self.traitCollection)
-        let emptyStar:UIImage = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)
-        let highlightedStar:UIImage = UIImage(named: "filledStar", in:bundle, compatibleWith:self.traitCollection)
+        let filledStar:UIImage? = UIImage(named:"highlightedStar", in:bundle, compatibleWith:self.traitCollection)
+        let emptyStar:UIImage? = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)
+        let highlightedStar:UIImage? = UIImage(named: "filledStar", in:bundle, compatibleWith:self.traitCollection)
         
         for _ in 0..<starCount{
             let button = UIButton()

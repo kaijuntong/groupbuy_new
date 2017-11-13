@@ -18,6 +18,10 @@
 		8C366CC51FA63CB8002D2D1C /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C366CC41FA63CB8002D2D1C /* RatingControl.swift */; };
 		8C38A8D01FB34ACC00128507 /* MyOrderlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C38A8CF1FB34ACC00128507 /* MyOrderlistViewController.swift */; };
 		8C38A8D21FB3507900128507 /* Orderlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C38A8D11FB3507900128507 /* Orderlist.swift */; };
+		8C3CB3411FB9EF38000CF670 /* MyOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3CB3401FB9EF38000CF670 /* MyOrderDetailViewController.swift */; };
+		8C3CB3431FB9F60E000CF670 /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CB3421FB9F60E000CF670 /* AddressCell.xib */; };
+		8C3CB3451FB9F68E000CF670 /* SummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CB3441FB9F68E000CF670 /* SummaryCell.xib */; };
+		8C3CB3471FB9F6C5000CF670 /* TitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CB3461FB9F6C5000CF670 /* TitleCell.xib */; };
 		8C3DE3841F93926700FB2B1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DE3831F93926700FB2B1B /* LoginViewController.swift */; };
 		8C3EB2451FB74D120097B55D /* MyCustomerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3EB2441FB74D120097B55D /* MyCustomerListViewController.swift */; };
 		8C3EB2471FB76BD40097B55D /* CustomerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3EB2461FB76BD40097B55D /* CustomerList.swift */; };
@@ -82,6 +86,10 @@
 		8C366CC41FA63CB8002D2D1C /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		8C38A8CF1FB34ACC00128507 /* MyOrderlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderlistViewController.swift; sourceTree = "<group>"; };
 		8C38A8D11FB3507900128507 /* Orderlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderlist.swift; sourceTree = "<group>"; };
+		8C3CB3401FB9EF38000CF670 /* MyOrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderDetailViewController.swift; sourceTree = "<group>"; };
+		8C3CB3421FB9F60E000CF670 /* AddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressCell.xib; sourceTree = "<group>"; };
+		8C3CB3441FB9F68E000CF670 /* SummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCell.xib; sourceTree = "<group>"; };
+		8C3CB3461FB9F6C5000CF670 /* TitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleCell.xib; sourceTree = "<group>"; };
 		8C3DE3831F93926700FB2B1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = /Users/kaijuntong/Code/GroupBuy_New/GroupBuy/GroupBuy/Controller/LoginViewController.swift; sourceTree = "<absolute>"; };
 		8C3EB2441FB74D120097B55D /* MyCustomerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomerListViewController.swift; sourceTree = "<group>"; };
 		8C3EB2461FB76BD40097B55D /* CustomerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerList.swift; sourceTree = "<group>"; };
@@ -170,6 +178,9 @@
 			children = (
 				8CA167AD1F8645ED00AB6316 /* Main.storyboard */,
 				8CA167B21F8645EE00AB6316 /* LaunchScreen.storyboard */,
+				8C3CB3421FB9F60E000CF670 /* AddressCell.xib */,
+				8C3CB3441FB9F68E000CF670 /* SummaryCell.xib */,
+				8C3CB3461FB9F6C5000CF670 /* TitleCell.xib */,
 				8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */,
 				8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */,
 				8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */,
@@ -180,6 +191,7 @@
 		8C925FB11F874B59002761AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8C3CB3401FB9EF38000CF670 /* MyOrderDetailViewController.swift */,
 				8CED95821FB85D3A009B941B /* PasswordTableViewController.swift */,
 				8CF4D5BC1FB827A700D86DC5 /* SearchViewController.swift */,
 				8C3EB2481FB774FE0097B55D /* CustomerCheckListViewController.swift */,
@@ -355,11 +367,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CF4D5B71FB826F000D86DC5 /* LoadingCell.xib in Resources */,
+				8C3CB3451FB9F68E000CF670 /* SummaryCell.xib in Resources */,
 				8CA167B41F8645EE00AB6316 /* LaunchScreen.storyboard in Resources */,
 				8CF4D5B51FB826F000D86DC5 /* SearchResultCell.xib in Resources */,
+				8C3CB3471FB9F6C5000CF670 /* TitleCell.xib in Resources */,
 				8CF4D5B61FB826F000D86DC5 /* NothingFoundCell.xib in Resources */,
 				8CE99AFD1F939DF000DC95B7 /* GoogleService-Info.plist in Resources */,
 				8CA167B11F8645ED00AB6316 /* Assets.xcassets in Resources */,
+				8C3CB3431FB9F60E000CF670 /* AddressCell.xib in Resources */,
 				8CA167AF1F8645ED00AB6316 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +459,7 @@
 				8C5916541FAB0E190071FDFA /* ratingStarViewCell.swift in Sources */,
 				8C925FB81F875B23002761AC /* CountryItems.swift in Sources */,
 				8C4E27501FAE11A000042652 /* Cart.swift in Sources */,
+				8C3CB3411FB9EF38000CF670 /* MyOrderDetailViewController.swift in Sources */,
 				8CC0F7041FA1D9B500F55FB9 /* cartViewController.swift in Sources */,
 				8C31C59A1FAADAB700C857EA /* ReviewRatingViewController.swift in Sources */,
 				8C3EB2491FB774FE0097B55D /* CustomerCheckListViewController.swift in Sources */,

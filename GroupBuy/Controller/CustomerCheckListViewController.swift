@@ -106,40 +106,51 @@ class CustomerCheckListViewController: UITableViewController {
     var customerBuyItemsArray:[CustomerBuyItem] = [CustomerBuyItem]()
     
     func configureDatabase(){
-        ref.child("customer_list").child("\(eventID!)").observeSingleEvent(of:.value, with: {(snapshot) in
-            let a = snapshot.value as? [String:AnyObject] ?? [:]
-            print(a)
+        ref.child("orderlist").queryOrdered(byChild: "orderItems/\(eventID!)").observeSingleEvent(of: .value, with: {(snapshot) in
             
-            if let value1 = a as? [String:NSDictionary]{
-                for (userID,value) in value1{
-                    self.customerBuyItemsArray.removeAll()
-                    
-                    let valueDict:[String:AnyObject] = value as! [String:AnyObject]
-                    //let itemDict = valueDict as! [String:AnyObject]
-                    
-                    let itemDict:[String:AnyObject] = valueDict["item_info"] as! [String:AnyObject]
-                    let status:Int = valueDict["status"] as? Int ?? 0
-                    let checked:Bool = (status == 1 ? true:false)
-                    
-                    
-                    for (key,dictValue) in itemDict{
-                        let customerBuyItem:CustomerBuyItem = CustomerBuyItem.init(itemKey: key, itemQuantity: dictValue["itemQuantity"] as! Int, itemName:dictValue["itemName"] as! String)
-                        self.customerBuyItemsArray.append(customerBuyItem)
-                    }
-                    
-                    let customerChecklistItem:CustomerChecklistItem = CustomerChecklistItem.init(userId: userID, buyerItemArray: self.customerBuyItemsArray, checked: checked)
-                    
-                    self.customerListArray.append(customerChecklistItem)
-                    
-                }
-                self.tableView.reloadData()
-            }
-        }){
-            (error) in
-            print(error.localizedDescription)
-        }
+            print(snapshot)
+            print("Done")
+        })
     }
-    //
+        
+//    {
+//        ref.child("customer_list").child("\(eventID!)").observeSingleEvent(of:.value, with: {(snapshot) in
+//            let a = snapshot.value as? [String:AnyObject] ?? [:]
+//            print(a)
+//
+//            if let value1 = a as? [String:NSDictionary]{
+//                for (userID,value) in value1{
+//                    self.customerBuyItemsArray.removeAll()
+//
+//                    let valueDict:[String:AnyObject] = value as! [String:AnyObject]
+//                    //let itemDict = valueDict as! [String:AnyObject]
+//
+//                    let itemDict:[String:AnyObject] = valueDict["item_info"] as! [String:AnyObject]
+//                    let status:Int = valueDict["status"] as? Int ?? 0
+//                    let checked:Bool = (status == 1 ? true:false)
+//
+//
+//                    for (key,dictValue) in itemDict{
+//                        let customerBuyItem:CustomerBuyItem = CustomerBuyItem.init(itemKey: key, itemQuantity: dictValue["itemQuantity"] as! Int, itemName:dictValue["itemName"] as! String)
+//                        self.customerBuyItemsArray.append(customerBuyItem)
+//                    }
+//
+//                    let customerChecklistItem:CustomerChecklistItem = CustomerChecklistItem.init(userId: userID, buyerItemArray: self.customerBuyItemsArray, checked: checked)
+//
+//                    self.customerListArray.append(customerChecklistItem)
+//
+//                }
+//                self.tableView.reloadData()
+//            }
+//        }){
+//            (error) in
+//            print(error.localizedDescription)
+//        }
+//    }
+
+        
+        
+        //
     //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     //        if let cell = tableView.cellForRow(at: indexPath){
     //            let item = purchasingListArray[indexPath.row]

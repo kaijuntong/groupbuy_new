@@ -38,10 +38,10 @@ class ItemDetailViewController: UITableViewController {
         }
 
 
-        productLabel.text = item.itemName
+        productLabel.text = item.itemName.capitalized
         priceLabel.text = "\(item.itemPrice)"
-        sizeLabel.text = "\(item.itemSize)"
-        descriptionLabel.text = "\(item.itemDescription)"
+        sizeLabel.text = "\(item.itemSize)".capitalized
+        descriptionLabel.text = "\(item.itemDescription)".capitalized
         
         ref = Database.database().reference()
         ref.child("users").child(self.item.sellerID).observeSingleEvent(of: .value, with: {(snapshot) in
@@ -50,7 +50,7 @@ class ItemDetailViewController: UITableViewController {
             print(value)
             let email:String = value?["email"] as? String ?? ""
             
-            self.sellerEmail.text = email
+            self.sellerEmail.text = email.lowercased()
         }){
             (error) in
             print(error.localizedDescription)

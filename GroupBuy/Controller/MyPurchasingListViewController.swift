@@ -39,12 +39,12 @@ class MyPurchasingListViewController: UITableViewController {
         let countryLabel:UILabel = cell.viewWithTag(100) as! UILabel
         let dateLabel:UILabel = cell.viewWithTag(101) as! UILabel
         
-        let contryName:String = purchasingListArray[indexPath.row].countryName
+        let countryName:String = purchasingListArray[indexPath.row].countryName
         let startDate:Double = purchasingListArray[indexPath.row].startDate
         let endDate:Double = purchasingListArray[indexPath.row].endDate
         
         let date:String = "\(displayTimestamp(ts:startDate)) - \(displayTimestamp(ts:endDate))"
-        countryLabel.text = contryName
+        countryLabel.text = countryName.capitalized
         dateLabel.text = date
         return cell
     }

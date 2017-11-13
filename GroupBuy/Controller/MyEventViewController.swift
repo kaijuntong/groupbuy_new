@@ -113,8 +113,8 @@ class MyEventViewController: UITableViewController {
         
         let a:String = displayTimestamp(ts: startDate)
         let b:String = displayTimestamp(ts: dueDate)
-        cell.countryLabel.text = countryName
-        cell.dateLabel.text = "\(a) - \(b)"
+        cell.countryLabel.text = countryName.capitalized
+        cell.dateLabel.text = "\(a) - \(b)".capitalized
         cell.countryImageView.image = UIImage(named:"\(countryName)")
         return cell
     }
@@ -133,7 +133,7 @@ class MyEventViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEventDetail"{
-            let controller:MyEventViewController = segue.destination as! MyEventDetailViewController
+            let controller:MyEventDetailViewController = segue.destination as! MyEventDetailViewController
             
             if let indexPath:IndexPath = tableView.indexPath(for: sender as! UITableViewCell){
                 //controller.itemToEdit = checklist.items[indexPath.row]

@@ -32,8 +32,8 @@ class ReviewRatingViewController: UITableViewController {
         
         let dateString:String = displayTimestamp(ts: item.submitDate)
         cell.userLabel.text  = "\(item.username) said"
-        cell.commentLabel.text = "\(item.comment)"
-        cell.dateLabel.text = "\(dateString)"
+        cell.commentLabel.text = "\(item.comment)".capitalized
+        cell.dateLabel.text = "\(dateString)".capitalized
         cell.rateLabel.text = "rate: \(item.rate)"
         return cell
     }
@@ -61,7 +61,7 @@ class ReviewRatingViewController: UITableViewController {
                         let submitDate:Double = value["submitDate"] as! Double
                         
                         if let comment = value["comment"]{
-                            let userdata = self.ref.child("users").child("\(key)").observeSingleEvent(of: .value, with: {
+                            self.ref.child("users").child("\(key)").observeSingleEvent(of: .value, with: {
                                 (snapshot) in
                                 let value2:NSDictionary? = snapshot.value as? NSDictionary
                                 if let value3 = value2 as? [String:String]{

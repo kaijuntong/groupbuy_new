@@ -137,6 +137,7 @@ class PaymentTableViewController: UITableViewController {
 
         
         var itemArray:[String:Any] = [String:Any]()
+        var eventItemArray:[String:Any] = [String:Any]()
         
         for i in cartArray{
             var item:[String:Any] = [String:Any]()
@@ -145,20 +146,35 @@ class PaymentTableViewController: UITableViewController {
             item["itemQuantity"] = i.itemQuantity
             item["itemCurrentStatus"] = 0
             
-            itemArray[i.itemKey] = item
             
+            itemArray[i.itemKey] = item
+            eventItemArray[i.eventKey] = itemArray
             
             //let dataArray = ["\(userID!)": i.itemQuantity] as [String : Any]
             
             let itemInfoArray:[String:Any] = ["itemName":i.itemName, "itemQuantity":i.itemQuantity] as [String : Any]
             
-            ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(userID!)").setValue(i.itemQuantity)
-            ref.child("customer_list").child("\(i.eventKey)").child("\(userID!)/item_info/\(i.itemKey)").setValue(itemInfoArray)
+            ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(userID!)").observeSingleEvent(of: .value, with: {(snapshot) in
+                
+                print(snapshot)
+                
+                let a = snapshot.value as? Int
+
+                var oldQuantity = i.itemQuantity
+
+                if let a = a{
+                    oldQuantity += a
+                }
+                print(oldQuantity)
+                self.ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(self.userID!)").setValue(oldQuantity)
+            })
+            
+            //ref.child("customer_list").child("\(i.eventKey)").child("\(userID!)/item_info/\(i.itemKey)").setValue(itemInfoArray)
         }
         
         
         
-        ref.child("orderlist").child("\(postID)/orderItems").setValue(itemArray)
+        ref.child("orderlist").child("\(postID)/orderItems").setValue(eventItemArray)
         ref.child("cart_item").child("\(userID!)").setValue("")
         dismiss(animated: true, completion: nil)
     }
@@ -183,7 +199,7 @@ class PaymentTableViewController: UITableViewController {
             \(postcode), \(city) \(country)
             """
             self.deliveryAddress = addressString
-            self.deliveryAddressLabel.text = addressString
+            self.deliveryAddressLabel.text = addressString.capitalized
         }){
             (error) in
             print(error.localizedDescription)

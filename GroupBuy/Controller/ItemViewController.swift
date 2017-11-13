@@ -36,10 +36,10 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
         
         if let item = itemToEdit{
             title = "Edit Item"
-            productTextField.text = item.itemName
+            productTextField.text = item.itemName.capitalized
             priceTextField.text = "\(item.price)"
-            sizeTextField.text = item.size
-            descriptionTextView.text = item.description
+            sizeTextField.text = item.size.capitalized
+            descriptionTextView.text = item.description.capitalized
             
             if item.imageLoc.hasPrefix("gs://") {
                 Storage.storage().reference(forURL: item.imageLoc).getData(maxSize: INT64_MAX) {(data, error) in
@@ -158,12 +158,12 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
         var eventItemInfo:[String:Any] = data
         //insert into databas
             eventItemInfo["uid"] = userID
-            eventItemInfo["itemName"] = productTextField.text
+            eventItemInfo["itemName"] = productTextField.text?.lowercased()
         let num:String = priceTextField.text!
         let doubleNum:Double? = Double(num)
             eventItemInfo["itemPrice"] = doubleNum
-            eventItemInfo["itemSize"] = sizeTextField.text
-            eventItemInfo["itemDescription"] = descriptionTextView.text
+            eventItemInfo["itemSize"] = sizeTextField.text?.lowercased()
+            eventItemInfo["itemDescription"] = descriptionTextView.text?.lowercased()
             eventItemInfo["event_id"] = eventID
         
         //event_id1
