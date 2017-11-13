@@ -9,9 +9,9 @@
 import Foundation
 
 class CustomerBuyItem{
-    var itemKey = ""
-    var itemQuantity = 0
-    var itemName = ""
+    var itemKey:String = ""
+    var itemQuantity:Int = 0
+    var itemName:String = ""
     
     init(itemKey:String, itemQuantity:Int, itemName:String) {
         self.itemKey = itemKey

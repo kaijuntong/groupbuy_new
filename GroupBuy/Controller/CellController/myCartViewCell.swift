@@ -24,11 +24,11 @@ class MyCartViewCell: UITableViewCell {
     @IBOutlet weak var stepper: UIStepper!
     
     var myrow:Int!
-    var addPrice = 0.0
-    var originalQuantity = 0.0
+    var addPrice:Double = 0.0
+    var originalQuantity:Double = 0.0
     
-    var ref = Database.database().reference()
-    let userID = Auth.auth().currentUser?.uid
+    var ref:DatabaseReference = Database.database().reference()
+    let userID:String? = Auth.auth().currentUser?.uid
     
     var selfObject:Cart!
     

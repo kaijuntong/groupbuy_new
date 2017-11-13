@@ -46,7 +46,7 @@ class ChecklistDetailViewController: UITableViewController {
             self.priceLabel.text = "\(a["itemPrice"] as! Double)"
             self.sizeLabel.text = a["itemSize"] as! String
             
-            let imageURL = a["itemImage"] as! String
+            let imageURL:String = a["itemImage"] as! String
             
             if imageURL.hasPrefix("gs://") {
                 Storage.storage().reference(forURL:imageURL).getData(maxSize: INT64_MAX) {(data, error) in

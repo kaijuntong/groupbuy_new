@@ -12,8 +12,8 @@ import Firebase
 class MyOrderlistViewController: UITableViewController {
 
     var ref:DatabaseReference!
-    let userID =  Auth.auth().currentUser?.uid
-    var orderListArray = [Orderlist]()
+    let userID:String? =  Auth.auth().currentUser?.uid
+    var orderListArray:[Orderlist] = [Orderlist]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +40,15 @@ class MyOrderlistViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        let keyLabel = cell.viewWithTag(100) as! UILabel
+        let keyLabel:UILabel = cell.viewWithTag(100) as! UILabel
         keyLabel.text = orderListArray[indexPath.row].key
         
-        let priceLabel = cell.viewWithTag(101) as! UILabel
+        let priceLabel:UILabel = cell.viewWithTag(101) as! UILabel
         priceLabel.text = "\(orderListArray[indexPath.row].paymentPrice)"
         
-        let orderDateLabel = cell.viewWithTag(102) as! UILabel
+        let orderDateLabel:UILabel = cell.viewWithTag(102) as! UILabel
         orderDateLabel.text = self.displayTimestamp(ts:  orderListArray[indexPath.row].orderDate)
         return cell
     }
@@ -61,13 +61,13 @@ class MyOrderlistViewController: UITableViewController {
             
             if let value1 = a as? [String:NSDictionary]{
                 for (key,value) in value1{
-                    let valueDict = value as! [String:AnyObject]
+                    let valueDict:[String:AnyObject] = value as! [String:AnyObject]
                     
 
-                    let orderDate = valueDict["order_date"] as! Double
-                    let paymentPrice = valueDict["paymentPrice"] as! Double
+                    let orderDate:Double = valueDict["order_date"] as! Double
+                    let paymentPrice:Double = valueDict["paymentPrice"] as! Double
                     
-                    let order = Orderlist.init(key: key, orderDate: orderDate, paymentPrice: paymentPrice)
+                    let order:Orderlist = Orderlist.init(key: key, orderDate: orderDate, paymentPrice: paymentPrice)
                     //print("\(key), \(orderDate), \(paymentPrice),\(a)")
                     self.orderListArray.append(order)
                 }
@@ -77,8 +77,8 @@ class MyOrderlistViewController: UITableViewController {
     }
     
     func displayTimestamp(ts: Double) -> String {
-        let date = Date(timeIntervalSince1970: ts)
-        let formatter = DateFormatter()
+        let date:Date = Date(timeIntervalSince1970: ts)
+        let formatter:DateFormatter = DateFormatter()
         //formatter.timeZone = NSTimeZone.system
         
         formatter.dateStyle = .medium

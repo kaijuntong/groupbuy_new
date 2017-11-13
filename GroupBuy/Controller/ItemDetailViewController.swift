@@ -46,9 +46,9 @@ class ItemDetailViewController: UITableViewController {
         ref = Database.database().reference()
         ref.child("users").child(self.item.sellerID).observeSingleEvent(of: .value, with: {(snapshot) in
             //get user value
-            let value = snapshot.value as? NSDictionary
+            let value:NSDictionary? = snapshot.value as? NSDictionary
             print(value)
-            let email = value?["email"] as? String ?? ""
+            let email:String = value?["email"] as? String ?? ""
             
             self.sellerEmail.text = email
         }){
@@ -63,8 +63,8 @@ class ItemDetailViewController: UITableViewController {
         if indexPath.section == 2 && indexPath.row == 0{
             addToCart()
             
-            let alertController = UIAlertController(title: "Done", message: "Succescul added to cart", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "ok", style: .default, handler: nil)
+            let alertController:UIAlertController = UIAlertController(title: "Done", message: "Succescul added to cart", preferredStyle: .alert)
+            let okAction:UIAlertAction = UIAlertAction(title: "ok", style: .default, handler: nil)
             alertController.addAction(okAction)
             
             present(alertController, animated: true, completion: nil)
@@ -74,10 +74,10 @@ class ItemDetailViewController: UITableViewController {
     
     func addToCart(){
         ref = Database.database().reference()
-        let user = Auth.auth().currentUser
+        let user:User? = Auth.auth().currentUser
         if let user = user {
-            let uid = user.uid
-            var cartItem = [String:Any]()
+            let uid:String = user.uid
+            var cartItem:[String:Any] = [String:Any]()
 
             //cartItem["item_id"] = item.itemKey
             cartItem["quantity"] = 1
@@ -93,7 +93,7 @@ class ItemDetailViewController: UITableViewController {
             print(item.sellerID)
             print(item.sellerID)
 
-            let controller = segue.destination as! SellerDetailViewController
+            let controller:SellerDetailViewController = segue.destination as! SellerDetailViewController
             controller.sellerID = item.sellerID
             print(item.sellerID)
         }

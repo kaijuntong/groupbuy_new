@@ -11,13 +11,13 @@ import Firebase
 //RatingControlDelegate
 class SellerDetailViewController: UITableViewController, RatingControlDelegate{
     var ref:DatabaseReference!
-    let userID = Auth.auth().currentUser?.uid
+    let userID:String? = Auth.auth().currentUser?.uid
     var sellerID: String!
-    var ratingPerson = 0
-    var ratingNumber = 0
-    var ratingValue = 0.0
+    var ratingPerson:Int = 0
+    var ratingNumber:Int = 0
+    var ratingValue:Double = 0.0
 
-    var submitDate = Date()
+    var submitDate:Date = Date()
     
     @IBOutlet weak var ratingValueLabel: UILabel!
     @IBOutlet weak var ratingPeopleSum: UILabel!
@@ -27,15 +27,14 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("TExt")
 
         ref = Database.database().reference()
         ref.child("users").child(self.sellerID!).observeSingleEvent(of: .value, with: {(snapshot) in
             //get user value
-            let value = snapshot.value as? NSDictionary
+            let value:NSDictionary? = snapshot.value as? NSDictionary
 
-            let email = value?["email"] as? String ?? ""
-            let description = value?["description"] as? String ?? ""
+            let email:String = value?["email"] as? String ?? ""
+            let description:String = value?["description"] as? String ?? ""
 
             self.usernameLabel.text = email
             self.userDescription.text = description
@@ -47,10 +46,8 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate{
 
         ref.child("user_rating").child(self.sellerID!).observeSingleEvent(of: .value, with: {(snapshot) in
             //get user value
-            let value = snapshot.value as? NSDictionary
+            let value:NSDictionary? = snapshot.value as? NSDictionary
             if let value1 = value as? [String:NSDictionary]{
-            print(value1)
-
 
             for (key,value) in value1{
                 if key == self.userID{
@@ -75,8 +72,9 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate{
     }
 
     func ratingPicker(_ picker: RatingControl, didPick rating: Int) {
-        var array = ["rating":rating]
-        let submiTimeInterval = Int(submitDate.timeIntervalSince1970)
+        var array:[String:Int] = ["rating":rating]
+        let submiTimeInterval:Int = Int(submitDate.timeIntervalSince1970)
+        
         array["submitDate"] = submiTimeInterval
 
         ref.child("user_rating/\(sellerID!)/\(userID!)").updateChildValues(array)
@@ -85,11 +83,11 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate{
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAllRating"{
-            let ratingVC = segue.destination as! ReviewRatingViewController
+            let ratingVC:ReviewRatingViewController = segue.destination as! ReviewRatingViewController
             ratingVC.sellerID = sellerID
         }else if segue.identifier == "writeAReview"{
-            let destination = segue.destination as! UINavigationController
-            let writeRatingVC = destination.topViewController as! WriteReviewViewController
+            let destination:UINavigationController = segue.destination as! UINavigationController
+            let writeRatingVC:WriteReviewViewController = destination.topViewController as! WriteReviewViewController
             writeRatingVC.sellerID = sellerID
         }
     }

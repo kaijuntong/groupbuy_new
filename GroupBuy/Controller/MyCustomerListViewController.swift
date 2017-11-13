@@ -12,8 +12,8 @@ import Firebase
 class MyCustomerListViewController: UITableViewController {
 
     var ref:DatabaseReference!
-    let userID = Auth.auth().currentUser?.uid
-    var customerListArray = [CustomerList]()
+    let userID:String? = Auth.auth().currentUser?.uid
+    var customerListArray:[CustomerList] = [CustomerList]()
     var valueToPass:String!
     
     override func viewDidLoad() {
@@ -35,15 +35,15 @@ class MyCustomerListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let countryLabel = cell.viewWithTag(100) as! UILabel
-        let dateLabel = cell.viewWithTag(101) as! UILabel
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let countryLabel:UILabel = cell.viewWithTag(100) as! UILabel
+        let dateLabel:UILabel = cell.viewWithTag(101) as! UILabel
         
-        let contryName = customerListArray[indexPath.row].countryName
-        let startDate = customerListArray[indexPath.row].startDate
-        let endDate = customerListArray[indexPath.row].endDate
+        let contryName:String = customerListArray[indexPath.row].countryName
+        let startDate:Double = customerListArray[indexPath.row].startDate
+        let endDate:Double = customerListArray[indexPath.row].endDate
         
-        let date = "\(displayTimestamp(ts:startDate)) - \(displayTimestamp(ts:endDate))"
+        let date:String = "\(displayTimestamp(ts:startDate)) - \(displayTimestamp(ts:endDate))"
         countryLabel.text = contryName
         dateLabel.text = date
         return cell
@@ -57,13 +57,13 @@ class MyCustomerListViewController: UITableViewController {
             
             if let value1 = a as? [String:NSDictionary]{
                 for (key,value) in value1{
-                    let valueDict = value as! [String:AnyObject]
+                    let valueDict:[String:AnyObject] = value as! [String:AnyObject]
                     
-                    let country = valueDict["destination"] as! String
-                    let startDate = valueDict["departdate"] as! Double
-                    let endDate = valueDict["returndate"] as! Double
+                    let country:String = valueDict["destination"] as! String
+                    let startDate:Double = valueDict["departdate"] as! Double
+                    let endDate:Double = valueDict["returndate"] as! Double
                     
-                    let order = CustomerList.init(eventKey: key, countryName: country, startDate: startDate, endDate: endDate)
+                    let order:CustomerList = CustomerList.init(eventKey: key, countryName: country, startDate: startDate, endDate: endDate)
                     self.customerListArray.append(order)
                 }
             }
@@ -72,8 +72,8 @@ class MyCustomerListViewController: UITableViewController {
     }
     
     func displayTimestamp(ts: Double) -> String {
-        let date = Date(timeIntervalSince1970: ts)
-        let formatter = DateFormatter()
+        let date:Date = Date(timeIntervalSince1970: ts)
+        let formatter:DateFormatter = DateFormatter()
         //formatter.timeZone = NSTimeZone.system
         
         formatter.dateStyle = .medium
@@ -85,13 +85,13 @@ class MyCustomerListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         valueToPass = customerListArray[indexPath.row].eventKey
         print("asdadad\(valueToPass)")
-        let cell = tableView.cellForRow(at: indexPath)
+        let cell:UITableViewCell? = tableView.cellForRow(at: indexPath)
         performSegue(withIdentifier: "showCustomerDetail", sender: cell)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCustomerDetail"{
-            let destination = segue.destination as! CustomerCheckListViewController
+            let destination:CustomerCheckListViewController = segue.destination as! CustomerCheckListViewController
             destination.eventID = valueToPass
             
         }

@@ -21,11 +21,11 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     @IBOutlet weak var startDatePicker:UIDatePicker!
     @IBOutlet weak var dueDatePicker:UIDatePicker!
 
-    var startDate = Date()
-    var dueDate = Date()
+    var startDate:Date = Date()
+    var dueDate:Date = Date()
     
-    var startDatePickerVisible = false
-    var dueDatePickerVisible = false
+    var startDatePickerVisible:Bool = false
+    var dueDatePickerVisible:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +45,12 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     
     @IBAction func done(){
         var ref:DatabaseReference!
-        let userID = Auth.auth().currentUser?.uid
+        let userID:String? = Auth.auth().currentUser?.uid
         
         ref = Database.database().reference()
         
-        let startTimeInterval = Int(startDate.timeIntervalSince1970)
-        let dueTimeInterval = Int(dueDate.timeIntervalSince1970)
+        let startTimeInterval:Int = Int(startDate.timeIntervalSince1970)
+        let dueTimeInterval:Int = Int(dueDate.timeIntervalSince1970)
         
         let eventInfo:[String:Any] = ["uid":userID!,
                          "destination":textField.text ?? "",
@@ -71,9 +71,9 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let oldText = textField.text! as NSString
+        let oldText:NSString = textField.text! as NSString
         
-        let newText = oldText.replacingCharacters(in: range, with: string) as NSString
+        let newText:NSString = oldText.replacingCharacters(in: range, with: string) as NSString
         
         doneBarButton.isEnabled = (newText.length > 0)
         
@@ -81,13 +81,13 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     }
     
     func updateStartDateLabel(){
-        let formatter = DateFormatter()
+        let formatter:DateFormatter = DateFormatter()
         formatter.dateStyle = .medium
         startDateLabel.text = formatter.string(from: startDate)
     }
     
     func updateDueDateLabel(){
-        let formatter = DateFormatter()
+        let formatter:DateFormatter = DateFormatter()
         formatter.dateStyle = .medium
         dueDateLabel.text = formatter.string(from: dueDate)
     }
@@ -98,8 +98,8 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
         
         startDatePickerVisible = true
         
-        let indexPathDateRow = IndexPath(row: 0, section: 1)
-        let indexPathDatePicker = IndexPath(row: 1, section: 1)
+        let indexPathDateRow:IndexPath = IndexPath(row: 0, section: 1)
+        let indexPathDatePicker:IndexPath = IndexPath(row: 1, section: 1)
         
         if let dateCell = tableView.cellForRow(at: indexPathDateRow){
             dateCell.detailTextLabel!.textColor = dateCell.detailTextLabel!.tintColor
@@ -117,8 +117,8 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
         if startDatePickerVisible{
             startDatePickerVisible = false
             
-            let indexPathDateRow = IndexPath(row: 0, section: 1)
-            let indexPathDatePicker = IndexPath(row: 1, section: 1)
+            let indexPathDateRow:IndexPath = IndexPath(row: 0, section: 1)
+            let indexPathDatePicker:IndexPath = IndexPath(row: 1, section: 1)
             
             if let cell = tableView.cellForRow(at: indexPathDateRow){
                 cell.detailTextLabel!.textColor = UIColor(white: 0, alpha: 0.5)
@@ -137,8 +137,8 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
         
         dueDatePickerVisible = true
         
-        let indexPathDateRow = IndexPath(row: 0, section: 2)
-        let indexPathDatePicker = IndexPath(row: 1, section: 2)
+        let indexPathDateRow:IndexPath = IndexPath(row: 0, section: 2)
+        let indexPathDatePicker:IndexPath = IndexPath(row: 1, section: 2)
         
         if let dateCell = tableView.cellForRow(at: indexPathDateRow){
             dateCell.detailTextLabel!.textColor = dateCell.detailTextLabel!.tintColor
@@ -156,8 +156,8 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
         if dueDatePickerVisible{
             dueDatePickerVisible = false
             
-            let indexPathDateRow = IndexPath(row: 0, section: 2)
-            let indexPathDatePicker = IndexPath(row: 1, section: 2)
+            let indexPathDateRow:IndexPath = IndexPath(row: 0, section: 2)
+            let indexPathDatePicker:IndexPath = IndexPath(row: 1, section: 2)
             
             if let cell = tableView.cellForRow(at: indexPathDateRow){
                 cell.detailTextLabel!.textColor = UIColor(white: 0, alpha: 0.5)
@@ -217,7 +217,7 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        var newIndexPath = indexPath
+        var newIndexPath:IndexPath = indexPath
         if (indexPath.section == 1 || indexPath.section == 2) && indexPath.row == 1{
             newIndexPath = IndexPath(row: 0, section: indexPath.section)
         }

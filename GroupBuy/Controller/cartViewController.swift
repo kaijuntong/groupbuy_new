@@ -11,10 +11,10 @@ import Firebase
 
 class cartViewController: UITableViewController, MyCartViewCellDelegate{
     
-    var cartArray = [Cart]()
+    var cartArray:[Cart] = [Cart]()
     var ref:DatabaseReference!
     var userID:String?
-    var localEstimatedTotal = 0.0
+    var localEstimatedTotal:Double = 0.0
     
     fileprivate var _refHandle1: DatabaseHandle!
     fileprivate var _refHandle2: DatabaseHandle!
@@ -47,7 +47,7 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier:"Cell" , for: indexPath) as! MyCartViewCell
+        let cell:MyCartViewCell = tableView.dequeueReusableCell(withIdentifier:"Cell" , for: indexPath) as! MyCartViewCell
         
         cell.itemName.text = "\(cartArray[indexPath.row].itemName.uppercased())"
         cell.itemPrice.text = "RM \(cartArray[indexPath.row].itemPrice)"
@@ -59,7 +59,7 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
         cell.delegate = self
         
         //load image
-        let imageURL = cartArray[indexPath.row].itemImage
+        let imageURL:String = cartArray[indexPath.row].itemImage
         if imageURL.hasPrefix("gs://") {
             Storage.storage().reference(forURL: imageURL).getData(maxSize: INT64_MAX) {(data, error) in
                 if let error = error {
@@ -94,25 +94,23 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
             if let value1 = a as? [String:NSDictionary]{
                 for (key,value) in value1{
                     //print(key)
-                    let valueDict = value as! [String:AnyObject]
+                    let valueDict:[String:AnyObject] = value as! [String:AnyObject]
                     //let itemDict = valueDict as! [String:AnyObject]
                     
-                    
-                    
-                        let quantity = valueDict["quantity"] as! Int
+                    let quantity:Int = valueDict["quantity"] as! Int
                         
                         //self.ref.child("eventItems").child("\(key)").observe(.value, with: {
                         self.ref.child("eventItems").child("\(key)").observeSingleEvent(of: .value, with: {
                             (snapshot) in
-                            let value2 = snapshot.value as? NSDictionary
+                            let value2:NSDictionary? = snapshot.value as? NSDictionary
                             if let value3 = value2 as? [String:AnyObject]{
                                 //print(value3)
-                                let eventKey = value3["event_id"] as! String
-                                let itemName = value3["itemName"] as! String
-                                let itemPrice = value3["itemPrice"] as! Double
-                                let itemImage = value3["itemImage"] as! String
+                                let eventKey:String = value3["event_id"] as! String
+                                let itemName:String = value3["itemName"] as! String
+                                let itemPrice:Double = value3["itemPrice"] as! Double
+                                let itemImage:String = value3["itemImage"] as! String
                                 
-                                let cartItem = Cart.init(eventKey: eventKey,itemKey:key, itemName: itemName, itemPrice: itemPrice, itemImage: itemImage, itemQuantity: quantity)
+                                let cartItem:Cart = Cart.init(eventKey: eventKey,itemKey:key, itemName: itemName, itemPrice: itemPrice, itemImage: itemImage, itemQuantity: quantity)
                                 self.cartArray.append(cartItem)
                             }
                             self.tableView.reloadData()
@@ -162,14 +160,14 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FooterCell") as! cartFooterViewCell
+        let cell:cartFooterViewCell = tableView.dequeueReusableCell(withIdentifier: "FooterCell") as! cartFooterViewCell
         cell.estimatedPriceLabel.text = "RM \(calculatedEstimatedPrice())"
        
-        let gradient = CAGradientLayer()
+        let gradient:CAGradientLayer = CAGradientLayer()
         gradient.frame.size = CGSize(width: 375, height: 3)
         
-        let stopColor = UIColor.white.cgColor
-        let startColor = UIColor.lightGray.cgColor
+        let stopColor:CGColor = UIColor.white.cgColor
+        let startColor:CGColor = UIColor.lightGray.cgColor
         
         gradient.colors = [stopColor, startColor]
         gradient.locations = [0.0,0.8]
@@ -195,7 +193,7 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
     }
     
     func calculatedEstimatedPrice() -> Double{
-        var estimatedTotal = 0.0
+        var estimatedTotal:Double = 0.0
 
         for item in cartArray{
             estimatedTotal += Double(item.itemQuantity) * item.itemPrice
@@ -207,7 +205,7 @@ class cartViewController: UITableViewController, MyCartViewCellDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPaymentTable"{
-            let controller = segue.destination as! PaymentTableViewController
+            let controller:PaymentTableViewController = segue.destination as! PaymentTableViewController
             controller.cartArray = cartArray
             controller.totalPrice = localEstimatedTotal
         }

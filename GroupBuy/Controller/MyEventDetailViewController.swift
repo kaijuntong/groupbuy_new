@@ -30,9 +30,9 @@ class MyEventDetailViewController: UITableViewController {
     
     func configureDatabase(){
         ref = Database.database().reference()
-        let user = Auth.auth().currentUser
+        let user:User? = Auth.auth().currentUser
         if let user = user {
-            let uid = user.uid
+            let uid:String = user.uid
             
             //listen for new messages in the firebase database
             _refHandle = ref.child("eventItems").queryOrdered(byChild: "event_id").queryEqual(toValue: eventID).observe(.value){
@@ -45,16 +45,16 @@ class MyEventDetailViewController: UITableViewController {
                 //
                 
                 for (key,value) in a{
-                    let abc = value as![String:AnyObject]
+                    let abc:[String:AnyObject] = value as![String:AnyObject]
                     
-                    let itemName = abc["itemName"] as! String
-                    let itemSize = abc["itemSize"] as! String
-                    let itemDescription = abc["itemDescription"] as! String
-                    let itemPrice = abc["itemPrice"] as! Double
-                    let itemImage = abc["itemImage"] as! String
-                    let sellerID = abc["uid"] as! String
+                    let itemName:String = abc["itemName"] as! String
+                    let itemSize:String = abc["itemSize"] as! String
+                    let itemDescription:String = abc["itemDescription"] as! String
+                    let itemPrice:Double = abc["itemPrice"] as! Double
+                    let itemImage:String = abc["itemImage"] as! String
+                    let sellerID:String = abc["uid"] as! String
                     //create item object
-                    let item = Item(itemKey:key, itemName: itemName, itemDescription: itemDescription, itemPrice: itemPrice, itemSize: itemSize,imageLoc: itemImage)
+                    let item:Item = Item(itemKey:key, itemName: itemName, itemDescription: itemDescription, itemPrice: itemPrice, itemSize: itemSize,imageLoc: itemImage)
                     
                     self.eventItems.append(item)
                 }
@@ -78,15 +78,15 @@ class MyEventDetailViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier:"Cell" , for: indexPath)
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier:"Cell" , for: indexPath)
         
-        let itemName = eventItems[indexPath.row].itemName
-        let imageURL = eventItems[indexPath.row].imageLoc
-        let itemPrice = eventItems[indexPath.row].price
+        let itemName:String = eventItems[indexPath.row].itemName
+        let imageURL:String = eventItems[indexPath.row].imageLoc
+        let itemPrice:Double = eventItems[indexPath.row].price
         
-        let nameLabel = cell.viewWithTag(101) as! UILabel
-        let itemImageView = cell.viewWithTag(100) as! UIImageView
-        let priceLabel = cell.viewWithTag(102) as! UILabel
+        let nameLabel:UILabel = cell.viewWithTag(101) as! UILabel
+        let itemImageView:UIImageView = cell.viewWithTag(100) as! UIImageView
+        let priceLabel:UILabel = cell.viewWithTag(102) as! UILabel
         
         nameLabel.text = itemName
         priceLabel.text = String(itemPrice)
@@ -112,19 +112,19 @@ class MyEventDetailViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addNewItem"{
-            let controller = segue.destination as! UINavigationController
-            let itemVC = controller.topViewController as! ItemViewController
+            let controller:UINavigationController = segue.destination as! UINavigationController
+            let itemVC:ItemViewController = controller.topViewController as! ItemViewController
             itemVC.eventID = eventID
             itemVC.eventDetail = eventDetail
         }
         if segue.identifier == "editItem"{
-            let controller = segue.destination as! UINavigationController
-            let itemVC = controller.topViewController as! ItemViewController
+            let controller:UINavigationController = segue.destination as! UINavigationController
+            let itemVC:ItemViewController = controller.topViewController as! ItemViewController
             
             itemVC.eventID = eventID
             itemVC.eventDetail = eventDetail
             
-            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
+            if let indexPath:IndexPath = tableView.indexPath(for: sender as! UITableViewCell){
                 itemVC.itemToEdit = eventItems[indexPath.row]
             }
         }

@@ -23,7 +23,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
     fileprivate var _refHandle: DatabaseHandle!
     var ref:DatabaseReference!
     
-    private var countryItems =  [CountryItems]()
+    private var countryItems:[CountryItems] =  [CountryItems]()
 
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == self.collectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CountriesCell", for: indexPath) as! CountryCollectionViewCell
+            let cell:CountryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CountriesCell", for: indexPath) as! CountryCollectionViewCell
             
             // Configure the cell
             cell.countryName.text = countries[indexPath.row].countryName
@@ -61,10 +61,10 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
             return cell
         }
         else if collectionView == self.hottestItemsCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: indexPath) as! HottestItemViewCell
+            let cell:HottestItemViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: indexPath) as! HottestItemViewCell
             
             //load image
-            let imageURL = countryItems[indexPath.row].productImage
+            let imageURL:String = countryItems[indexPath.row].productImage
             if imageURL.hasPrefix("gs://") {
                 Storage.storage().reference(forURL: imageURL).getData(maxSize: INT64_MAX) {(data, error) in
                     if let error = error {
@@ -80,8 +80,8 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             return cell
         }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SellerCell", for: indexPath)
-            let imageview = cell.viewWithTag(20) as! UIImageView
+            let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SellerCell", for: indexPath)
+            let imageview:UIImageView = cell.viewWithTag(20) as! UIImageView
             imageview.layer.cornerRadius = 40
             imageview.clipsToBounds = true
             return cell
@@ -91,16 +91,16 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCountryItems"{
-            let controller = segue.destination as! CountryItemsViewController
+            let controller:CountryItemsViewController = segue.destination as! CountryItemsViewController
             
             if let indexPath = collectionView.indexPath(for: sender as! UICollectionViewCell){
-                let countryName = countries[indexPath.row].countryName
+                let countryName:String = countries[indexPath.row].countryName
                 
                 controller.countryName = countryName
             }
         }else if segue.identifier == "showItemDetail"{
             if let indexPath = hottestItemsCollectionView.indexPathsForSelectedItems{
-                let destinationController = segue.destination as! ItemDetailViewController
+                let destinationController:ItemDetailViewController = segue.destination as! ItemDetailViewController
                 destinationController.item = countryItems[indexPath.last!.row]
             }
         }
@@ -108,9 +108,9 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     func configureDatabase(){
         ref = Database.database().reference()
-        let user = Auth.auth().currentUser
+        let user:User? = Auth.auth().currentUser
         if let user = user {
-            let uid = user.uid
+            let uid:String = user.uid
             
             //listen for new messages in the firebase database
             _refHandle = ref.child("eventItems").queryLimited(toFirst: 10).observe(.value){
@@ -127,18 +127,18 @@ class HomeViewController: UIViewController,UICollectionViewDataSource, UICollect
                 print("-------a")
                 
                 for (key,value) in a{
-                    let abc = value as![String:AnyObject]
+                    let abc:[String:AnyObject] = value as![String:AnyObject]
                     
-                    let itemName = abc["itemName"] as! String
-                    let itemSize = abc["itemSize"] as! String
-                    let itemDescription = abc["itemDescription"] as! String
-                    let itemPrice = abc["itemPrice"] as! Double
-                    let itemImage = abc["itemImage"] as! String
-                    let sellerID = abc["uid"] as! String
+                    let itemName:String = abc["itemName"] as! String
+                    let itemSize:String = abc["itemSize"] as! String
+                    let itemDescription:String = abc["itemDescription"] as! String
+                    let itemPrice:Double = abc["itemPrice"] as! Double
+                    let itemImage:String = abc["itemImage"] as! String
+                    let sellerID:String = abc["uid"] as! String
                     
                     //create item object
                     
-                    let countryItem = CountryItems(itemKey:key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize)
+                    let countryItem:CountryItems = CountryItems(itemKey:key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize)
                     
                     self.countryItems.append(countryItem)
                 }

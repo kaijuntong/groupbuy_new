@@ -9,11 +9,11 @@
 import Foundation
 
 class SearchResult{
-    var itemName = ""
-    var itemKey = ""
+    var itemName:String = ""
+    var itemKey:String = ""
     
-    var itemImageURL = ""
-    var itemPrice = 0.0
+    var itemImageURL:String = ""
+    var itemPrice:Double = 0.0
 }
 
 func <(lhs: SearchResult, rhs: SearchResult) -> Bool{

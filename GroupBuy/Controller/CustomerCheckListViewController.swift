@@ -14,14 +14,15 @@ class CustomerCheckListViewController: UITableViewController {
     
     //var checklistArray = [Checklist]()
     var ref:DatabaseReference!
-    var userID =  Auth.auth().currentUser?.uid
+    var userID:String? =  Auth.auth().currentUser?.uid
     var eventID:String!
-    var customerListArray = [CustomerChecklistItem]()
-    var address = ["12 JALAN NJM 5/2, taman Nusa jaya mas, 81300 skudai, johor",
+    var customerListArray:[CustomerChecklistItem] = [CustomerChecklistItem]()
+    
+    var address:[String] = ["12 JALAN NJM 5/2, taman Nusa jaya mas, 81300 skudai, johor",
                    "12 JALasdadadadadsaddAN NJM 5/2, taman Nusa jaya mas, 81300 skudai, johor",
                    "12 JALAN NJM 5/2"]
     
-    var testArray = [
+    var testArray:[String] = [
         """
                     你好吗
                     不要
@@ -40,7 +41,7 @@ class CustomerCheckListViewController: UITableViewController {
                     henasdad
                     """
     ]
-    var QuantityArray = [
+    var QuantityArray:[String] = [
         """
                     x12
                     x12
@@ -84,53 +85,25 @@ class CustomerCheckListViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let itemLabel = cell.viewWithTag(100) as! UILabel
-        let addressLabel = cell.viewWithTag(101) as! UILabel
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let itemLabel:UILabel = cell.viewWithTag(100) as! UILabel
+        let addressLabel:UILabel = cell.viewWithTag(101) as! UILabel
         
-        var itemString = ""
+        var itemString:String = ""
         
-        let customerBuyArray = customerListArray[indexPath.row].buyerItemArray
-     
-        
-        var reload = false
-        var numCount = customerBuyArray.count
-        var num = 0
-        
+        let customerBuyArray:[CustomerBuyItem] = customerListArray[indexPath.row].buyerItemArray
         
         for i in customerBuyArray{
-            // get itemname
-            num += 1
-
-            
-            if !reload{
-                ref.child("eventItems").child("\(i.itemKey)").observeSingleEvent(of: .value, with: {
-                    (snapshot) in
-                    let value2 = snapshot.value as? NSDictionary
-                    if let value3 = value2 as? [String:AnyObject]{
-                        //print(value3)
-                        let itemName = value3["itemName"] as! String
-                        
-                        
-                        itemString += itemName
-                        itemString += "\tx\(i.itemQuantity)\n"
-                        itemLabel.text = itemString
-                    }
-                })
-            }
-            if num == numCount{
-                reload = true
-                
-                tableView.reloadRows(at: [indexPath], with: .automatic)
-            }
-            
-            }
+            itemString += i.itemName
+            itemString += "\tx\(i.itemQuantity)\n"
+            itemLabel.text = itemString
+        }
         
         addressLabel.text = address[indexPath.row]
         return cell
     }
     
-    var customerBuyItemsArray = [CustomerBuyItem]()
+    var customerBuyItemsArray:[CustomerBuyItem] = [CustomerBuyItem]()
     
     func configureDatabase(){
         ref.child("customer_list").child("\(eventID!)").observeSingleEvent(of:.value, with: {(snapshot) in
@@ -141,44 +114,22 @@ class CustomerCheckListViewController: UITableViewController {
                 for (userID,value) in value1{
                     self.customerBuyItemsArray.removeAll()
                     
-                    let valueDict = value as! [String:AnyObject]
+                    let valueDict:[String:AnyObject] = value as! [String:AnyObject]
                     //let itemDict = valueDict as! [String:AnyObject]
                     
-                    let itemDict = valueDict["item_info"] as! [String:Int]
-                    let status = valueDict["status"] as? Int ?? 0
-                    let checked = (status == 1 ? true:false)
+                    let itemDict:[String:AnyObject] = valueDict["item_info"] as! [String:AnyObject]
+                    let status:Int = valueDict["status"] as? Int ?? 0
+                    let checked:Bool = (status == 1 ? true:false)
                     
-                    for (key,quantityValue) in itemDict{
-                        let customerBuyItem = CustomerBuyItem.init(itemKey: key, itemQuantity: quantityValue)
+                    
+                    for (key,dictValue) in itemDict{
+                        let customerBuyItem:CustomerBuyItem = CustomerBuyItem.init(itemKey: key, itemQuantity: dictValue["itemQuantity"] as! Int, itemName:dictValue["itemName"] as! String)
                         self.customerBuyItemsArray.append(customerBuyItem)
                     }
                     
-                    let customerChecklistItem = CustomerChecklistItem.init(userId: userID, buyerItemArray: self.customerBuyItemsArray, checked: checked)
+                    let customerChecklistItem:CustomerChecklistItem = CustomerChecklistItem.init(userId: userID, buyerItemArray: self.customerBuyItemsArray, checked: checked)
                     
                     self.customerListArray.append(customerChecklistItem)
-                    //                    //get itemname
-                    //                    for (key,quantityValue) in itemDict{
-                    //                        self.ref.child("eventItems").child("\(key)").observeSingleEvent(of: .value, with: {
-                    //                            (snapshot) in
-                    //                            let value2 = snapshot.value as? NSDictionary
-                    //                            if let value3 = value2 as? [String:AnyObject]{
-                    //                                //print(value3)
-                    //                                let itemName = value3["itemName"] as! String
-                    //                                print(itemName)
-                    //                                let customerBuyItem = CustomerBuyItem.init(itemKey: key, itemQuantity: quantityValue, itemName: itemName)
-                    //                                self.customerBuyItemsArray.append(customerBuyItem)
-                    //                            }
-                    //
-                    //
-                    //                            let customerChecklistItem = CustomerChecklistItem.init(userId: userID, buyerItemArray: self.customerBuyItemsArray, checked: checked)
-                    //
-                    //                            self.customerListArray.append(customerChecklistItem)
-                    //
-                    //                            self.tableView.reloadData()
-                    //
-                    //                        })
-                    //                }
-                    
                     
                 }
                 self.tableView.reloadData()

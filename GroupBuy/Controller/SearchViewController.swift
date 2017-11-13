@@ -13,16 +13,16 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchBar:UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    //@IBOutlet weak var searchBar2:UISearchBar!
+    //@IBOutlet weak var searchBstorar2:UISearchBar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     
-    var hasSearched = false
+    var hasSearched:Bool = false
     var searchResults = [CountryItems]()
-    var isLoading = false
+    var isLoading:Bool = false
     
     var ref:DatabaseReference!
-    var userID =  Auth.auth().currentUser?.uid
+    var userID:String? =  Auth.auth().currentUser?.uid
     //用来cancel operation
     var dataTask:URLSessionDataTask?
     
@@ -36,7 +36,7 @@ class SearchViewController: UIViewController {
         //Add margin
         tableView.contentInset = UIEdgeInsets(top:108, left:0, bottom:0, right:0)
         
-        var cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
+        var cellNib:UINib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
         
         cellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
@@ -55,16 +55,16 @@ class SearchViewController: UIViewController {
     func parse(dictionary: [String:AnyObject]) -> [CountryItems]{
         
         for(key,value) in dictionary{
-            let abc = value as![String:AnyObject]
+            let abc:[String:AnyObject] = value as![String:AnyObject]
             
-            let itemName = abc["itemName"] as! String
-            let itemSize = abc["itemSize"] as! String
-            let itemDescription = abc["itemDescription"] as! String
-            let itemPrice = abc["itemPrice"] as! Double
-            let itemImage = abc["itemImage"] as! String
-            let sellerID = abc["uid"] as! String
+            let itemName:String = abc["itemName"] as! String
+            let itemSize:String = abc["itemSize"] as! String
+            let itemDescription:String = abc["itemDescription"] as! String
+            let itemPrice:Double = abc["itemPrice"] as! Double
+            let itemImage:String = abc["itemImage"] as! String
+            let sellerID:String = abc["uid"] as! String
             
-            let searchResult = CountryItems(itemKey:key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize)
+            let searchResult:CountryItems = CountryItems(itemKey:key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize)
             
             searchResults.append(searchResult)
         }
@@ -103,7 +103,7 @@ extension SearchViewController:UISearchBarDelegate{
             searchResults = []
             
             
-            let escapedSearchText = searchBar.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!.lowercased()
+            let escapedSearchText:String = searchBar.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!.lowercased()
             
             print(escapedSearchText)
             ref.child("eventItems").queryOrdered(byChild: "itemName").queryStarting(atValue: "\(escapedSearchText)").queryEnding(atValue: "\(escapedSearchText)"+"\u{f8ff}").observeSingleEvent(of: .value, with: {
@@ -114,8 +114,6 @@ extension SearchViewController:UISearchBarDelegate{
                 self.searchResults = self.parse(dictionary: a)
                 self.searchResults.sort{ $0 < $1 }
 
-                
-                
                 self.isLoading = false
                 self.tableView.reloadData()
             }){
@@ -136,8 +134,8 @@ extension SearchViewController:UISearchBarDelegate{
     }
     
     func showNetworkError(){
-        let alert = UIAlertController(title: "Whoops...", message: "There was an error reading from the iTunes Stores.Please try again.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let alert:UIAlertController = UIAlertController(title: "Whoops...", message: "There was an error reading from the iTunes Stores.Please try again.", preferredStyle: .alert)
+        let okAction:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
@@ -161,16 +159,16 @@ extension SearchViewController:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isLoading{
-            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.loadingCell, for: indexPath)
-            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+            let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.loadingCell, for: indexPath)
+            let spinner:UIActivityIndicatorView = cell.viewWithTag(100) as! UIActivityIndicatorView
             spinner.startAnimating()
             return cell
         }else if searchResults.count == 0{
             return tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.nothingFoundCell, for:indexPath)
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
+            let cell:SearchResultCell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             
-            let searchResult = searchResults[indexPath.row]
+            let searchResult:CountryItems = searchResults[indexPath.row]
             cell.configure(for: searchResult)
             return cell
         }
@@ -198,12 +196,12 @@ extension SearchViewController:UITableViewDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showItemDetail"{
-            if let indexPath = tableView.indexPathForSelectedRow{
+            if let indexPath:IndexPath = tableView.indexPathForSelectedRow{
                 print("!2313123")
-                let destinationController = segue.destination as! ItemDetailViewController
+                let destinationController:ItemDetailViewController = segue.destination as! ItemDetailViewController
                 destinationController.item = searchResults[indexPath.row]
                 print(searchResults[indexPath.row].itemName)
-                 print(searchResults[indexPath.row].productImage)
+                print(searchResults[indexPath.row].productImage)
             }
         }
     }

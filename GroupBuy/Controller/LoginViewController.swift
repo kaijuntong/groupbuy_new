@@ -22,18 +22,18 @@ class LoginViewController: UIViewController {
             Auth.auth().signIn(withEmail: email, password: password){
                 (user,error) in
                 if let error = error {
-                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let alertController:UIAlertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                     
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    let defaultAction:UIAlertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     alertController.addAction(defaultAction)
                     
                     self.present(alertController, animated: true, completion: nil)
                     return
                 }
             
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let tabBarController:UITabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.window?.rootViewController = tabBarController
             }
         }
@@ -44,9 +44,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func testing(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController:UITabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBarController
     }
 }

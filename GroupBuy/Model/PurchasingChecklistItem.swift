@@ -11,14 +11,14 @@ import Firebase
 
 class PurchasingChecklistItem{
     
-    var ref = Database.database().reference()
-    var userID =  Auth.auth().currentUser?.uid
+    var ref:DatabaseReference = Database.database().reference()
+    var userID:String? =  Auth.auth().currentUser?.uid
     
-    var eventID = ""
-    var itemName = ""
-    var quantity = 0
-    var checked = false
-    var itemID = ""
+    var eventID:String = ""
+    var itemName:String = ""
+    var quantity:Int = 0
+    var checked:Bool = false
+    var itemID:String = ""
     
     init(eventID:String,itemID:String, itemName:String, quantity:Int, checked:Bool) {
         self.eventID = eventID
@@ -31,7 +31,7 @@ class PurchasingChecklistItem{
     func toogleChecked(){
         checked = !checked
         
-        let num = checked ? 1 : 0
+        let num:Int = checked ? 1 : 0
         
         ref.child("purchasing_list").child("\(eventID)").child("\(itemID)/status").setValue(num)
     }

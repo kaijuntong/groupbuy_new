@@ -35,7 +35,7 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //configure cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as!
+        let cell:ContryItemsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as!
             ContryItemsCollectionViewCell
         
         // Configure the cell
@@ -47,7 +47,7 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
         //cell.productImage.image = countryItems[indexPath.row].productImage
         
         //load image
-        let imageURL = countryItems[indexPath.row].productImage
+        let imageURL:String = countryItems[indexPath.row].productImage
         if imageURL.hasPrefix("gs://") {
             Storage.storage().reference(forURL: imageURL).getData(maxSize: INT64_MAX) {(data, error) in
                 if let error = error {
@@ -79,7 +79,7 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showItemDetail"{
             if let indexPath = collectionView.indexPathsForSelectedItems{
-                let destinationController = segue.destination as! ItemDetailViewController
+                let destinationController:ItemDetailViewController = segue.destination as! ItemDetailViewController
                 destinationController.item = countryItems[indexPath.last!.row]
             }
         }
@@ -87,9 +87,9 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
     
     func configureDatabase(){
         ref = Database.database().reference()
-        let user = Auth.auth().currentUser
+        let user:User? = Auth.auth().currentUser
         if let user = user {
-            let uid = user.uid
+            let uid:String = user.uid
             
             //listen for new messages in the firebase database
             _refHandle = ref.child("eventItems").queryOrdered(byChild: "event_id1/destination").queryEqual(toValue: countryName.lowercased()).observe(.value){
@@ -103,18 +103,18 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
                 //
 
                 for (key,value) in a{
-                    let abc = value as![String:AnyObject]
+                    let abc:[String:AnyObject] = value as![String:AnyObject]
 
-                    let itemName = abc["itemName"] as! String
-                    let itemSize = abc["itemSize"] as! String
-                    let itemDescription = abc["itemDescription"] as! String
-                    let itemPrice = abc["itemPrice"] as! Double
-                    let itemImage = abc["itemImage"] as! String
-                    let sellerID = abc["uid"] as! String
+                    let itemName:String = abc["itemName"] as! String
+                    let itemSize:String = abc["itemSize"] as! String
+                    let itemDescription:String = abc["itemDescription"] as! String
+                    let itemPrice:Double = abc["itemPrice"] as! Double
+                    let itemImage:String = abc["itemImage"] as! String
+                    let sellerID:String = abc["uid"] as! String
                     
                     //create item object
                     
-                    let countryItem = CountryItems(itemKey: key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize)
+                    let countryItem:CountryItems = CountryItems(itemKey: key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize)
                     
                     self.countryItems.append(countryItem)
                 }

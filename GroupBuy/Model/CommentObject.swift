@@ -9,11 +9,11 @@
 import Foundation
 
 class CommentObject{
-    var username = ""
-    var comment = ""
-    var date = ""
-    var rate = 0
-    var submitDate = 0.0
+    var username:String = ""
+    var comment:String = ""
+    var date:String = ""
+    var rate:Int = 0
+    var submitDate:Double = 0.0
     
     
     init(username:String, comment:String) {

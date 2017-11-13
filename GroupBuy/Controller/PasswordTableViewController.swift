@@ -25,9 +25,9 @@ class PasswordTableViewController: UITableViewController {
     }
     
     @IBAction func saveBtnClicked(_ sender: UIBarButtonItem) {
-        let currentPassword = currentPasswordTextField.text
-        let newPassword = newPasswordTextField.text
-        let verifyPassword = verifyPasswordTextField.text
+        let currentPassword:String? = currentPasswordTextField.text
+        let newPassword:String? = newPasswordTextField.text
+        let verifyPassword:String? = verifyPasswordTextField.text
         
         if let currentPassword = currentPassword, let newPassword = newPassword, let verifyPassword = verifyPassword {
            
@@ -40,9 +40,9 @@ class PasswordTableViewController: UITableViewController {
                 return
             }
             
-            let user = Auth.auth().currentUser!
+            let user:User = Auth.auth().currentUser!
                 
-            let credential = EmailAuthProvider.credential(withEmail: user.email!, password: currentPassword)
+            let credential:AuthCredential = EmailAuthProvider.credential(withEmail: user.email!, password: currentPassword)
                 
             user.reauthenticate(with: credential, completion: {(error) in
                 if error != nil{
@@ -61,8 +61,8 @@ class PasswordTableViewController: UITableViewController {
     }
     
     func alert(title:String,msg:String){
-        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let alertController:UIAlertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let okAction:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)

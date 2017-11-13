@@ -9,7 +9,7 @@
 import Foundation
 
 struct TableViewCellIdentifiers{
-    static let searchResultCell = "SearchResultCell"
-    static let nothingFoundCell = "NothingFoundCell"
-    static let loadingCell = "LoadingCell"
+    static let searchResultCell:String = "SearchResultCell"
+    static let nothingFoundCell:String = "NothingFoundCell"
+    static let loadingCell:String = "LoadingCell"
 }

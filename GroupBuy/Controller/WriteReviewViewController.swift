@@ -21,7 +21,7 @@ class WriteReviewViewController: UITableViewController,RatingControlDelegate {
     
     var dataToInsert:[String:Any]?
     
-    var submitDate = Date()
+    var submitDate:Date = Date()
     
     var sellerID: String!
 
@@ -46,14 +46,14 @@ class WriteReviewViewController: UITableViewController,RatingControlDelegate {
             }else{
                 dataToInsert = ["rating":rating]
             }
-            let submiTimeInterval = Int(submitDate.timeIntervalSince1970)
+            let submiTimeInterval:Int = Int(submitDate.timeIntervalSince1970)
             dataToInsert!["submitDate"] = submiTimeInterval
             
             ref.child("user_rating/\(sellerID!)/\(userID!)").updateChildValues(dataToInsert!)
             dismiss(animated: true, completion: nil)
         }else{
-            let alertController = UIAlertController(title: "Error", message: "The rate and review cannot be empty", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            let alertController:UIAlertController = UIAlertController(title: "Error", message: "The rate and review cannot be empty", preferredStyle: .alert)
+            let okAction:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             
             present(alertController, animated: true, completion: nil)

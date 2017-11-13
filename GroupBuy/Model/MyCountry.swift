@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 class MyCountry{
-    var countryImage = ""
-    var startDate = 0.0
-    var dueDate = 0.0
-    var countryName = ""
-    var eventKey = ""
+    var countryImage:String = ""
+    var startDate:Double = 0.0
+    var dueDate:Double = 0.0
+    var countryName:String = ""
+    var eventKey:String = ""
     
     init(eventKey:String,countryName:String, startDate:Double, dueDate:Double, countryImage:String) {
         self.eventKey = eventKey

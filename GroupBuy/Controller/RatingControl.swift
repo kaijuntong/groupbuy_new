@@ -18,7 +18,7 @@ class RatingControl: UIStackView {
     weak var delegate:RatingControlDelegate?
     
     var ref:DatabaseReference!
-    let userID = Auth.auth().currentUser?.uid
+    let userID:String? = Auth.auth().currentUser?.uid
     
     @IBInspectable
     var starSize:CGSize = CGSize(width: 44.0, height: 44.0){
@@ -34,8 +34,8 @@ class RatingControl: UIStackView {
         }
     }
     
-    private var ratingButtons = [UIButton]()
-    var rating = 0{
+    private var ratingButtons:[UIButton] = [UIButton]()
+    var rating:Int = 0{
         didSet{
             updateButtonSelectionStates()
         }
@@ -61,10 +61,10 @@ class RatingControl: UIStackView {
         }
         ratingButtons.removeAll()
         
-        let bundle = Bundle(for: type(of: self))
-        let filledStar = UIImage(named:"highlightedStar", in:bundle, compatibleWith:self.traitCollection)
-        let emptyStar = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)
-        let highlightedStar = UIImage(named: "filledStar", in:bundle, compatibleWith:self.traitCollection)
+        let bundle:Bundle = Bundle(for: type(of: self))
+        let filledStar:UIImage = UIImage(named:"highlightedStar", in:bundle, compatibleWith:self.traitCollection)
+        let emptyStar:UIImage = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)
+        let highlightedStar:UIImage = UIImage(named: "filledStar", in:bundle, compatibleWith:self.traitCollection)
         
         for _ in 0..<starCount{
             let button = UIButton()
@@ -97,7 +97,7 @@ class RatingControl: UIStackView {
             fatalError("The button,\(button), is not in the ratingButtons aray:\(ratingButtons)")
         }
         
-        let selectedRating = index + 1
+        let selectedRating:Int = index + 1
         
         if selectedRating == rating{
             // If the selected star represents the current rating, reset the rating to 0.

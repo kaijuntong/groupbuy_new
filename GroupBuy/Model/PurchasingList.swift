@@ -9,10 +9,10 @@
 import Foundation
 
 class PurchasingList{
-    var startDate = 0.0
-    var endDate = 0.0
-    var countryName = ""
-    var eventKey = ""
+    var startDate:Double = 0.0
+    var endDate:Double = 0.0
+    var countryName:String = ""
+    var eventKey:String = ""
     
     init(eventKey:String, countryName:String, startDate:Double, endDate:Double) {
        self.eventKey = eventKey

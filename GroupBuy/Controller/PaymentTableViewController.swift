@@ -121,27 +121,25 @@ class PaymentTableViewController: UITableViewController {
     }
     
     func submitToFirebase(){
-        var dataToInsert = [String:Any]()
+        var dataToInsert:[String:Any] = [String:Any]()
         
-        let submiTimeInterval = Int(submitDate.timeIntervalSince1970)
+        let submiTimeInterval:Int = Int(submitDate.timeIntervalSince1970)
         
         dataToInsert["buyer_id"] = userID!
         dataToInsert["order_date"] = submiTimeInterval
         dataToInsert["paymentPrice"] = totalPrice
         dataToInsert["deliveryAddress"] = deliveryAddress
 
-        var postRef = ref.child("orderlist").childByAutoId()
+        let postRef:DatabaseReference = ref.child("orderlist").childByAutoId()
         postRef.setValue(dataToInsert)
 
-        var postID = postRef.key
+        let postID:String = postRef.key
 
         
-        var itemArray = [String:Any]()
-        
-        var purchaserCheckListArray = [String:Any]()
+        var itemArray:[String:Any] = [String:Any]()
         
         for i in cartArray{
-            var item = [String:Any]()
+            var item:[String:Any] = [String:Any]()
             item["itemPrice"] = i.itemPrice
             item["itemName"] = i.itemName
             item["itemQuantity"] = i.itemQuantity
@@ -149,12 +147,15 @@ class PaymentTableViewController: UITableViewController {
             
             itemArray[i.itemKey] = item
             
+            
             //let dataArray = ["\(userID!)": i.itemQuantity] as [String : Any]
             
-            ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(userID!)").setValue(i.itemQuantity)
+            let itemInfoArray:[String:Any] = ["itemName":i.itemName, "itemQuantity":i.itemQuantity] as [String : Any]
             
-            ref.child("customer_list").child("\(i.eventKey)").child("\(userID!)/item_info/\(i.itemKey)").setValue(i.itemQuantity)
+            ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(userID!)").setValue(i.itemQuantity)
+            ref.child("customer_list").child("\(i.eventKey)").child("\(userID!)/item_info/\(i.itemKey)").setValue(itemInfoArray)
         }
+        
         
         
         ref.child("orderlist").child("\(postID)/orderItems").setValue(itemArray)
@@ -165,18 +166,18 @@ class PaymentTableViewController: UITableViewController {
     func getAddress(){
         ref.child("users").child(self.userID!).observeSingleEvent(of: .value, with: {(snapshot) in
             //get user value
-            let value = snapshot.value as? NSDictionary
+            let value:NSDictionary? = snapshot.value as? NSDictionary
 
-            let firstname = value?["firstname"] as? String ?? ""
-            let lastname = value?["lastname"] as? String ?? ""
-            let address1 = value?["address1"] as? String ?? ""
-            let address2 = value?["address2"] as? String ?? ""
-            let city = value?["city"] as? String ?? ""
-            let country = value?["country"] as? String ?? ""
-            let postcode = value?["postcode"] as? String ?? ""
+            let firstname:String = value?["firstname"] as? String ?? ""
+            let lastname:String = value?["lastname"] as? String ?? ""
+            let address1:String = value?["address1"] as? String ?? ""
+            let address2:String = value?["address2"] as? String ?? ""
+            let city:String = value?["city"] as? String ?? ""
+            let country:String = value?["country"] as? String ?? ""
+            let postcode:String = value?["postcode"] as? String ?? ""
             //let phone = value?["phone"] as? String ?? ""
             
-            let addressString = """
+            let addressString:String = """
             \(firstname) \(lastname)
             \(address1),\(address2)
             \(postcode), \(city) \(country)

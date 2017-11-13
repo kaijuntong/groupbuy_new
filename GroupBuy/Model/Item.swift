@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 class Item{
-    var itemKey = ""
-    var itemName = ""
-    var description = ""
-    var price = 0.0
-    var size = ""
-    var imageLoc = ""
+    var itemKey:String = ""
+    var itemName:String = ""
+    var description:String = ""
+    var price:Double = 0.0
+    var size:String = ""
+    var imageLoc:String = ""
     
     init(itemKey:String, itemName:String, itemDescription:String, itemPrice:Double, itemSize:String, imageLoc:String) {
         self.itemKey = itemKey

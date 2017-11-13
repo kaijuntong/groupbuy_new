@@ -21,9 +21,9 @@ class SignupViewController: UIViewController {
     @IBAction func signUpBtnClicked(_ sender: UIButton) {
         
         if emailTextField.text == ""{
-            let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
+            let alertController:UIAlertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
             
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            let defaultAction:UIAlertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
             present(alertController, animated: true, completion: nil)
@@ -32,9 +32,9 @@ class SignupViewController: UIViewController {
             Auth.auth().createUser(withEmail: email, password:password){
                 (user,error) in
                 if let error = error {
-                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let alertController:UIAlertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                     
-                    let defaultAlert = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    let defaultAlert:UIAlertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     alertController.addAction(defaultAlert)
                     
                     self.present(alertController,animated: true, completion: nil)
@@ -48,17 +48,17 @@ class SignupViewController: UIViewController {
                     }
                     
                     self.view.endEditing(true)
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tabBarController:UITabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.window?.rootViewController = tabBarController
                 }
 
             }
         }else{
-            let alertController = UIAlertController(title: "Error", message: "Password not match, Please try again.", preferredStyle: .alert)
+            let alertController:UIAlertController = UIAlertController(title: "Error", message: "Password not match, Please try again.", preferredStyle: .alert)
             
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            let defaultAction:UIAlertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
             present(alertController, animated: true, completion: nil)

@@ -9,7 +9,7 @@
 import UIKit
 
 struct Country{
-    var countryName = ""
+    var countryName:String = ""
     var countryImage: UIImage?
     
     init(countryName:String, countryImage:UIImage!) {

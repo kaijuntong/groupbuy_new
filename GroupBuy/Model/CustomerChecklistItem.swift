@@ -11,13 +11,13 @@ import Firebase
 
 class CustomerChecklistItem{
     
-    var ref = Database.database().reference()
-    var userID =  Auth.auth().currentUser?.uid
+    var ref:DatabaseReference = Database.database().reference()
+    var userID:String? =  Auth.auth().currentUser?.uid
     
-    var userId = ""
-    var checked = false
-    var itemID = ""
-    var buyerItemArray = [CustomerBuyItem]()
+    var userId:String = ""
+    var checked:Bool = false
+    var itemID:String = ""
+    var buyerItemArray: [CustomerBuyItem] = [CustomerBuyItem]()
     
     init(userId:String, buyerItemArray:[CustomerBuyItem], checked:Bool) {
         self.userId = userId
@@ -29,7 +29,7 @@ class CustomerChecklistItem{
     func toogleChecked(){
         checked = !checked
         
-        let num = checked ? 1 : 0
+        let num:Int = checked ? 1 : 0
         
         //ref.child("customer_list").child("\(eventID)").child("\(itemID)/status").setValue(num)
     }

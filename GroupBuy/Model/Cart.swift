@@ -9,12 +9,12 @@
 import Foundation
 
 class Cart{
-    var itemName = ""
-    var itemPrice = 0.0
-    var itemImage = ""
-    var itemQuantity = 0
-    var itemKey = ""
-    var eventKey = ""
+    var itemName:String = ""
+    var itemPrice:Double = 0.0
+    var itemImage:String = ""
+    var itemQuantity:Int = 0
+    var itemKey:String = ""
+    var eventKey:String = ""
     
     init(eventKey:String, itemKey:String,itemName:String, itemPrice:Double, itemImage:String, itemQuantity:Int) {
         self.eventKey = eventKey

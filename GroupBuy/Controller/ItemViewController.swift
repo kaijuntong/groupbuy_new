@@ -18,13 +18,13 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
     @IBOutlet weak var descriptionTextView: UITextField!
     
     var ref:DatabaseReference!
-    let userID = Auth.auth().currentUser?.uid
+    let userID:String? = Auth.auth().currentUser?.uid
     
     var eventDetail:[String:Any]!
     
     var eventID:String!
     var imageData:Data?
-    var hasModifiedImage = false
+    var hasModifiedImage:Bool = false
     
     var itemToEdit:Item?
     
@@ -72,9 +72,9 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 && indexPath.row == 0{
-            let alertController = UIAlertController(title: "Alert", message: "Are your sure want to delete this item?", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: {
+            let alertController:UIAlertController = UIAlertController(title: "Alert", message: "Are your sure want to delete this item?", preferredStyle: .alert)
+            let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            let okAction:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: {
                 (actionSheetController) -> Void in
                 print("Deleting Item")
                 
@@ -92,7 +92,7 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
         
         if indexPath.row == 0{
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-                let imagePicker = UIImagePickerController()
+                let imagePicker:UIImagePickerController = UIImagePickerController()
                 imagePicker.allowsEditing = false
                 imagePicker.sourceType = .photoLibrary
                 imagePicker.delegate = self
@@ -102,10 +102,9 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
         }
         
     }
-    
     //imagepicker delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImageJPEGRepresentation(selectedImage, 0.5){
+        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImageJPEGRepresentation(selectedImage, 0.0){
             itemimageView.image = selectedImage
             itemimageView.contentMode = .scaleAspectFill
             itemimageView.clipsToBounds = true
@@ -115,16 +114,16 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
             dismiss(animated: true, completion: nil)
         }
         
-        let leadingConstraint = NSLayoutConstraint(item: itemimageView, attribute: .leading, relatedBy: .equal, toItem: itemimageView.superview, attribute: .leading, multiplier: 1, constant: 0)
+        let leadingConstraint:NSLayoutConstraint = NSLayoutConstraint(item: itemimageView, attribute: .leading, relatedBy: .equal, toItem: itemimageView.superview, attribute: .leading, multiplier: 1, constant: 0)
         leadingConstraint.isActive = true
         
-         let trailingConstraint = NSLayoutConstraint(item: itemimageView, attribute: .trailing, relatedBy: .equal, toItem: itemimageView.superview, attribute: .trailing, multiplier: 1, constant: 0)
+        let trailingConstraint:NSLayoutConstraint = NSLayoutConstraint(item: itemimageView, attribute: .trailing, relatedBy: .equal, toItem: itemimageView.superview, attribute: .trailing, multiplier: 1, constant: 0)
         trailingConstraint.isActive = true
         
-         let topConstraint = NSLayoutConstraint(item: itemimageView, attribute: .top, relatedBy: .equal, toItem: itemimageView.superview, attribute: .top, multiplier: 1, constant: 0)
+        let topConstraint:NSLayoutConstraint = NSLayoutConstraint(item: itemimageView, attribute: .top, relatedBy: .equal, toItem: itemimageView.superview, attribute: .top, multiplier: 1, constant: 0)
         topConstraint.isActive = true
         
-         let bottomConstraint = NSLayoutConstraint(item: itemimageView, attribute: .bottom, relatedBy: .equal, toItem: itemimageView.superview, attribute: .bottom, multiplier: 1, constant: 0)
+        let bottomConstraint:NSLayoutConstraint = NSLayoutConstraint(item: itemimageView, attribute: .bottom, relatedBy: .equal, toItem: itemimageView.superview, attribute: .bottom, multiplier: 1, constant: 0)
         bottomConstraint.isActive = true
     }
     
@@ -132,12 +131,12 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
         if !hasModifiedImage{
             self.sendMessage(data: ["itemImage": (itemToEdit?.imageLoc)!])
         }else{
-            let storageRef = Storage.storage().reference()
-            let imagePath = "item_photos/" + Auth.auth().currentUser!.uid + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+            let storageRef:StorageReference = Storage.storage().reference()
+            let imagePath:String = "item_photos/" + Auth.auth().currentUser!.uid + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
             
-            let uploadMetadata = StorageMetadata()
+            let uploadMetadata:StorageMetadata = StorageMetadata()
             uploadMetadata.contentType = "image/jpeg"
-            let uploadTask = storageRef.child(imagePath).putData(data, metadata: uploadMetadata){
+            let uploadTask:StorageUploadTask = storageRef.child(imagePath).putData(data, metadata: uploadMetadata){
                 (metadata, error) in
                 if (error != nil){
                     print("I received an error! \(error?.localizedDescription)")
@@ -156,21 +155,21 @@ class ItemViewController: UITableViewController,UIImagePickerControllerDelegate,
     
     func sendMessage(data: [String:Any]) {
         print("test3")
-        var eventItemInfo = data
+        var eventItemInfo:[String:Any] = data
         //insert into databas
             eventItemInfo["uid"] = userID
             eventItemInfo["itemName"] = productTextField.text
-            let num = priceTextField.text!
-            let doubleNum = Double(num)
+        let num:String = priceTextField.text!
+        let doubleNum:Double? = Double(num)
             eventItemInfo["itemPrice"] = doubleNum
             eventItemInfo["itemSize"] = sizeTextField.text
             eventItemInfo["itemDescription"] = descriptionTextView.text
             eventItemInfo["event_id"] = eventID
         
         //event_id1
-        let countryName = eventDetail["destination"] as! String
-        let startDate = eventDetail["departdate"] as! Double
-        let dueDate = eventDetail["returndate"] as! Double
+        let countryName:String = eventDetail["destination"] as! String
+        let startDate:Double = eventDetail["departdate"] as! Double
+        let dueDate:Double = eventDetail["returndate"] as! Double
         
         eventItemInfo["event_id1"] = [
             "departdate": startDate,

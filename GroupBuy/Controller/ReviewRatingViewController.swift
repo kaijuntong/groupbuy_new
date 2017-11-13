@@ -27,10 +27,10 @@ class ReviewRatingViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! RatingCommentViewCell
-        let item = commentArray[indexPath.row]
+        let cell:RatingCommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! RatingCommentViewCell
+        let item:CommentObject = commentArray[indexPath.row]
         
-        let dateString = displayTimestamp(ts: item.submitDate)
+        let dateString:String = displayTimestamp(ts: item.submitDate)
         cell.userLabel.text  = "\(item.username) said"
         cell.commentLabel.text = "\(item.comment)"
         cell.dateLabel.text = "\(dateString)"
@@ -50,29 +50,29 @@ class ReviewRatingViewController: UITableViewController {
         //ref.child("user_rating").child(self.sellerID!).observeSingleEvent(of: .value, with: {(snapshot) in
         ref.child("user_rating").child(self.sellerID!).observe(DataEventType.value, with: {(snapshot) in
             //get user value
-            let value = snapshot.value as? NSDictionary
+            let value:NSDictionary? = snapshot.value as? NSDictionary
             if let value1 = value as? [String:NSDictionary]{
                 //remove old array
                 self.commentArray.removeAll()
 
                 for (key,value) in value1{
                     if value["rating"] as! Int != 0{
-                        let rate = value["rating"] as! Int
-                        let submitDate = value["submitDate"] as! Double
+                        let rate:Int = value["rating"] as! Int
+                        let submitDate:Double = value["submitDate"] as! Double
                         
                         if let comment = value["comment"]{
                             let userdata = self.ref.child("users").child("\(key)").observeSingleEvent(of: .value, with: {
                                 (snapshot) in
-                                let value2 = snapshot.value as? NSDictionary
+                                let value2:NSDictionary? = snapshot.value as? NSDictionary
                                 if let value3 = value2 as? [String:String]{
                                     print(value3)
                                     if value3["email"] != ""{
-                                        let email = value3["email"]
-                                        let commentItem = CommentObject.init(username: email!, comment: comment as! String, rate:rate, submitDate:submitDate)
+                                        let email:String? = value3["email"]
+                                        let commentItem:CommentObject = CommentObject.init(username: email!, comment: comment as! String, rate:rate, submitDate:submitDate)
                                         self.commentArray.append(commentItem)
                                         
                                     }else{
-                                        let  commentItem = CommentObject.init(username: key, comment: comment as! String, rate:rate, submitDate:submitDate)
+                                        let commentItem:CommentObject = CommentObject.init(username: key, comment: comment as! String, rate:rate, submitDate:submitDate)
                                         self.commentArray.append(commentItem)
                                     }
                                      self.tableView.reloadData()
@@ -105,8 +105,8 @@ class ReviewRatingViewController: UITableViewController {
     }
     
     func displayTimestamp(ts: Double) -> String {
-        let date = Date(timeIntervalSince1970: ts)
-        let formatter = DateFormatter()
+        let date:Date = Date(timeIntervalSince1970: ts)
+        let formatter:DateFormatter = DateFormatter()
         //formatter.timeZone = NSTimeZone.system
         
         formatter.dateStyle = .medium

@@ -9,9 +9,9 @@
 import Foundation
 
 class Orderlist{
-    var orderDate = 0.0
-    var paymentPrice = 0.0
-    var key = ""
+    var orderDate:Double = 0.0
+    var paymentPrice:Double = 0.0
+    var key:String = ""
     
     init(key:String, orderDate:Double, paymentPrice:Double) {
         self.key = key

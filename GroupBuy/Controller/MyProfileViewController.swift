@@ -24,8 +24,8 @@ class MyProfileViewController: UITableViewController {
     @IBOutlet weak var phoneTextField: UITextField!
     
     var ref:DatabaseReference!
-    let userID = Auth.auth().currentUser?.uid
-    let email = Auth.auth().currentUser?.email
+    let userID:String? = Auth.auth().currentUser?.uid
+    let email:String? = Auth.auth().currentUser?.email
     
     
     override func viewDidLoad() {
@@ -35,18 +35,18 @@ class MyProfileViewController: UITableViewController {
         
         ref.child("users").child(self.userID!).observeSingleEvent(of: .value, with: {(snapshot) in
             //get user value
-            let value = snapshot.value as? NSDictionary
-            let username = value?["username"] as? String ?? ""
-            let description = value?["description"] as? String ?? ""
-            let firstname = value?["firstname"] as? String ?? ""
-            let lastname = value?["lastname"] as? String ?? ""
-            let address1 = value?["address1"] as? String ?? ""
-            let address2 = value?["address2"] as? String ?? ""
-            let city = value?["city"] as? String ?? ""
-            let country = value?["country"] as? String ?? ""
-            let postcode = value?["postcode"] as? String ?? ""
-            let picURL = value?["picURL"] as? String ?? ""
-            let phone = value?["phone"] as? String ?? ""
+            let value:NSDictionary? = snapshot.value as? NSDictionary
+            let username:String = value?["username"] as? String ?? ""
+            let description:String = value?["description"] as? String ?? ""
+            let firstname:String = value?["firstname"] as? String ?? ""
+            let lastname:String = value?["lastname"] as? String ?? ""
+            let address1:String = value?["address1"] as? String ?? ""
+            let address2:String = value?["address2"] as? String ?? ""
+            let city:String = value?["city"] as? String ?? ""
+            let country:String = value?["country"] as? String ?? ""
+            let postcode:String = value?["postcode"] as? String ?? ""
+            let picURL:String = value?["picURL"] as? String ?? ""
+            let phone:String = value?["phone"] as? String ?? ""
             
             
             if let userImage = Auth.auth().currentUser?.photoURL{
@@ -77,7 +77,7 @@ class MyProfileViewController: UITableViewController {
     }
     
     @IBAction func saveBtnClicked(_ sender: UIBarButtonItem) {
-        let user = ["email":self.email,
+        let user:[String:String?] = ["email":self.email,
                     "description": descriptionTextField.text?.uppercased(),
                     "firstname":firstNameTextField.text?.uppercased(),
                     "lastname":lastNameTextField.text?.uppercased(),
@@ -88,7 +88,8 @@ class MyProfileViewController: UITableViewController {
                     "postcode":postcodeTextField.text?.uppercased(),
                     "phone":phoneTextField.text?.uppercased()
         ]
-        let childUpdated = ["/users/\(userID!)": user]
+        
+        let childUpdated:[String:[String:String?]] = ["/users/\(userID!)": user]
         ref.updateChildValues(childUpdated)
         dismiss(animated: true, completion: nil)
     }

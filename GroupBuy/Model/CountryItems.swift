@@ -9,15 +9,15 @@
 import UIKit
 
 class CountryItems{
-    var username = ""
-    var itemKey = ""
-    var itemName = ""
-    var itemPrice = -1.0
-    var itemSalesQuantity = -1
-    var itemDescription = ""
-    var itemSize = ""
-    var productImage = ""
-    var sellerID = ""
+    var username:String = ""
+    var itemKey:String = ""
+    var itemName:String = ""
+    var itemPrice:Double = -1.0
+    var itemSalesQuantity:Int = -1
+    var itemDescription:String = ""
+    var itemSize:String = ""
+    var productImage:String = ""
+    var sellerID:String = ""
     
     init(itemKey:String,username:String, itemName:String, itemPrice:Double, itemSaleQuantity:Int,productImage:String, sellerID:String, itemDescription:String, itemSize:String) {
         self.itemKey = itemKey
