@@ -56,6 +56,7 @@
 		8CC0F7041FA1D9B500F55FB9 /* cartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F7031FA1D9B500F55FB9 /* cartViewController.swift */; };
 		8CC1B21E1F9406BD004A961F /* MyEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */; };
 		8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */; };
+		8CC861331FBAABE10058259B /* OrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CC861321FBAABE10058259B /* OrderItemCell.xib */; };
 		8CD59E641F8C4FCF00D70631 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */; };
 		8CE99AFD1F939DF000DC95B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE99AFC1F939DE100DC95B7 /* GoogleService-Info.plist */; };
 		8CE99AFF1F939F2F00DC95B7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */; };
@@ -126,6 +127,7 @@
 		8CC0F7031FA1D9B500F55FB9 /* cartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartViewController.swift; sourceTree = "<group>"; };
 		8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewController.swift; sourceTree = "<group>"; };
 		8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewCell.swift; sourceTree = "<group>"; };
+		8CC861321FBAABE10058259B /* OrderItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderItemCell.xib; sourceTree = "<group>"; };
 		8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		8CE99AFC1F939DE100DC95B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				8C3CB3421FB9F60E000CF670 /* AddressCell.xib */,
 				8C3CB3441FB9F68E000CF670 /* SummaryCell.xib */,
 				8C3CB3461FB9F6C5000CF670 /* TitleCell.xib */,
+				8CC861321FBAABE10058259B /* OrderItemCell.xib */,
 				8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */,
 				8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */,
 				8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */,
@@ -370,6 +373,7 @@
 				8C3CB3451FB9F68E000CF670 /* SummaryCell.xib in Resources */,
 				8CA167B41F8645EE00AB6316 /* LaunchScreen.storyboard in Resources */,
 				8CF4D5B51FB826F000D86DC5 /* SearchResultCell.xib in Resources */,
+				8CC861331FBAABE10058259B /* OrderItemCell.xib in Resources */,
 				8C3CB3471FB9F6C5000CF670 /* TitleCell.xib in Resources */,
 				8CF4D5B61FB826F000D86DC5 /* NothingFoundCell.xib in Resources */,
 				8CE99AFD1F939DF000DC95B7 /* GoogleService-Info.plist in Resources */,

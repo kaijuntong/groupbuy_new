@@ -30,9 +30,8 @@ class CountryItems{
         self.itemDescription = itemDescription
         self.itemSize = itemSize
     }
-    
-    static func <(lhs: CountryItems, rhs: CountryItems) -> Bool{
-        return lhs.itemName.localizedStandardCompare(rhs.itemName) == .orderedAscending
-    }
+}
 
+func <(lhs: CountryItems, rhs: CountryItems) -> Bool{
+    return lhs.itemName.localizedStandardCompare(rhs.itemName) == .orderedAscending
 }

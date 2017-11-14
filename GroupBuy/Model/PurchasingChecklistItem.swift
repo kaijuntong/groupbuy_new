@@ -38,3 +38,7 @@ class PurchasingChecklistItem{
 
  
 }
+
+func <(lhs: PurchasingChecklistItem, rhs: PurchasingChecklistItem) -> Bool{
+    return lhs.itemName.localizedStandardCompare(rhs.itemName) == .orderedAscending
+}

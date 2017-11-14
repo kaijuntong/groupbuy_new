@@ -25,3 +25,7 @@ class Cart{
         self.itemQuantity = itemQuantity
     }
 }
+
+func <(lhs: Cart, rhs: Cart) -> Bool{
+    return lhs.itemName.localizedStandardCompare(rhs.itemName) == .orderedAscending
+}

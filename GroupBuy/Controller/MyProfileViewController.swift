@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-class MyProfileViewController: UITableViewController {
+class MyProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -24,6 +24,8 @@ class MyProfileViewController: UITableViewController {
     @IBOutlet weak var phoneTextField: UITextField!
     
     var ref:DatabaseReference!
+    var imageData:Data?
+
     let userID:String? = Auth.auth().currentUser?.uid
     let email:String? = Auth.auth().currentUser?.email
     
@@ -71,12 +73,24 @@ class MyProfileViewController: UITableViewController {
             print(error.localizedDescription)
         }
     }
-
+    @IBAction func updateProfilePicture(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            let imagePicker:UIImagePickerController = UIImagePickerController()
+            imagePicker.allowsEditing = false
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func cancelBtnClicked(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveBtnClicked(_ sender: UIBarButtonItem) {
+        uploadImageToFirebaseStorage(data: imageData!)
+        
         let user:[String:String?] = ["email":self.email,
                     "description": descriptionTextField.text?.uppercased(),
                     "firstname":firstNameTextField.text?.uppercased(),
@@ -93,5 +107,43 @@ class MyProfileViewController: UITableViewController {
         ref.updateChildValues(childUpdated)
         dismiss(animated: true, completion: nil)
     }
+    
+    //imagepicjer delegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImageJPEGRepresentation(selectedImage, 0.0){
+            profilePic.image = selectedImage
+            profilePic.contentMode = .scaleToFill
+            profilePic.clipsToBounds = true
+            
+            self.imageData = imageData
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+//    func uploadImageToFirebaseStorage(data: Data){
+//        if !hasModifiedImage{
+//            self.sendMessage(data: ["itemImage": (itemToEdit?.imageLoc)!])
+//        }else{
+//            let storageRef:StorageReference = Storage.storage().reference()
+//            let imagePath:String = "item_photos/" + Auth.auth().currentUser!.uid + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+//
+//            let uploadMetadata:StorageMetadata = StorageMetadata()
+//            uploadMetadata.contentType = "image/jpeg"
+//            let uploadTask:StorageUploadTask = storageRef.child(imagePath).putData(data, metadata: uploadMetadata){
+//                (metadata, error) in
+//                if (error != nil){
+//                    print("I received an error! \(error?.localizedDescription)")
+//                }else{
+//                    print("Upload complete! Here's some metadata! \(metadata)")
+//                    //                print("\(metadata!.downloadURL())")
+//
+//                    // use sendMessage to add imageURL to database
+//                    self.sendMessage(data: ["itemImage": storageRef.child((metadata?.path)!).description])
+//                }
+//            }
+//        }
+//
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
 }

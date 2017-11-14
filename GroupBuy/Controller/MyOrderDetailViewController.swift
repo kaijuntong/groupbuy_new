@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import Firebase
 
 class MyOrderDetailViewController: UITableViewController {
-
+    
+    var orderKey:String!
+    var ref:DatabaseReference!
+    var userID:String? =  Auth.auth().currentUser?.uid
+    
+    var addresss:String = ""
+    var orderDate:Double = 0.0
+    var paymentAmount:Double = 0.0
+    var orderItemArray:[Cart] = [Cart]()
+    var doneLoading = false
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        self.doneLoading = false
 
+        super.viewDidLoad()
+        ref = Database.database().reference()
+        configureDatabase()
         var cellNib:UINib = UINib(nibName: "TitleCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "TitleCell")
         
@@ -22,8 +36,11 @@ class MyOrderDetailViewController: UITableViewController {
         cellNib = UINib(nibName: "SummaryCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "SummaryCell")
         
-        tableView.estimatedRowHeight  = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
+        cellNib = UINib(nibName: "OrderItemCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "OrderItemCell")
+        
+      //  tableView.estimatedRowHeight  = 44
+        //tableView.rowHeight = UITableViewAutomaticDimension
 
     }
 
@@ -41,77 +58,146 @@ class MyOrderDetailViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return orderItemArray.count + 2
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0{
-              return tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath)
+            let orderKeyLabel = cell.viewWithTag(100) as! UILabel
+            let paymentAmountLabel = cell.viewWithTag(101) as! UILabel
+            let dateLabel = cell.viewWithTag(102) as! UILabel
+            
+            orderKeyLabel.text = orderKey
+            paymentAmountLabel.text = "\(paymentAmount)"
+            dateLabel.text = displayTimestamp(ts: orderDate)
+            
+            return cell
         }else if indexPath.row == 1{
-             return  tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath)
-        }else if indexPath.row == 2{
-              return tableView.dequeueReusableCell(withIdentifier: "SummaryCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath)
+            let addressLabel = cell.viewWithTag(100) as! UILabel
+            addressLabel.text = addresss
+            return cell
         }else{
-            return tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            var currentRow = indexPath.row
+            if !doneLoading{
+                return tableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath)
+            }
+            
+            currentRow = indexPath.row - 2
+            let cell =  tableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath)
+            let itemNameLabel = cell.viewWithTag(100) as! UILabel
+            let quantityLabel = cell.viewWithTag(101) as! UILabel
+            let totalPriceLabel = cell.viewWithTag(102) as! UILabel
+            let imageView = cell.viewWithTag(103) as! UIImageView
+            
+            itemNameLabel.text = orderItemArray[currentRow].itemName.capitalized
+            quantityLabel.text = "\(orderItemArray[currentRow].itemQuantity)"
+            
+            let totalPrice = orderItemArray[currentRow].itemPrice * Double(orderItemArray[currentRow].itemQuantity)
+            totalPriceLabel.text = "RM \(totalPrice)"
+            
+            //load image
+            let imageURL:String = orderItemArray[currentRow].itemImage
+            if imageURL.hasPrefix("gs://") {
+                Storage.storage().reference(forURL: imageURL).getData(maxSize: INT64_MAX) {(data, error) in
+                    if let error = error {
+                        print("Error downloading: \(error)")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        imageView.image = UIImage.init(data: data!)
+                    }
+                }
+            }
+            return cell
+            
         }
     }
- 
+
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0{
-            return 88
-        }else if indexPath.row == 1{
-            return 88
-        }else if indexPath.row == 2{
-            return 60
-        }else{
-            return 44
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func configureDatabase(){
+        ref.child("orderlist").child("\(orderKey!)").observeSingleEvent(of:.value, with: {(snapshot) in
+            let a = snapshot.value as? [String:AnyObject] ?? [:]
+            print(a)
+            
+
+            self.addresss = a["deliveryAddress"] as! String
+            self.orderDate = a["order_date"] as! Double
+            self.paymentAmount = a["paymentPrice"] as! Double
+            
+            let orderItems = a["orderItems"] as! [String:AnyObject]
+            
+            for (itemKey,value) in orderItems{
+                    let itemName = value["itemName"] as! String
+                    let itemPrice = value["itemPrice"] as! Double
+                    let itemQuantity = value["itemQuantity"] as! Int
+                    let itemImage = value["itemImage"] as! String
+                    let eventKey = value["eventKey"] as! String
+                
+                    let cartItem:Cart = Cart.init(eventKey: eventKey,itemKey:itemKey, itemName: itemName, itemPrice: itemPrice, itemImage: itemImage, itemQuantity: itemQuantity)
+                    self.orderItemArray.append(cartItem)
+            }
+            self.orderItemArray.sort{$0 < $1}
+            self.doneLoading = true
+            self.tableView.reloadData()
+//
+//            if let value1 = a as? [String:NSDictionary]{
+//                for (itemID,value) in value1{
+//
+//                    let valueDict:[String:AnyObject] = value as! [String:AnyObject]
+//                    //let itemDict = valueDict as! [String:AnyObject]
+//
+//                    let quantityDict:[String:Int] = valueDict["buyer_info"] as! [String:Int]
+//                    let status:Int = valueDict["status"] as? Int ?? 0
+//                    let checked:Bool = (status == 1 ? true:false)
+//
+//                    var quantity:Int = 0
+//
+//                    for (key,value) in quantityDict{
+//                        let v:Int = value
+//                        quantity += v
+//                    }
+//
+//                    self.ref.child("eventItems").child("\(itemID)").observeSingleEvent(of: .value, with: {
+//                        (snapshot) in
+//                        let value2:NSDictionary? = snapshot.value as? NSDictionary
+//                        if let value3 = value2 as? [String:AnyObject]{
+//                            let itemName:String = value3["itemName"] as! String
+//
+//                            let purchasingItem:PurchasingChecklistItem = PurchasingChecklistItem.init(eventID:self.eventID!, itemID:itemID, itemName: itemName, quantity: quantity,checked: checked)
+//                            self.purchasingListArray.append(purchasingItem)
+//                        }
+//                        self.tableView.reloadData()
+//                    })
+//                }
+//                self.tableView.reloadData()
+//            }
+        }){
+            (error) in
+            print(error.localizedDescription)
         }
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func displayTimestamp(ts: Double) -> String {
+        let date:Date = Date(timeIntervalSince1970: ts)
+        let formatter:DateFormatter = DateFormatter()
+        //formatter.timeZone = NSTimeZone.system
+        
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        
+        return formatter.string(from: date)
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

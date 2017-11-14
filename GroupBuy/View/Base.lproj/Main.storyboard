@@ -1469,25 +1469,8 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="As a purchasing people" id="GuQ-HE-1KC">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="PW0-SG-EC3" style="IBUITableViewCellStyleDefault" id="CWG-BI-YcA">
-                                        <rect key="frame" x="0.0" y="267" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CWG-BI-YcA" id="YxS-Gm-lOr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="My Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PW0-SG-EC3">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="CsA-n4-5ef" style="IBUITableViewCellStyleDefault" id="DSl-n4-azv">
-                                        <rect key="frame" x="0.0" y="311" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="267" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DSl-n4-azv" id="Rx7-dW-w8d">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1507,7 +1490,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="uTz-DJ-Tf3" style="IBUITableViewCellStyleDefault" id="BgC-np-aPs">
-                                        <rect key="frame" x="0.0" y="355" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="311" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BgC-np-aPs" id="Jr7-gd-C12">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1531,7 +1514,7 @@
                             <tableViewSection headerTitle="Setting" id="1WC-iP-VGQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="13c-hI-9jB" style="IBUITableViewCellStyleDefault" id="VM0-na-XJb">
-                                        <rect key="frame" x="0.0" y="455" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="411" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VM0-na-XJb" id="4r9-BF-DPJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1551,7 +1534,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="CqI-g3-mS0" style="IBUITableViewCellStyleDefault" id="TqU-SJ-tD7">
-                                        <rect key="frame" x="0.0" y="499" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="455" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TqU-SJ-tD7" id="Mt6-Fu-Ibr">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1575,7 +1558,7 @@
                             <tableViewSection id="spq-Fy-Zgf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="bCW-U7-CEq" style="IBUITableViewCellStyleDefault" id="iVo-Nl-RgN">
-                                        <rect key="frame" x="0.0" y="579" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="535" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iVo-Nl-RgN" id="nO3-R2-0US">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1911,9 +1894,6 @@ All Rights Reserved.</string>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="kS5-Uz-1fd" kind="show" id="ede-q0-L07"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1921,6 +1901,9 @@ All Rights Reserved.</string>
                             <outlet property="delegate" destination="MHb-Ld-CyP" id="X8l-cy-Xcg"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="kS5-Uz-1fd" kind="show" identifier="showOrderDetail" id="fQN-cK-8Wu"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVk-fF-wRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2641,10 +2624,18 @@ All Rights Reserved.</string>
                                                     <rect key="frame" x="128" y="69" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Edit profile photo"/>
+                                                    <connections>
+                                                        <action selector="updateProfilePicture:" destination="3Ic-G3-Y59" eventType="touchUpInside" id="7vx-hs-Vcq"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="ajg-Vs-oDB">
                                                     <rect key="frame" x="155" y="8" width="64" height="64"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="35"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>

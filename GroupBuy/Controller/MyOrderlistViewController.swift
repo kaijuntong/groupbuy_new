@@ -11,9 +11,11 @@ import Firebase
 
 class MyOrderlistViewController: UITableViewController {
 
+    var valueToPass:String!
     var ref:DatabaseReference!
     let userID:String? =  Auth.auth().currentUser?.uid
     var orderListArray:[Orderlist] = [Orderlist]()
+    var orderItemArray:[Cart] = [Cart]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,4 +88,20 @@ class MyOrderlistViewController: UITableViewController {
         
         return formatter.string(from: date)
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        valueToPass = orderListArray[indexPath.row].key
+        print("asdadad\(valueToPass)")
+        let cell:UITableViewCell? = tableView.cellForRow(at: indexPath)
+        performSegue(withIdentifier: "showOrderDetail", sender: cell)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showOrderDetail"{
+            let destination:MyOrderDetailViewController = segue.destination as! MyOrderDetailViewController
+            print(valueToPass)
+            destination.orderKey = valueToPass
+        }
+    }
+    
 }

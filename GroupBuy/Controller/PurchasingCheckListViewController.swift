@@ -42,7 +42,7 @@ class PurchasingCheckListViewController: UITableViewController {
         let checkedLabel:UILabel = cell.viewWithTag(102) as! UILabel
 
         checkedLabel.text = purchasingListArray[indexPath.row].checked ? "✓" : ""
-        nameLabel.text = "\(purchasingListArray[indexPath.row].itemName)"
+        nameLabel.text = "\(purchasingListArray[indexPath.row].itemName)".capitalized
         quantityLabel.text = "x \(purchasingListArray[indexPath.row].quantity)"
         return cell
     }
@@ -78,6 +78,7 @@ class PurchasingCheckListViewController: UITableViewController {
                             let purchasingItem:PurchasingChecklistItem = PurchasingChecklistItem.init(eventID:self.eventID!, itemID:itemID, itemName: itemName, quantity: quantity,checked: checked)
                             self.purchasingListArray.append(purchasingItem)
                         }
+                        self.purchasingListArray.sort{$0 < $1}
                         self.tableView.reloadData()
                     })
                 }

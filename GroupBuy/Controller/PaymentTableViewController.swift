@@ -25,6 +25,10 @@ class PaymentTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for i in cartArray{
+            print(i)
+            print("=------=")
+        }
         ref = Database.database().reference()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         priceLabel.text = "RM \(totalPrice!)"
@@ -106,7 +110,7 @@ class PaymentTableViewController: UITableViewController {
             //print(result)
             self?.submitToFirebase()
             self?.show(message: "Successfully charged. Thanks So Much :)")
-            
+            self?.dismiss(animated: true, completion: nil)
             }.resume()
     }
     
@@ -137,18 +141,20 @@ class PaymentTableViewController: UITableViewController {
 
         
         var itemArray:[String:Any] = [String:Any]()
-        var eventItemArray:[String:Any] = [String:Any]()
+        //var eventItemArray:[String:Any] = [String:Any]()
         
+        //only loop 3 time if 3 item
         for i in cartArray{
             var item:[String:Any] = [String:Any]()
+            
             item["itemPrice"] = i.itemPrice
             item["itemName"] = i.itemName
             item["itemQuantity"] = i.itemQuantity
             item["itemCurrentStatus"] = 0
-            
+            item["itemImage"] = i.itemImage
+            item["eventKey"] = i.eventKey
             
             itemArray[i.itemKey] = item
-            eventItemArray[i.eventKey] = itemArray
             
             //let dataArray = ["\(userID!)": i.itemQuantity] as [String : Any]
             
@@ -174,9 +180,8 @@ class PaymentTableViewController: UITableViewController {
         
         
         
-        ref.child("orderlist").child("\(postID)/orderItems").setValue(eventItemArray)
+        ref.child("orderlist").child("\(postID)/orderItems").setValue(itemArray)
         ref.child("cart_item").child("\(userID!)").setValue("")
-        dismiss(animated: true, completion: nil)
     }
     
     func getAddress(){
