@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C06AAEA1FBBFE6500798A74 /* chatFromCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C06AAE91FBBFE6500798A74 /* chatFromCell.xib */; };
+		8C06AAEC1FBC345F00798A74 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C06AAEB1FBC345F00798A74 /* ChatDetailViewController.swift */; };
 		8C192E9E1F8C21B300C87707 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */; };
 		8C192EA01F8C2D0600C87707 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */; };
 		8C1BADBE1FAB338D00CDFA6A /* CommentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BADBD1FAB338D00CDFA6A /* CommentObject.swift */; };
@@ -58,6 +60,10 @@
 		8CC1B21E1F9406BD004A961F /* MyEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */; };
 		8CC1B2201F942E49004A961F /* MyEventViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */; };
 		8CC861331FBAABE10058259B /* OrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CC861321FBAABE10058259B /* OrderItemCell.xib */; };
+		8CD437A11FBC54130093EA9B /* chatToCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CD437A01FBC54130093EA9B /* chatToCell.xib */; };
+		8CD437A31FBC71CC0093EA9B /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD437A21FBC71CC0093EA9B /* ChatItem.swift */; };
+		8CD437A51FBC76EF0093EA9B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD437A41FBC76EF0093EA9B /* ChatViewController.swift */; };
+		8CD437A71FBC787B0093EA9B /* ChatListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD437A61FBC787B0093EA9B /* ChatListItem.swift */; };
 		8CD59E641F8C4FCF00D70631 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */; };
 		8CE99AFD1F939DF000DC95B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE99AFC1F939DE100DC95B7 /* GoogleService-Info.plist */; };
 		8CE99AFF1F939F2F00DC95B7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */; };
@@ -77,6 +83,8 @@
 		2C547B184336C363C8178F7A /* Pods-GroupBuy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupBuy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupBuy/Pods-GroupBuy.debug.xcconfig"; sourceTree = "<group>"; };
 		590828ABB2F8C7445275B1C7 /* Pods-GroupBuy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupBuy.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupBuy/Pods-GroupBuy.release.xcconfig"; sourceTree = "<group>"; };
 		690AA01C482E5BB4F4BE37FD /* Pods_GroupBuy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupBuy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C06AAE91FBBFE6500798A74 /* chatFromCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = chatFromCell.xib; sourceTree = "<group>"; };
+		8C06AAEB1FBC345F00798A74 /* ChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
 		8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		8C192E9F1F8C2D0600C87707 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		8C1BADBD1FAB338D00CDFA6A /* CommentObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentObject.swift; sourceTree = "<group>"; };
@@ -130,6 +138,10 @@
 		8CC1B21D1F9406BD004A961F /* MyEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewController.swift; sourceTree = "<group>"; };
 		8CC1B21F1F942E49004A961F /* MyEventViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewCell.swift; sourceTree = "<group>"; };
 		8CC861321FBAABE10058259B /* OrderItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderItemCell.xib; sourceTree = "<group>"; };
+		8CD437A01FBC54130093EA9B /* chatToCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = chatToCell.xib; sourceTree = "<group>"; };
+		8CD437A21FBC71CC0093EA9B /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
+		8CD437A41FBC76EF0093EA9B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8CD437A61FBC787B0093EA9B /* ChatListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListItem.swift; sourceTree = "<group>"; };
 		8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		8CE99AFC1F939DE100DC95B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +171,8 @@
 		8C925FAF1F874B2C002761AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8CD437A61FBC787B0093EA9B /* ChatListItem.swift */,
+				8CD437A21FBC71CC0093EA9B /* ChatItem.swift */,
 				8C2914E31FBBC40D00F686D7 /* CustomerBuyInfo.swift */,
 				8CF4D5BA1FB8279200D86DC5 /* SearchResult.swift */,
 				8CF4D5C01FB8291F00D86DC5 /* TableViewCellIdentifiers.swift */,
@@ -181,6 +195,7 @@
 		8C925FB01F874B55002761AC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8CD437A01FBC54130093EA9B /* chatToCell.xib */,
 				8CA167AD1F8645ED00AB6316 /* Main.storyboard */,
 				8CA167B21F8645EE00AB6316 /* LaunchScreen.storyboard */,
 				8C3CB3421FB9F60E000CF670 /* AddressCell.xib */,
@@ -189,6 +204,7 @@
 				8CC861321FBAABE10058259B /* OrderItemCell.xib */,
 				8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */,
 				8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */,
+				8C06AAE91FBBFE6500798A74 /* chatFromCell.xib */,
 				8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */,
 			);
 			path = View;
@@ -197,6 +213,7 @@
 		8C925FB11F874B59002761AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8CD437A41FBC76EF0093EA9B /* ChatViewController.swift */,
 				8C3CB3401FB9EF38000CF670 /* MyOrderDetailViewController.swift */,
 				8CED95821FB85D3A009B941B /* PasswordTableViewController.swift */,
 				8CF4D5BC1FB827A700D86DC5 /* SearchViewController.swift */,
@@ -217,6 +234,7 @@
 				8CB107371FB49EAC00F39D46 /* ChecklistDetailViewController.swift */,
 				8CB817591F9506D400EA2FFB /* MyProfileViewController.swift */,
 				8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */,
+				8C06AAEB1FBC345F00798A74 /* ChatDetailViewController.swift */,
 				8CD59E631F8C4FCF00D70631 /* NewEventViewController.swift */,
 				8C925FBC1F875E70002761AC /* CountryItemsViewController.swift */,
 				8C192E9D1F8C21B300C87707 /* ItemDetailViewController.swift */,
@@ -376,11 +394,13 @@
 				8C3CB3451FB9F68E000CF670 /* SummaryCell.xib in Resources */,
 				8CA167B41F8645EE00AB6316 /* LaunchScreen.storyboard in Resources */,
 				8CF4D5B51FB826F000D86DC5 /* SearchResultCell.xib in Resources */,
+				8CD437A11FBC54130093EA9B /* chatToCell.xib in Resources */,
 				8CC861331FBAABE10058259B /* OrderItemCell.xib in Resources */,
 				8C3CB3471FB9F6C5000CF670 /* TitleCell.xib in Resources */,
 				8CF4D5B61FB826F000D86DC5 /* NothingFoundCell.xib in Resources */,
 				8CE99AFD1F939DF000DC95B7 /* GoogleService-Info.plist in Resources */,
 				8CA167B11F8645ED00AB6316 /* Assets.xcassets in Resources */,
+				8C06AAEA1FBBFE6500798A74 /* chatFromCell.xib in Resources */,
 				8C3CB3431FB9F60E000CF670 /* AddressCell.xib in Resources */,
 				8CA167AF1F8645ED00AB6316 /* Main.storyboard in Resources */,
 			);
@@ -467,13 +487,17 @@
 				8C925FB81F875B23002761AC /* CountryItems.swift in Sources */,
 				8C4E27501FAE11A000042652 /* Cart.swift in Sources */,
 				8C3CB3411FB9EF38000CF670 /* MyOrderDetailViewController.swift in Sources */,
+				8C06AAEC1FBC345F00798A74 /* ChatDetailViewController.swift in Sources */,
 				8CC0F7041FA1D9B500F55FB9 /* cartViewController.swift in Sources */,
 				8C31C59A1FAADAB700C857EA /* ReviewRatingViewController.swift in Sources */,
 				8C3EB2491FB774FE0097B55D /* CustomerCheckListViewController.swift in Sources */,
+				8CD437A31FBC71CC0093EA9B /* ChatItem.swift in Sources */,
 				8C2059D51FA22641008551B0 /* SellerrDetailViewController.swift in Sources */,
+				8CD437A71FBC787B0093EA9B /* ChatListItem.swift in Sources */,
 				8CA02C5A1F94E51500E94432 /* ItemViewController.swift in Sources */,
 				8C2BF9241FAFC39900406896 /* cartFooterViewCell.swift in Sources */,
 				8C224A201FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift in Sources */,
+				8CD437A51FBC76EF0093EA9B /* ChatViewController.swift in Sources */,
 				8C3EB2451FB74D120097B55D /* MyCustomerListViewController.swift in Sources */,
 				8C38A8D21FB3507900128507 /* Orderlist.swift in Sources */,
 				8CF4D5BB1FB8279200D86DC5 /* SearchResult.swift in Sources */,

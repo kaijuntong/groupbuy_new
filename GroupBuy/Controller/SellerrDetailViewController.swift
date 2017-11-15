@@ -104,10 +104,16 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
             let writeRatingVC:WriteReviewViewController = destination.topViewController as! WriteReviewViewController
             writeRatingVC.sellerID = sellerID
             writeRatingVC.delegate = self
+        }else if segue.identifier == "sendAMessage"{
+            let messageVC = segue.destination as! ChatDetailViewController
+            messageVC.otherSideUserID = sellerID
+            print(sellerID)
+            print("oooooooo")
         }
     }
     
     func refreshTableView() {
         tableView.reloadData()
     }
+    
 }
