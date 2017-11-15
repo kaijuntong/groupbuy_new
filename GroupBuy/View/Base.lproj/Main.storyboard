@@ -570,9 +570,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="5yy-dr-Z7R">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="5yy-dr-Z7R">
                                                     <rect key="frame" x="29" y="5" width="71" height="71"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="35"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(15 Ratings)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99z-f4-5Tg">
                                                     <rect key="frame" x="197" y="43" width="92" height="21"/>
@@ -598,15 +603,15 @@
                             </tableViewSection>
                             <tableViewSection id="tzI-VW-nZg">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0Yu-jG-5v1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0Yu-jG-5v1">
                                         <rect key="frame" x="0.0" y="756" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Yu-jG-5v1" id="ZDR-sR-i1p">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggr-if-RUq">
-                                                    <rect key="frame" x="143.5" y="12.5" width="88" height="21"/>
+                                                    <rect key="frame" x="143.5" y="12" width="88" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -634,6 +639,7 @@
                         <outlet property="productImageView" destination="95e-ZL-b9J" id="uJr-B8-VMs"/>
                         <outlet property="productLabel" destination="SfR-a6-fq7" id="PiB-5a-06d"/>
                         <outlet property="sellerEmail" destination="eYJ-rd-j8y" id="sYz-hK-B1I"/>
+                        <outlet property="sellerProfilePic" destination="5yy-dr-Z7R" id="sLB-84-qMh"/>
                         <outlet property="sizeLabel" destination="Ntc-48-XaU" id="5Jf-ij-sc7"/>
                         <outlet property="timeLabel" destination="3HH-HK-ai6" id="d6M-Kh-tXs"/>
                     </connections>
@@ -741,9 +747,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="UfC-Tk-jpd">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="UfC-Tk-jpd">
                                                     <rect key="frame" x="29" y="8" width="71" height="71"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="35"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vc-CU-8wQ">
                                                     <rect key="frame" x="119" y="33" width="129" height="21"/>
@@ -908,6 +919,7 @@
                         <outlet property="ratingPeopleSum" destination="D7f-Va-LDa" id="ZgU-6O-I8Z"/>
                         <outlet property="ratingStackView" destination="Iod-RD-wEQ" id="SdG-xg-0Tc"/>
                         <outlet property="ratingValueLabel" destination="8wa-Yh-Zog" id="DyC-oI-LrQ"/>
+                        <outlet property="sellerProfilePic" destination="UfC-Tk-jpd" id="712-GX-eD9"/>
                         <outlet property="userDescription" destination="acL-IL-CPs" id="Xz3-GS-k7V"/>
                         <outlet property="usernameLabel" destination="8vc-CU-8wQ" id="vrB-Cs-Kej"/>
                     </connections>
@@ -1406,7 +1418,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="SJG-r5-VOF">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="SJG-r5-VOF">
                                                     <rect key="frame" x="152" y="8.5" width="70" height="70"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="ElR-0I-Zo8"/>
@@ -1583,6 +1595,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Qt0-bF-abQ"/>
+                    <connections>
+                        <outlet property="profilePicImageView" destination="SJG-r5-VOF" id="GwL-Nl-WwT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nI7-JE-1wL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2628,7 +2643,7 @@ All Rights Reserved.</string>
                                                         <action selector="updateProfilePicture:" destination="3Ic-G3-Y59" eventType="touchUpInside" id="7vx-hs-Vcq"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="ajg-Vs-oDB">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="ajg-Vs-oDB">
                                                     <rect key="frame" x="155" y="8" width="64" height="64"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <userDefinedRuntimeAttributes>
@@ -2910,7 +2925,7 @@ All Rights Reserved.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y93-wh-CJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="430" y="1352"/>
+            <point key="canvasLocation" x="429.60000000000002" y="1351.5742128935533"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lbH-mG-Rwu">

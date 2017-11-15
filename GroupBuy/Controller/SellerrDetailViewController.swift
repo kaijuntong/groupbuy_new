@@ -19,6 +19,7 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
 
     var submitDate:Date = Date()
     
+    @IBOutlet weak var sellerProfilePic: UIImageView!
     @IBOutlet weak var ratingValueLabel: UILabel!
     @IBOutlet weak var ratingPeopleSum: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -36,6 +37,19 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
             let email:String = value?["email"] as? String ?? ""
             let description:String = value?["description"] as? String ?? ""
 
+            let profilePic = value?["profilePicture"] as? String ?? ""
+            if profilePic.hasPrefix("gs://") {
+                Storage.storage().reference(forURL: profilePic).getData(maxSize: INT64_MAX) {(data, error) in
+                    if let error = error {
+                        print("Error downloading: \(error)")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.sellerProfilePic.image = UIImage.init(data: data!)
+                    }
+                }
+            }
+            
             self.usernameLabel.text = email.lowercased()
             self.userDescription.text = description.capitalized
             self.ratingStackView.delegate = self

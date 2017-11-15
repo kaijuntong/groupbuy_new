@@ -19,6 +19,7 @@ class ItemDetailViewController: UITableViewController {
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var sellerEmail: UILabel!
+    @IBOutlet weak var sellerProfilePic: UIImageView!
     
     var item :CountryItems!
     
@@ -49,6 +50,19 @@ class ItemDetailViewController: UITableViewController {
             let value:NSDictionary? = snapshot.value as? NSDictionary
             print(value)
             let email:String = value?["email"] as? String ?? ""
+            
+            let profilePic = value?["profilePicture"] as? String ?? ""
+            if profilePic.hasPrefix("gs://") {
+                Storage.storage().reference(forURL: profilePic).getData(maxSize: INT64_MAX) {(data, error) in
+                    if let error = error {
+                        print("Error downloading: \(error)")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.sellerProfilePic.image = UIImage.init(data: data!)
+                    }
+                }
+            }
             
             self.sellerEmail.text = email.lowercased()
         }){

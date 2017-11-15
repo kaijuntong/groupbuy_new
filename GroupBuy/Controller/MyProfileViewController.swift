@@ -23,6 +23,7 @@ class MyProfileViewController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet weak var countryTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     
+    var hasModifiedImage = false
     var ref:DatabaseReference!
     var imageData:Data?
 
@@ -50,12 +51,27 @@ class MyProfileViewController: UITableViewController, UIImagePickerControllerDel
             let picURL:String = value?["picURL"] as? String ?? ""
             let phone:String = value?["phone"] as? String ?? ""
             
+            let profilePic = value?["profilePicture"] as? String ?? ""
             
-            if let userImage = Auth.auth().currentUser?.photoURL{
-                if let imageData = try? Data(contentsOf: userImage){
-                    self.profilePic.image = UIImage(data: imageData)
+            
+            if profilePic.hasPrefix("gs://") {
+                Storage.storage().reference(forURL: profilePic).getData(maxSize: INT64_MAX) {(data, error) in
+                    if let error = error {
+                        print("Error downloading: \(error)")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.profilePic.image = UIImage.init(data: data!)
+                    }
                 }
             }
+
+            
+//            if let userImage = Auth.auth().currentUser?.photoURL{
+//                if let imageData = try? Data(contentsOf: userImage){
+//                    self.profilePic.image = UIImage(data: imageData)
+//                }
+//            }
             
            // self.usernameTextField.text = username
             self.emailTextField.text = self.email
@@ -89,7 +105,7 @@ class MyProfileViewController: UITableViewController, UIImagePickerControllerDel
     }
     
     @IBAction func saveBtnClicked(_ sender: UIBarButtonItem) {
-        //uploadImageToFirebaseStorage(data: imageData!)
+        uploadImageToFirebaseStorage(data: imageData!)
         
         let user:[String:String?] = ["email":self.email,
                     "description": descriptionTextField.text?.uppercased(),
@@ -116,34 +132,32 @@ class MyProfileViewController: UITableViewController, UIImagePickerControllerDel
             profilePic.clipsToBounds = true
             
             self.imageData = imageData
+            hasModifiedImage = true
             dismiss(animated: true, completion: nil)
         }
     }
     
-//    func uploadImageToFirebaseStorage(data: Data){
-//        if !hasModifiedImage{
-//            self.sendMessage(data: ["itemImage": (itemToEdit?.imageLoc)!])
-//        }else{
-//            let storageRef:StorageReference = Storage.storage().reference()
-//            let imagePath:String = "profile_photos/" + Auth.auth().currentUser!.uid + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
-//
-//            let uploadMetadata:StorageMetadata = StorageMetadata()
-//            uploadMetadata.contentType = "image/jpeg"
-//            let uploadTask:StorageUploadTask = storageRef.child(imagePath).putData(data, metadata: uploadMetadata){
-//                (metadata, error) in
-//                if (error != nil){
-//                    print("I received an error! \(error?.localizedDescription)")
-//                }else{
-//                    self.sendMessage(data: ["itemImage": storageRef.child((metadata?.path)!).description])
-//                }
-//            }
-//        }
-//
-//        self.dismiss(animated: true, completion: nil)
-//    }
-//
-//    func sendMessage(data: [String:Any]) {
-//        var profileInfo:[String:Any] = data
-//    }
+    func uploadImageToFirebaseStorage(data: Data){
+        if !hasModifiedImage{
+            //self.sendMessage(data: ["itemImage": (itemToEdit?.imageLoc)!])
+            return
+        }else{
+            let storageRef:StorageReference = Storage.storage().reference()
+            let imagePath:String = "profile_photos/" + Auth.auth().currentUser!.uid + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+
+            let uploadMetadata:StorageMetadata = StorageMetadata()
+            uploadMetadata.contentType = "image/jpeg"
+            let uploadTask:StorageUploadTask = storageRef.child(imagePath).putData(data, metadata: uploadMetadata){
+                (metadata, error) in
+                if (error != nil){
+                    print("I received an error! \(error?.localizedDescription)")
+                }else{
+                    //self.sendMessage(data: ["profilePicture": storageRef.child((metadata?.path)!).description])
+                    self.ref.child("users/\(self.userID!)/profilePicture").setValue(storageRef.child((metadata?.path)!).description)
+                }
+            }
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
     
 }
