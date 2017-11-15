@@ -14,7 +14,7 @@ class ChatViewController: UITableViewController {
     var ref:DatabaseReference!
     var userID:String?
     var chatListArray = [ChatListItem]()
-    var valueToPass = ""
+    var valueToPass:ChatListItem?
     var destiantionTitle = ""
     
     override func viewDidLoad() {
@@ -24,12 +24,9 @@ class ChatViewController: UITableViewController {
         userID =  Auth.auth().currentUser?.uid
 
         print("Hello World")
-       
+       configureDatabase()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        configureDatabase()
-    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,15 +48,8 @@ class ChatViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath)
         
         let username = cell.viewWithTag(101) as! UILabel
-       
-        
-        ref.child("users/\(chatListArray[indexPath.row].otherPersonUserID)/email").observeSingleEvent(of: .value, with: {(snapshot) in
-            let email = snapshot.value as? String
-            
-            if let email = email{
-                username.text = email
-            }
-            })
+        username.text = chatListArray[indexPath.row].username
+
         
         let lastMessageLabel = cell.viewWithTag(102) as! UILabel
         lastMessageLabel.text = chatListArray[indexPath.row].lastMessage
@@ -70,65 +60,40 @@ class ChatViewController: UITableViewController {
         return cell
     }
     
-    
-    func configureDatabase(){
-        
-        ref.child("chatPerson/\(userID!)").observeSingleEvent(of: .value, with: {(snapshot) in
-            let a = snapshot.value as? [String:AnyObject]
-            self.chatListArray.removeAll()
-            print(a)
-            if let value = a{
-                for(key,withValue) in value{
-                    let otherPerson = withValue["with"] as! String
-                    print(key)
-                    self.ref.child("chat/\(key)").observeSingleEvent(of: .value, with: {(snap) in
-                        let snapValue = snap.value as? [String:AnyObject]
+        func configureDatabase(){
+            ref.child("chatPerson/\(userID!)").observeSingleEvent(of: .value, with: {(snapshot) in
+                let a = snapshot.value as? [String:AnyObject]
 
-                        print(snapValue)
-                        print("aosdoaksdokaodkaodkaodkaodkaodkok")
-                        if let snapValue = snapValue{
-                            let lastMessage = snapValue["last_message"] as! String
-                            let date = snapValue["date"] as! Double
-                            let cartListItem = ChatListItem.init(chatID: key, otherPersonUserID: otherPerson, lastMessage: lastMessage, date:date)
+                if let value = a{
+                    for(key,withValue) in value{
+                        let otherPerson = withValue["with"] as! String
+                        print(key)
+                        self.ref.child("chat/\(key)").observe(.value, with: {(snap) in
+                            self.chatListArray.removeAll()
+                            let snapValue = snap.value as? [String:AnyObject]
 
-                            self.chatListArray.append(cartListItem)
-
-                            self.tableView.reloadData()
+                            if let snapValue = snapValue{
+                                let lastMessage = snapValue["last_message"] as! String
+                                let date = snapValue["date"] as! Double
+                                
+                                self.ref.child("users/\(otherPerson)/email").observeSingleEvent(of: .value, with: {(snapshot) in
+                                    let email = snapshot.value as? String
+                                    
+                                    if let email = email{
+                                        let cartListItem = ChatListItem.init(chatID: key, otherPersonUserID: otherPerson, lastMessage: lastMessage, date:date, username:email)
+                                        
+                                        self.chatListArray.append(cartListItem)
+                                        
+                                        self.tableView.reloadData()
                         }
-                    })
+                                })
+                                
+                            }
+                        })
+                    }
                 }
-            }
-        })
-    }
-    
-//        func configureDatabase(){
-//            ref.child("chatPerson/\(userID!)").observe(.value, with: {(snapshot) in
-//                let a = snapshot.value as? [String:AnyObject]
-//
-//                print(a)
-//                if let value = a{
-//                    for(key,withValue) in value{
-//                        let otherPerson = withValue["with"] as! String
-//                        print(key)
-//                        self.ref.child("chat/\(key)").observeSingleEvent(of: .value, with: {(snap) in
-//                            let snapValue = snap.value as? [String:AnyObject]
-//
-//                            print(snapValue)
-//                            print("aosdoaksdokaodkaodkaodkaodkaodkok")
-//                            if let snapValue = snapValue{
-//                                let lastMessage = snapValue["last_message"] as! String
-//                                let date = snapValue["date"] as! Double
-//                                let cartListItem = ChatListItem.init(chatID: key, otherPersonUserID: otherPerson, lastMessage: lastMessage, date:date)
-//
-//                                self.chatListArray.append(cartListItem)
-//
-//                                self.tableView.reloadData()
-//                            }
-//                        })
-//                    }
-//                }
-//            })
-//        }
+            })
+        }
 
     
     func displayTimestamp(ts: Double) -> String {
@@ -143,8 +108,8 @@ class ChatViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        valueToPass = chatListArray[indexPath.row].chatID
-        destiantionTitle = chatListArray[indexPath.row].otherPersonUserID
+        valueToPass = chatListArray[indexPath.row]
+        
         let cell:UITableViewCell? = tableView.cellForRow(at: indexPath)
         performSegue(withIdentifier: "showChatDetail", sender: cell)
     }
@@ -152,10 +117,10 @@ class ChatViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showChatDetail"{
             let destination:ChatDetailViewController = segue.destination as! ChatDetailViewController
-            destination.chatID = valueToPass
-            destination.otherSideUserID = destiantionTitle
-            destination.title = destiantionTitle
-            destination.postID = destiantionTitle
+            destination.chatID = valueToPass!.chatID
+            destination.otherSideUserID = valueToPass!.otherPersonUserID
+            destination.title = valueToPass!.username
+            destination.postID = valueToPass!.chatID
         }
         
     }

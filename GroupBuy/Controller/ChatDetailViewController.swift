@@ -13,26 +13,25 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
 
     var ref:DatabaseReference!
     var userID:String? = Auth.auth().currentUser?.uid
-    var otherSideUserID: String! //"3spKLXDpAROOpbLm3qIiEb1aCAh2" //wITAg0SMJyYiwWhwqC7iH0L6aR32"
     var firstTime = false
     var chatItemArray = [ChatItem]()
+    
     var postID = ""
     var chatID:String?
+    var otherSideUserID: String!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(otherSideUserID!)
-        ref = Database.database().reference()
         
-        print("Test")
-        print("\(userID!)")
-        ref.child("chatPerson/\(userID!)").queryOrdered(byChild: "with").queryEqual(toValue: otherSideUserID).observeSingleEvent(of: .value, with: {(snapshot) in
+        ref = Database.database().reference()
+        print("UserID \(userID!)")
+        print("OppDI \(otherSideUserID!)")
+        ref.child("chatPerson/\(userID!)").queryOrdered(byChild: "with").queryEqual(toValue: otherSideUserID!).observeSingleEvent(of: .value, with: {(snapshot) in
             let a = snapshot.value as? [String:AnyObject]
-            
-            print("adadadadad")
+
             if a == nil{
                 self.firstTime = true
                 let postRef:DatabaseReference = self.ref.child("chat").childByAutoId()
@@ -40,31 +39,30 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
                 postRef.setValue(chatConnectionData)
 
                 self.postID = postRef.key
+                self.configureDatabase()
             }else{
                 self.ref.child("chat").queryOrdered(byChild: self.userID!).queryEqual(toValue: self.otherSideUserID).observeSingleEvent(of: .value, with: {(snapshot) in
                     let a = snapshot.value as? [String:AnyObject]
-
+                    
                     if a == nil{
                         self.ref.child("chat").queryOrdered(byChild: self.otherSideUserID).queryEqual(toValue: self.userID!).observeSingleEvent(of: .value, with: {(snapshot1) in
                             
                             let b = snapshot1.value as? [String:AnyObject]
-
                             for (key,_) in b!{
                                 self.postID = key
                             }
+                            self.configureDatabase()
+
                         })
                     }else{
                         for (key,_) in a!{
                             self.postID = key
+                            self.configureDatabase()
                         }
                     }
 
                 })
             }
-            print(self.postID)
-            print("asdadasdad")
-            self.configureDatabase()
-
         })
         
         tableView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
@@ -82,7 +80,6 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
         NotificationCenter.default.addObserver(self, selector: #selector(ChatDetailViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         tableView.estimatedRowHeight = 44.0
-        
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -159,6 +156,8 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
     }
     
     func configureDatabase(){
+        print(postID)
+        print("This is post ID")
         ref.child("chatMessage/\(postID)").observe(.childAdded, with: {(snapshot) in
          
             let value = snapshot.value as? [String:AnyObject]
@@ -169,6 +168,7 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
                 let from = value["from"] as! String
                 let message = value["message"] as! String
                 let date = value["date"] as! Double
+                
                 
                 let chatItem = ChatItem.init(from: from, message: message, date: date)
                 self.chatItemArray.append(chatItem)
@@ -190,4 +190,15 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
         
         return formatter.string(from: date)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
 }

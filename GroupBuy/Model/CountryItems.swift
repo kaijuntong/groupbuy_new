@@ -18,6 +18,8 @@ class CountryItems{
     var itemSize:String = ""
     var productImage:String = ""
     var sellerID:String = ""
+    var startDate:Double = 0.0
+    var dueDate:Double = 0.0
     
     init(itemKey:String,username:String, itemName:String, itemPrice:Double, itemSaleQuantity:Int,productImage:String, sellerID:String, itemDescription:String, itemSize:String) {
         self.itemKey = itemKey
@@ -29,6 +31,20 @@ class CountryItems{
         self.sellerID = sellerID
         self.itemDescription = itemDescription
         self.itemSize = itemSize
+    }
+    
+    init(itemKey:String,username:String, itemName:String, itemPrice:Double, itemSaleQuantity:Int,productImage:String, sellerID:String, itemDescription:String, itemSize:String,startDate:Double,dueDate:Double) {
+        self.itemKey = itemKey
+        self.username = username
+        self.itemName = itemName
+        self.itemPrice = itemPrice
+        self.itemSalesQuantity = itemSaleQuantity
+        self.productImage = productImage
+        self.sellerID = sellerID
+        self.itemDescription = itemDescription
+        self.itemSize = itemSize
+        self.startDate = startDate
+        self.dueDate = dueDate
     }
 }
 

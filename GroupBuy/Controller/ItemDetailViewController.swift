@@ -38,7 +38,8 @@ class ItemDetailViewController: UITableViewController {
             }
         }
 
-
+        let dateString = "\(displayTimestamp(ts:item.startDate)) - \(displayTimestamp(ts:item.dueDate))"
+        timeLabel.text = dateString.capitalized
         productLabel.text = item.itemName.capitalized
         priceLabel.text = "\(item.itemPrice)"
         sizeLabel.text = "\(item.itemSize)".capitalized
@@ -113,5 +114,15 @@ class ItemDetailViewController: UITableViewController {
         }
     }
     
+    func displayTimestamp(ts: Double) -> String {
+        let date:Date = Date(timeIntervalSince1970: ts)
+        let formatter:DateFormatter = DateFormatter()
+        //formatter.timeZone = NSTimeZone.system
+        
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        
+        return formatter.string(from: date)
+    }
     
 }

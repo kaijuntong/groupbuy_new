@@ -26,6 +26,7 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
     @IBOutlet weak var userDescription: UILabel!
     @IBOutlet weak var ratingStackView: RatingControl!
 
+    var sellerEmail = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,6 +51,7 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
                 }
             }
             
+            self.sellerEmail = email.lowercased()
             self.usernameLabel.text = email.lowercased()
             self.userDescription.text = description.capitalized
             self.ratingStackView.delegate = self
@@ -107,8 +109,8 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
         }else if segue.identifier == "sendAMessage"{
             let messageVC = segue.destination as! ChatDetailViewController
             messageVC.otherSideUserID = sellerID
+            messageVC.title = sellerEmail
             print(sellerID)
-            print("oooooooo")
         }
     }
     

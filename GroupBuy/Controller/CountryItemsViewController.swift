@@ -112,9 +112,14 @@ class CountryItemsViewController: UIViewController, UICollectionViewDelegate, UI
                     let itemImage:String = abc["itemImage"] as! String
                     let sellerID:String = abc["uid"] as! String
                     
+                    let eventIdInfo = abc["event_id1"] as! [String:AnyObject]
+                    
+                    let startDate:Double = eventIdInfo["departdate"] as! Double
+                    let dueDate:Double = eventIdInfo["returndate"] as! Double
+
                     //create item object
                     
-                    let countryItem:CountryItems = CountryItems(itemKey: key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize)
+                    let countryItem:CountryItems = CountryItems(itemKey: key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize,startDate:startDate,dueDate:dueDate)
                     
                     self.countryItems.append(countryItem)
                 }

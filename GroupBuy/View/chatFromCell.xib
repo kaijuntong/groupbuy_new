@@ -18,16 +18,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="iXy-11-oop">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="iXy-11-oop">
                         <rect key="frame" x="4" y="2" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="8NK-Gm-FLJ"/>
                             <constraint firstAttribute="width" constant="40" id="uDD-Yn-q4i"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyO-QY-9P3">
                         <rect key="frame" x="52" y="3" width="35.5" height="37.5"/>
-                        <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="183" id="HH0-D6-vPq"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="37.5" id="ZTW-XR-6cp"/>
@@ -67,6 +71,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Placeholder" width="60" height="60"/>
+        <image name="user_male" width="30" height="30"/>
     </resources>
 </document>

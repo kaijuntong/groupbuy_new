@@ -30,8 +30,8 @@ class SearchResultCell: UITableViewCell {
     }
 
     func configure(for searchResult:CountryItems){
-        nameLabel.text = searchResult.itemName
-        artistNameLabel.text = "\(searchResult.itemPrice)"
+        nameLabel.text = searchResult.itemName.capitalized
+        artistNameLabel.text = "RM \(searchResult.itemPrice)"
         
         artworkImageView.image = UIImage(named: "Placeholder")
 

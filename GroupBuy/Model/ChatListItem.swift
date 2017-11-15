@@ -13,11 +13,13 @@ class ChatListItem{
     var lastMessage = ""
     var chatID = ""
     var date = 0.0
+    var username = ""
     
-    init(chatID:String, otherPersonUserID:String, lastMessage:String, date:Double) {
+    init(chatID:String, otherPersonUserID:String, lastMessage:String, date:Double, username:String) {
         self.chatID = chatID
         self.otherPersonUserID = otherPersonUserID
         self.lastMessage = lastMessage
         self.date = date
+        self.username = username
     }
 }

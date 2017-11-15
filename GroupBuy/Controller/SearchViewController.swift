@@ -63,8 +63,12 @@ class SearchViewController: UIViewController {
             let itemPrice:Double = abc["itemPrice"] as! Double
             let itemImage:String = abc["itemImage"] as! String
             let sellerID:String = abc["uid"] as! String
+            let eventIdInfo = abc["event_id1"] as! [String:AnyObject]
             
-            let searchResult:CountryItems = CountryItems(itemKey:key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize)
+            let startDate:Double = eventIdInfo["departdate"] as! Double
+            let dueDate:Double = eventIdInfo["returndate"] as! Double
+            
+            let searchResult:CountryItems = CountryItems(itemKey: key, username: "", itemName: itemName, itemPrice: itemPrice, itemSaleQuantity: 0, productImage: itemImage, sellerID: sellerID, itemDescription:itemDescription, itemSize:itemSize,startDate:startDate,dueDate:dueDate)
             
             searchResults.append(searchResult)
         }
