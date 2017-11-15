@@ -89,7 +89,7 @@ class MyProfileViewController: UITableViewController, UIImagePickerControllerDel
     }
     
     @IBAction func saveBtnClicked(_ sender: UIBarButtonItem) {
-        uploadImageToFirebaseStorage(data: imageData!)
+        //uploadImageToFirebaseStorage(data: imageData!)
         
         let user:[String:String?] = ["email":self.email,
                     "description": descriptionTextField.text?.uppercased(),
@@ -125,7 +125,7 @@ class MyProfileViewController: UITableViewController, UIImagePickerControllerDel
 //            self.sendMessage(data: ["itemImage": (itemToEdit?.imageLoc)!])
 //        }else{
 //            let storageRef:StorageReference = Storage.storage().reference()
-//            let imagePath:String = "item_photos/" + Auth.auth().currentUser!.uid + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+//            let imagePath:String = "profile_photos/" + Auth.auth().currentUser!.uid + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
 //
 //            let uploadMetadata:StorageMetadata = StorageMetadata()
 //            uploadMetadata.contentType = "image/jpeg"
@@ -134,16 +134,16 @@ class MyProfileViewController: UITableViewController, UIImagePickerControllerDel
 //                if (error != nil){
 //                    print("I received an error! \(error?.localizedDescription)")
 //                }else{
-//                    print("Upload complete! Here's some metadata! \(metadata)")
-//                    //                print("\(metadata!.downloadURL())")
-//
-//                    // use sendMessage to add imageURL to database
 //                    self.sendMessage(data: ["itemImage": storageRef.child((metadata?.path)!).description])
 //                }
 //            }
 //        }
 //
 //        self.dismiss(animated: true, completion: nil)
+//    }
+//
+//    func sendMessage(data: [String:Any]) {
+//        var profileInfo:[String:Any] = data
 //    }
     
 }

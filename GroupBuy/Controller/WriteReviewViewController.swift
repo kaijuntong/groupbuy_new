@@ -9,7 +9,11 @@
 import UIKit
 import Firebase
 
+protocol WriteReviewViewControllerDelegate:NSObjectProtocol{
+    func refreshTableView()
+}
 class WriteReviewViewController: UITableViewController,RatingControlDelegate {
+    weak var delegate:WriteReviewViewControllerDelegate?
     
     @IBOutlet weak var ratingStackView: RatingControl!
     @IBOutlet weak var commentTextField: UITextField!
@@ -50,6 +54,7 @@ class WriteReviewViewController: UITableViewController,RatingControlDelegate {
             dataToInsert!["submitDate"] = submiTimeInterval
             
             ref.child("user_rating/\(sellerID!)/\(userID!)").updateChildValues(dataToInsert!)
+            delegate?.refreshTableView()
             dismiss(animated: true, completion: nil)
         }else{
             let alertController:UIAlertController = UIAlertController(title: "Error", message: "The rate and review cannot be empty", preferredStyle: .alert)

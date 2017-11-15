@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 //RatingControlDelegate
-class SellerDetailViewController: UITableViewController, RatingControlDelegate{
+class SellerDetailViewController: UITableViewController, RatingControlDelegate, WriteReviewViewControllerDelegate{
     var ref:DatabaseReference!
     let userID:String? = Auth.auth().currentUser?.uid
     var sellerID: String!
@@ -89,6 +89,11 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate{
             let destination:UINavigationController = segue.destination as! UINavigationController
             let writeRatingVC:WriteReviewViewController = destination.topViewController as! WriteReviewViewController
             writeRatingVC.sellerID = sellerID
+            writeRatingVC.delegate = self
         }
+    }
+    
+    func refreshTableView() {
+        tableView.reloadData()
     }
 }

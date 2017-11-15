@@ -18,6 +18,8 @@ class PaymentTableViewController: UITableViewController {
     var submitDate:Date = Date()
     var ref:DatabaseReference!
     
+    let email:String? = Auth.auth().currentUser?.email
+    
     var deliveryAddress:String = ""
     
     @IBOutlet weak var deliveryAddressLabel: UILabel!
@@ -141,7 +143,7 @@ class PaymentTableViewController: UITableViewController {
 
         
         var itemArray:[String:Any] = [String:Any]()
-        //var eventItemArray:[String:Any] = [String:Any]()
+        var buyerItemArray:[String:Any] = [String:Any]()
         
         //only loop 3 time if 3 item
         for i in cartArray{
@@ -158,7 +160,11 @@ class PaymentTableViewController: UITableViewController {
             
             //let dataArray = ["\(userID!)": i.itemQuantity] as [String : Any]
             
+            
             let itemInfoArray:[String:Any] = ["itemName":i.itemName, "itemQuantity":i.itemQuantity] as [String : Any]
+            buyerItemArray[i.itemKey] = itemInfoArray
+            
+            let buyerInfo:[String:Any] = ["userAddress":deliveryAddress, "itemInfo":buyerItemArray, "userEmail":email!]
             
             ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(userID!)").observeSingleEvent(of: .value, with: {(snapshot) in
                 
@@ -175,11 +181,8 @@ class PaymentTableViewController: UITableViewController {
                 self.ref.child("purchasing_list").child("\(i.eventKey)").child("\(i.itemKey)/buyer_info/\(self.userID!)").setValue(oldQuantity)
             })
             
-            //ref.child("customer_list").child("\(i.eventKey)").child("\(userID!)/item_info/\(i.itemKey)").setValue(itemInfoArray)
+            self.ref.child("customerlist").child("\(i.eventKey)").child("\(postID)").child("\(userID!)").setValue(buyerInfo)
         }
-        
-        
-        
         ref.child("orderlist").child("\(postID)/orderItems").setValue(itemArray)
         ref.child("cart_item").child("\(userID!)").setValue("")
     }
