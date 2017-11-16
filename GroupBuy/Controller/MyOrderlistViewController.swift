@@ -20,7 +20,7 @@ class MyOrderlistViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-
+        title = "My Order List"
         configureDatabase()
     }
 

@@ -80,6 +80,13 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
         NotificationCenter.default.addObserver(self, selector: #selector(ChatDetailViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         tableView.estimatedRowHeight = 44.0
+        
+//        let iPath = NSIndexPath(row: self.tableView.numberOfRows(inSection: 0) - 1, section: 0)
+//        self.tableView.scrollToRow(at: iPath as IndexPath,
+//                                   at: UITableViewScrollPosition.bottom,
+//                                              animated: true)
+//
+
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

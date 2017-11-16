@@ -23,3 +23,7 @@ class ChatListItem{
         self.username = username
     }
 }
+
+func >(lhs: ChatListItem, rhs: ChatListItem) -> Bool{
+    return lhs.date > rhs.date
+}

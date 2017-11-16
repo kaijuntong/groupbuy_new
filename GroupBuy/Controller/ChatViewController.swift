@@ -24,9 +24,12 @@ class ChatViewController: UITableViewController {
         userID =  Auth.auth().currentUser?.uid
 
         print("Hello World")
-       configureDatabase()
+       
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        configureDatabase()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,6 +64,9 @@ class ChatViewController: UITableViewController {
     }
     
         func configureDatabase(){
+            self.chatListArray.removeAll()
+            self.tableView.reloadData()
+
             ref.child("chatPerson/\(userID!)").observeSingleEvent(of: .value, with: {(snapshot) in
                 let a = snapshot.value as? [String:AnyObject]
 
@@ -68,8 +74,11 @@ class ChatViewController: UITableViewController {
                     for(key,withValue) in value{
                         let otherPerson = withValue["with"] as! String
                         print(key)
-                        self.ref.child("chat/\(key)").observe(.value, with: {(snap) in
-                            self.chatListArray.removeAll()
+                        self.ref.child("chat/\(key)").observeSingleEvent(of: .value, with: {(snap) in
+
+                       // self.ref.child("chat/\(key)").observe(.value, with: {(snap) in
+                            print(snap)
+                            
                             let snapValue = snap.value as? [String:AnyObject]
 
                             if let snapValue = snapValue{
@@ -83,9 +92,10 @@ class ChatViewController: UITableViewController {
                                         let cartListItem = ChatListItem.init(chatID: key, otherPersonUserID: otherPerson, lastMessage: lastMessage, date:date, username:email)
                                         
                                         self.chatListArray.append(cartListItem)
-                                        
+                                        self.chatListArray.sort{$0 > $1}
                                         self.tableView.reloadData()
-                        }
+                                        
+                                    }
                                 })
                                 
                             }
