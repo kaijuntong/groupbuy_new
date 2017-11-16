@@ -86,7 +86,8 @@ class MyOrderDetailViewController: UITableViewController {
             }
             
             currentRow = indexPath.row - 2
-            let cell =  tableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath)
+            let cell =  tableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath) as! OrderItemViewCell
+            
             let itemNameLabel = cell.viewWithTag(100) as! UILabel
             let quantityLabel = cell.viewWithTag(101) as! UILabel
             let totalPriceLabel = cell.viewWithTag(102) as! UILabel
@@ -116,6 +117,11 @@ class MyOrderDetailViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let cell:UITableViewCell? = tableView.cellForRow(at: indexPath)
+        performSegue(withIdentifier: "showItemDetail", sender: cell)
+
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -197,6 +203,19 @@ class MyOrderDetailViewController: UITableViewController {
         formatter.timeStyle = .none
         
         return formatter.string(from: date)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showItemDetail"{
+            let destination:ItemDetailViewController = segue.destination as! ItemDetailViewController
+            
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
+                destination.passByItemID = true
+                print(indexPath.row)
+                destination.itemKey = orderItemArray[indexPath.row - 2].itemKey
+                
+            }
+        }
     }
 
     
