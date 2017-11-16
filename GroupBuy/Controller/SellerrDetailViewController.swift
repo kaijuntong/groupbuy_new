@@ -17,6 +17,8 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
     var ratingNumber:Int = 0
     var ratingValue:Double = 0.0
 
+    @IBOutlet weak var sendMessageCell: UITableViewCell!
+    
     var submitDate:Date = Date()
     var sellerImageData:Data?
     var selfImageData:Data?
@@ -31,7 +33,7 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
     var sellerEmail = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         ref = Database.database().reference()
         //get profile image
         ref.child("users").child(self.userID!).observeSingleEvent(of: .value, with: {(snapshot) in
@@ -75,10 +77,22 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
             self.usernameLabel.text = email.lowercased()
             self.userDescription.text = description.capitalized
             self.ratingStackView.delegate = self
+            
         }){
             (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if sellerID == userID{
+        var cell = super.tableView(tableView, cellForRowAt: indexPath)
+            if cell == self.sendMessageCell {
+                return 0
+            }
+        }
+        
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,7 +155,6 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
             messageVC.title = sellerEmail
             messageVC.otherSideProfileImage = sellerImageData
             messageVC.selfProfileImage = selfImageData
-            print(sellerID)
         }
     }
     

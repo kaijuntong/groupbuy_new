@@ -53,7 +53,7 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
         let dueTimeInterval:Int = Int(dueDate.timeIntervalSince1970)
         
         let eventInfo:[String:Any] = ["uid":userID!,
-                         "destination":textField.text ?? "",
+                         "destination":textField.text?.lowercased() ?? "",
                          "departdate": startTimeInterval,
                          "returndate": dueTimeInterval]
         

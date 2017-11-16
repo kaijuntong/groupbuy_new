@@ -26,6 +26,12 @@ class MyEventViewController: UITableViewController {
         configureDatabase()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        self.parsedResult?.removeAll()
+//        country.removeAll()
+//        configureDatabase()
+//    }
     func configureDatabase(){
         ref = Database.database().reference()
         let user:User? = Auth.auth().currentUser
@@ -35,35 +41,11 @@ class MyEventViewController: UITableViewController {
             //ref.child("events").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observeSingleEvent(of: .value, with: {(snapshot) in
             ref.child("events").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.value){(snapshot) in
                 self.parsedResult?.removeAll()
+                self.country.removeAll()
                 self.parsedResult = snapshot.value as? [String:AnyObject]
                 self.assignValue()
                 self.tableView.reloadData()
             }
-            
-            //        ref.child("events").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observeSingleEvent(of: .value){(snapshot:DataSnapshot) in
-            //            let a = snapshot.value as? NSDictionary
-            //
-            //            let eventKey = snapshot.key
-            //            let countryName = a?["destination"] as? String ?? ""
-            //            print("------------")
-            //            print(countryName)
-            //                print("------------")
-            //           // let startDate = a["departdate"] as! Double
-            //////            let dueDate = a["returndate"] as! Double
-            //////            print("------------------")
-            //////            print(eventKey)
-            //////
-            //////            print(startDate)
-            //////            print(dueDate)
-            //////            print("------------------")
-            ////
-            ////
-            ////            //create item object
-            ////            let mycountry = MyCountry(eventKey: eventKey, countryName: countryName, startDate: startDate, dueDate: dueDate, countryImage: "")
-            ////
-            ////            self.country.append(mycountry)
-            //            self.tableView.reloadData()
-            //        }
         }
         
     }
