@@ -70,6 +70,8 @@
 		8CE99AFF1F939F2F00DC95B7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */; };
 		8CE99B031F93A5A700DC95B7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE99B021F93A5A700DC95B7 /* SettingViewController.swift */; };
 		8CED95831FB85D3A009B941B /* PasswordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CED95821FB85D3A009B941B /* PasswordTableViewController.swift */; };
+		8CF4B4101FBDA8270057A07F /* chatPhotoToCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4B40F1FBDA8270057A07F /* chatPhotoToCell.xib */; };
+		8CF4B4121FBDAB560057A07F /* chatPhotoFromCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4B4111FBDAB560057A07F /* chatPhotoFromCell.xib */; };
 		8CF4D5B51FB826F000D86DC5 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */; };
 		8CF4D5B61FB826F000D86DC5 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */; };
 		8CF4D5B71FB826F000D86DC5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */; };
@@ -149,6 +151,8 @@
 		8CE99AFE1F939F2F00DC95B7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		8CE99B021F93A5A700DC95B7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		8CED95821FB85D3A009B941B /* PasswordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTableViewController.swift; sourceTree = "<group>"; };
+		8CF4B40F1FBDA8270057A07F /* chatPhotoToCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = chatPhotoToCell.xib; sourceTree = "<group>"; };
+		8CF4B4111FBDAB560057A07F /* chatPhotoFromCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = chatPhotoFromCell.xib; sourceTree = "<group>"; };
 		8CF4D5B21FB826EE00D86DC5 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		8CF4D5B31FB826EE00D86DC5 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		8CF4D5B41FB826EF00D86DC5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
@@ -197,7 +201,9 @@
 		8C925FB01F874B55002761AC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8CF4B4111FBDAB560057A07F /* chatPhotoFromCell.xib */,
 				8CD437A01FBC54130093EA9B /* chatToCell.xib */,
+				8CF4B40F1FBDA8270057A07F /* chatPhotoToCell.xib */,
 				8CA167AD1F8645ED00AB6316 /* Main.storyboard */,
 				8CA167B21F8645EE00AB6316 /* LaunchScreen.storyboard */,
 				8C3CB3421FB9F60E000CF670 /* AddressCell.xib */,
@@ -401,7 +407,9 @@
 				8CC861331FBAABE10058259B /* OrderItemCell.xib in Resources */,
 				8C3CB3471FB9F6C5000CF670 /* TitleCell.xib in Resources */,
 				8CF4D5B61FB826F000D86DC5 /* NothingFoundCell.xib in Resources */,
+				8CF4B4121FBDAB560057A07F /* chatPhotoFromCell.xib in Resources */,
 				8CE99AFD1F939DF000DC95B7 /* GoogleService-Info.plist in Resources */,
+				8CF4B4101FBDA8270057A07F /* chatPhotoToCell.xib in Resources */,
 				8CA167B11F8645ED00AB6316 /* Assets.xcassets in Resources */,
 				8C06AAEA1FBBFE6500798A74 /* chatFromCell.xib in Resources */,
 				8C3CB3431FB9F60E000CF670 /* AddressCell.xib in Resources */,

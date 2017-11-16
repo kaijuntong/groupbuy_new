@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="chatPhotoToCell" rowHeight="88" id="dgK-IO-SRD">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dgK-IO-SRD" id="4O4-A3-MkR">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="131.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_male" translatesAutoresizingMaskIntoConstraints="NO" id="F0F-6X-c7i">
+                        <rect key="frame" x="327" y="2" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="D2X-pB-tb9"/>
+                            <constraint firstAttribute="width" constant="40" id="K9y-JB-cNc"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="u3L-Xr-w03">
+                        <rect key="frame" x="215" y="6" width="103" height="119"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="103" id="h1J-Tc-PQA"/>
+                            <constraint firstAttribute="height" constant="119" id="y9S-4g-adn"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOA-to-TM9">
+                        <rect key="frame" x="145" y="6" width="61.5" height="19.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19.5" id="Fja-EV-x7x"/>
+                            <constraint firstAttribute="width" constant="61.5" id="OD2-wy-FRN"/>
+                            <constraint firstAttribute="height" constant="19.5" id="OS4-ou-QmE"/>
+                        </constraints>
+                        <string key="text">12 halbele 2014
+12.94pm</string>
+                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="8"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="F0F-6X-c7i" secondAttribute="trailing" constant="8" id="4AN-Fl-uaX"/>
+                    <constraint firstItem="u3L-Xr-w03" firstAttribute="top" secondItem="4O4-A3-MkR" secondAttribute="top" constant="6" id="QbI-9u-Rer"/>
+                    <constraint firstItem="u3L-Xr-w03" firstAttribute="leading" secondItem="EOA-to-TM9" secondAttribute="trailing" constant="8.5" id="UeD-sU-cEG"/>
+                    <constraint firstItem="F0F-6X-c7i" firstAttribute="top" secondItem="4O4-A3-MkR" secondAttribute="top" constant="2" id="lWZ-LP-Pq2"/>
+                    <constraint firstAttribute="bottom" secondItem="u3L-Xr-w03" secondAttribute="bottom" constant="6" id="m5F-sL-rAb"/>
+                    <constraint firstItem="EOA-to-TM9" firstAttribute="top" secondItem="4O4-A3-MkR" secondAttribute="top" constant="6" id="pJF-A6-K8e"/>
+                    <constraint firstItem="F0F-6X-c7i" firstAttribute="leading" secondItem="u3L-Xr-w03" secondAttribute="trailing" constant="9" id="u31-e6-nq8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="-87" y="130"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Placeholder" width="60" height="60"/>
+        <image name="user_male" width="30" height="30"/>
+    </resources>
+</document>

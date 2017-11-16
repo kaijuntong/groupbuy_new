@@ -156,33 +156,6 @@ class cartViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    
-    
-    
-    
-    //    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    //        let cell:cartFooterViewCell = tableView.dequeueReusableCell(withIdentifier: "FooterCell") as! cartFooterViewCell
-    //        cell.estimatedPriceLabel.text = "RM \(calculatedEstimatedPrice())"
-    //
-    //        let gradient:CAGradientLayer = CAGradientLayer()
-    //        gradient.frame.size = CGSize(width: 375, height: 3)
-    //
-    //        let stopColor:CGColor = UIColor.white.cgColor
-    //        let startColor:CGColor = UIColor.lightGray.cgColor
-    //
-    //        gradient.colors = [stopColor, startColor]
-    //        gradient.locations = [0.0,0.8]
-    //
-    //        cell.layer.addSublayer(gradient)
-    //        print("--------")
-    //        print(section)
-    //        return cell
-    //    }
-    //
-    //    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //        return 106
-    //    }
-    
     func removeRow(row:Int){
         cartArray.remove(at: row)
         tableView.reloadData()

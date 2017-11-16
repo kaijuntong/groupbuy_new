@@ -3586,23 +3586,30 @@ All Rights Reserved.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axI-Zj-f67">
-                                        <rect key="frame" x="326" y="7" width="36" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdF-L9-yBJ">
+                                        <rect key="frame" x="10" y="7" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Send"/>
+                                        <state key="normal" image="image_file"/>
+                                        <connections>
+                                            <action selector="ImageBtnClick:" destination="xbw-wT-6Xf" eventType="touchUpInside" id="TWz-J3-aOZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJa-e2-9oS">
+                                        <rect key="frame" x="48" y="6" width="40" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="camera"/>
+                                        <connections>
+                                            <action selector="cameraBtnClicked:" destination="xbw-wT-6Xf" eventType="touchUpInside" id="ntL-9o-vwW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axI-Zj-f67">
+                                        <rect key="frame" x="322" y="8" width="49" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <state key="normal" image="paper_plane"/>
                                         <connections>
                                             <action selector="sendBtn:" destination="xbw-wT-6Xf" eventType="touchUpInside" id="aDs-uJ-YUZ"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdF-L9-yBJ">
-                                        <rect key="frame" x="10" y="7" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Img"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJa-e2-9oS">
-                                        <rect key="frame" x="48" y="7" width="32" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Cam"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3645,13 +3652,14 @@ All Rights Reserved.</string>
                     </view>
                     <navigationItem key="navigationItem" title="William" id="fdV-bM-l5h"/>
                     <connections>
+                        <outlet property="cameraBtn" destination="MJa-e2-9oS" id="7NU-3U-DAN"/>
                         <outlet property="messageTextField" destination="aBH-d6-79W" id="k7Y-DV-fhf"/>
                         <outlet property="tableView" destination="3ek-e6-gq2" id="Wq6-jD-6ga"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ydh-Do-QEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="252" y="1453"/>
+            <point key="canvasLocation" x="252" y="1452.3238380809596"/>
         </scene>
         <!--My Customer List View Controller-->
         <scene sceneID="UVH-nf-6Ak">
@@ -3959,13 +3967,16 @@ All Rights Reserved.</string>
     </scenes>
     <resources>
         <image name="bg_UI_blur" width="750" height="1334"/>
+        <image name="camera" width="30" height="30"/>
         <image name="chat" width="30" height="30"/>
         <image name="create_new" width="30" height="30"/>
         <image name="cross" width="24" height="24"/>
         <image name="delete_bin1" width="50" height="50"/>
         <image name="home" width="30" height="30"/>
+        <image name="image_file" width="30" height="30"/>
         <image name="logo" width="200" height="200"/>
         <image name="map" width="30" height="30"/>
+        <image name="paper_plane" width="30" height="30"/>
         <image name="photoalbum" width="64" height="64"/>
         <image name="search" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>

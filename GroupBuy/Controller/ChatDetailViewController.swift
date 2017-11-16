@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var ref:DatabaseReference!
     var userID:String? = Auth.auth().currentUser?.uid
@@ -22,7 +22,9 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
     var otherSideProfileImage:Data?
 
     var otherSideUserID: String!
+    var imageNeedToUpload: Data?
     
+    @IBOutlet weak var cameraBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     
@@ -77,7 +79,12 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
         
         cellNib = UINib(nibName: "chatToCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "chatToCell")
-
+        
+        cellNib = UINib(nibName: "chatPhotoToCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "chatPhotoToCell")
+        
+        cellNib = UINib(nibName: "chatPhotoFromCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "chatPhotoFromCell")
         
         NotificationCenter.default.addObserver(self, selector: #selector(ChatDetailViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatDetailViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -112,7 +119,25 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
         //from 自己 send
         let messageItem = chatItemArray[indexPath.row]
         
+        //自己send
         if messageItem.from as! String == "\(userID!)"{
+            if messageItem.photo != nil{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "chatPhotoToCell", for: indexPath)
+                cell.backgroundColor = UIColor.clear
+                
+                let profileImageView = cell.viewWithTag(100) as! UIImageView
+                
+                if let selfProfileImage = selfProfileImage{
+                    profileImageView.image = UIImage.init(data: selfProfileImage)
+                }
+                
+                let chatImageLabel = cell.viewWithTag(101) as! UIImageView
+                chatImageLabel.image = UIImage.init(data: messageItem.photo!)
+                
+                let dateLabel = cell.viewWithTag(102) as! UILabel
+                 dateLabel.text = displayTimestamp(ts: messageItem.date)
+                return cell
+            }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "chatToCell", for: indexPath)
             cell.backgroundColor = UIColor.clear
 
@@ -127,23 +152,60 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
             
             msg.text = messageItem.message as! String
             dateLabel.text = displayTimestamp(ts: messageItem.date)
-            return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "chatFromCell", for: indexPath)
-            cell.backgroundColor = UIColor.clear
-            
-            let profileImageView = cell.viewWithTag(100) as! UIImageView
-            
-            if let otherSideProfileImage = otherSideProfileImage{
-                profileImageView.image = UIImage.init(data: otherSideProfileImage)
+                return cell
+                
             }
-            
-            let msg = cell.viewWithTag(101) as! UILabel
-            let dateLabel = cell.viewWithTag(102) as! UILabel
-            
-            msg.text = messageItem.message as! String
-            dateLabel.text = displayTimestamp(ts: messageItem.date)
-            return cell
+        }else{//别人的对话
+            if messageItem.photo != nil{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "chatPhotoFromCell", for: indexPath)
+                cell.backgroundColor = UIColor.clear
+                
+                let profileImageView = cell.viewWithTag(100) as! UIImageView
+                
+                if let otherSideProfileImage = otherSideProfileImage{
+                    profileImageView.image = UIImage.init(data: otherSideProfileImage)
+                }
+                
+                let chatImageLabel = cell.viewWithTag(101) as! UIImageView
+                chatImageLabel.image = UIImage.init(data: messageItem.photo!)
+                
+                let dateLabel = cell.viewWithTag(102) as! UILabel
+                dateLabel.text = displayTimestamp(ts: messageItem.date)
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "chatFromCell", for: indexPath)
+                cell.backgroundColor = UIColor.clear
+                
+                let profileImageView = cell.viewWithTag(100) as! UIImageView
+                
+                if let otherSideProfileImage = otherSideProfileImage{
+                    profileImageView.image = UIImage.init(data: otherSideProfileImage)
+                }
+                
+                let msg = cell.viewWithTag(101) as! UILabel
+                let dateLabel = cell.viewWithTag(102) as! UILabel
+                
+                msg.text = messageItem.message as! String
+                dateLabel.text = displayTimestamp(ts: messageItem.date)
+                return cell
+                
+            }
+//
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "chatFromCell", for: indexPath)
+//            cell.backgroundColor = UIColor.clear
+//
+//            let profileImageView = cell.viewWithTag(100) as! UIImageView
+//
+//            if let otherSideProfileImage = otherSideProfileImage{
+//                profileImageView.image = UIImage.init(data: otherSideProfileImage)
+//            }
+//
+//            let msg = cell.viewWithTag(101) as! UILabel
+//            let dateLabel = cell.viewWithTag(102) as! UILabel
+//
+//            msg.text = messageItem.message as! String
+//            dateLabel.text = displayTimestamp(ts: messageItem.date)
+//            return cell
         }
     }
 
@@ -175,8 +237,8 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
             ref.child("chat/\(postID)/date").setValue(submitDate)
             ref.child("chatMessage/\(postID)").childByAutoId().setValue(messageData)
         }
-
     }
+    
     @objc func keyboardWillHide(notification:NSNotification){
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
             if self.view.frame.origin.y != 0{
@@ -196,17 +258,32 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
             if let value = value{
                 
                 let from = value["from"] as! String
-                let message = value["message"] as! String
                 let date = value["date"] as! Double
-                
-                
-                let chatItem = ChatItem.init(from: from, message: message, date: date)
-                self.chatItemArray.append(chatItem)
-                
-                self.tableView.reloadData()
+
+                if let photo = value["photo"] as? String{
+                    if photo.hasPrefix("gs://") {
+                        Storage.storage().reference(forURL: photo).getData(maxSize: INT64_MAX) {(data, error) in
+                            if let error = error {
+                                print("Error downloading: \(error)")
+                                return
+                            }
+                            DispatchQueue.main.async {
+                                let chatItem = ChatItem.init(from: from, photo: data!, date: date)
+                                self.chatItemArray.append(chatItem)
+                                self.chatItemArray.sort{$0 < $1}
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                    
+                }else{
+                    let message = value["message"] as! String
+                    let chatItem = ChatItem.init(from: from, message: message, date: date)
+                    self.chatItemArray.append(chatItem)
+                    self.chatItemArray.sort{$0 < $1}
+                    self.tableView.reloadData()
                 }
-            
-            
+            }
         })
     }
     
@@ -224,11 +301,79 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        
+        //check camerabutton is availabe
+        cameraBtn.isEnabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
+    
+    
+    @IBAction func ImageBtnClick(_ sender: UIButton) {
+        pickAnImage(UIImagePickerControllerSourceType.photoLibrary)
+    }
+    
+    @IBAction func cameraBtnClicked(_ sender: UIButton) {
+        pickAnImage(UIImagePickerControllerSourceType.camera)
+    }
+    
+    func pickAnImage(_ sourceType:UIImagePickerControllerSourceType){
+        let imagePicker:UIImagePickerController = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    //imagepicjer delegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImageJPEGRepresentation(selectedImage, 0.0){
+    
+            self.imageNeedToUpload = imageData
+            uploadImageToFirebaseStorage(data: imageData)
+
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func uploadImageToFirebaseStorage(data: Data){
+            let storageRef:StorageReference = Storage.storage().reference()
+            let imagePath:String = "chat_image/" + postID + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+            
+            let uploadMetadata:StorageMetadata = StorageMetadata()
+            uploadMetadata.contentType = "image/jpeg"
+            let uploadTask:StorageUploadTask = storageRef.child(imagePath).putData(data, metadata: uploadMetadata){
+                (metadata, error) in
+                if (error != nil){
+                    print("I received an error! \(error?.localizedDescription)")
+                }else{
+                    if self.firstTime{
+                        self.tableView.reloadData()
+                    }
+                    
+                        if self.firstTime{
+                            self.ref.child("chatPerson").child("\(self.userID!)").child("\(self.postID)/with").setValue("\(self.otherSideUserID!)")
+                            self.ref.child("chatPerson").child("\(self.otherSideUserID!)").child("\(self.postID)/with").setValue("\(self.userID!)")
+                        }
+                        
+                        let submitDate:Int = Int(Date.init().timeIntervalSince1970)
+                        let messageData = ["photo":storageRef.child((metadata?.path)!).description, "from":self.userID!,"date":submitDate] as [String : Any]
+                    
+                        
+                        self.ref.child("chat/\(self.postID)/date").setValue(submitDate)
+                        self.self.ref.child("chatMessage/\(self.postID)").childByAutoId().setValue(messageData)
+                    
+                    
+                }
+            }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
 }
