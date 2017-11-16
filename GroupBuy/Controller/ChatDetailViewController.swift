@@ -18,6 +18,9 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
     
     var postID = ""
     var chatID:String?
+    var selfProfileImage:Data?
+    var otherSideProfileImage:Data?
+
     var otherSideUserID: String!
     
     @IBOutlet weak var tableView: UITableView!
@@ -106,22 +109,42 @@ class ChatDetailViewController: UIViewController,UITableViewDelegate, UITableVie
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //from 自己 send
         let messageItem = chatItemArray[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: "chatFromCell", for: indexPath)
-
+        
         if messageItem.from as! String == "\(userID!)"{
-            cell = tableView.dequeueReusableCell(withIdentifier: "chatToCell", for: indexPath)
-        }
-        
-        cell.backgroundColor = UIColor.clear
-        // Configure the cell...
+            let cell = tableView.dequeueReusableCell(withIdentifier: "chatToCell", for: indexPath)
+            cell.backgroundColor = UIColor.clear
 
-        let msg = cell.viewWithTag(101) as! UILabel
-        let dateLabel = cell.viewWithTag(102) as! UILabel
-        
-        msg.text = messageItem.message as! String
-        dateLabel.text = displayTimestamp(ts: messageItem.date)
-        return cell
+            let profileImageView = cell.viewWithTag(100) as! UIImageView
+
+            if let selfProfileImage = selfProfileImage{
+                profileImageView.image = UIImage.init(data: selfProfileImage)
+            }
+            
+            let msg = cell.viewWithTag(101) as! UILabel
+            let dateLabel = cell.viewWithTag(102) as! UILabel
+            
+            msg.text = messageItem.message as! String
+            dateLabel.text = displayTimestamp(ts: messageItem.date)
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "chatFromCell", for: indexPath)
+            cell.backgroundColor = UIColor.clear
+            
+            let profileImageView = cell.viewWithTag(100) as! UIImageView
+            
+            if let otherSideProfileImage = otherSideProfileImage{
+                profileImageView.image = UIImage.init(data: otherSideProfileImage)
+            }
+            
+            let msg = cell.viewWithTag(101) as! UILabel
+            let dateLabel = cell.viewWithTag(102) as! UILabel
+            
+            msg.text = messageItem.message as! String
+            dateLabel.text = displayTimestamp(ts: messageItem.date)
+            return cell
+        }
     }
 
     @objc func keyboardWillShow(notification:NSNotification){
