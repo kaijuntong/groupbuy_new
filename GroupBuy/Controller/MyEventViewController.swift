@@ -11,7 +11,7 @@ import Firebase
 class MyEventViewController: UITableViewController {
     var ref:DatabaseReference!
     var messages: [DataSnapshot]! = []
-    var parsedResult:[String:AnyObject]!
+    var parsedResult:[String:AnyObject]?
     
     var country:[MyCountry] = [MyCountry]()
     var eventDetails:[[String:Any]] = [[String:Any]]()
@@ -34,7 +34,7 @@ class MyEventViewController: UITableViewController {
             //listen for new messages in the firebase database
             //ref.child("events").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observeSingleEvent(of: .value, with: {(snapshot) in
             ref.child("events").queryOrdered(byChild: "uid").queryEqual(toValue: uid).observe(.value){(snapshot) in
-                self.parsedResult.removeAll()
+                self.parsedResult?.removeAll()
                 self.parsedResult = snapshot.value as? [String:AnyObject]
                 self.assignValue()
                 self.tableView.reloadData()

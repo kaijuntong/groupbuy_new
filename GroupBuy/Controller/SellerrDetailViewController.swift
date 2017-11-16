@@ -18,6 +18,8 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
     var ratingValue:Double = 0.0
 
     var submitDate:Date = Date()
+    var sellerImageData:Data?
+    var selfImageData:Data?
     
     @IBOutlet weak var sellerProfilePic: UIImageView!
     @IBOutlet weak var ratingValueLabel: UILabel!
@@ -31,6 +33,23 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
         super.viewDidLoad()
 
         ref = Database.database().reference()
+        //get profile image
+        ref.child("users").child(self.userID!).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value:NSDictionary? = snapshot.value as? NSDictionary
+            let profilePic = value?["profilePicture"] as? String ?? ""
+            if profilePic.hasPrefix("gs://") {
+                Storage.storage().reference(forURL: profilePic).getData(maxSize: INT64_MAX) {(data, error) in
+                    if let error = error {
+                        print("Error downloading: \(error)")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.selfImageData = data!
+                    }
+                }
+            }
+        })
+        
         ref.child("users").child(self.sellerID!).observeSingleEvent(of: .value, with: {(snapshot) in
             //get user value
             let value:NSDictionary? = snapshot.value as? NSDictionary
@@ -46,6 +65,7 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
                         return
                     }
                     DispatchQueue.main.async {
+                        self.sellerImageData = data!
                         self.sellerProfilePic.image = UIImage.init(data: data!)
                     }
                 }
@@ -59,28 +79,37 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
             (error) in
             print(error.localizedDescription)
         }
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadRating()
+    }
+    func loadRating(){
+        ratingPerson = 0
+        ratingNumber = 0
+        ratingPerson = 0
         ref.child("user_rating").child(self.sellerID!).observeSingleEvent(of: .value, with: {(snapshot) in
             //get user value
             let value:NSDictionary? = snapshot.value as? NSDictionary
             if let value1 = value as? [String:NSDictionary]{
-
-            for (key,value) in value1{
-                if key == self.userID{
-                    self.ratingStackView.rating = value["rating"] as! Int
+                
+                for (key,value) in value1{
+                    if key == self.userID{
+                        self.ratingStackView.rating = value["rating"] as! Int
+                    }
+                    
+                    if value["rating"] as! Int != 0{
+                        self.ratingNumber += value["rating"] as! Int
+                        self.ratingPerson += 1
+                        self.ratingValue = Double(self.ratingNumber)/Double(self.ratingPerson)
+                    }
                 }
-
-                if value["rating"] as! Int != 0{
-                    self.ratingNumber += value["rating"] as! Int
-                    self.ratingPerson += 1
-                    self.ratingValue = Double(self.ratingNumber)/Double(self.ratingPerson)
-                }
+                
+                self.ratingValueLabel.text = "\(self.ratingValue)"
+                self.ratingPeopleSum.text = "(\(self.ratingPerson) rating)"
             }
-
-            self.ratingValueLabel.text = "\(self.ratingValue)"
-            self.ratingPeopleSum.text = "(\(self.ratingPerson) rating)"
-            }
-//            //self.ratingStackView.rating = Int(round(self.ratingValue))
+            //            //self.ratingStackView.rating = Int(round(self.ratingValue))
         }){
             (error) in
             print(error.localizedDescription)
@@ -110,6 +139,8 @@ class SellerDetailViewController: UITableViewController, RatingControlDelegate, 
             let messageVC = segue.destination as! ChatDetailViewController
             messageVC.otherSideUserID = sellerID
             messageVC.title = sellerEmail
+            messageVC.otherSideProfileImage = sellerImageData
+            messageVC.selfProfileImage = selfImageData
             print(sellerID)
         }
     }

@@ -116,8 +116,15 @@ class PaymentTableViewController: UIViewController {
             }
             //print(result)
             self?.submitToFirebase()
-            self?.show(message: "Successfully charged. Thanks So Much :)")
-            self?.dismiss(animated: true, completion: nil)
+            //self?.show(message: "Successfully charged. Thanks So Much :)"
+                
+            DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
+                self?.activityIndicator.isHidden = true
+                let alertController = UIAlertController(title: "Success", message: "Successfully charged. Thanks So Much.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in self?.navigationController?.popViewController(animated: true)}))
+                self?.present(alertController, animated: true, completion: nil)
+            }
             }.resume()
     }
     

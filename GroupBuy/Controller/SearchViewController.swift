@@ -107,7 +107,8 @@ extension SearchViewController:UISearchBarDelegate{
             searchResults = []
             
             
-            let escapedSearchText:String = searchBar.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!.lowercased()
+            let escapedSearchText:String = searchBar.text!.lowercased()
+                //.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!.lowercased()
             
             print(escapedSearchText)
             ref.child("eventItems").queryOrdered(byChild: "itemName").queryStarting(atValue: "\(escapedSearchText)").queryEnding(atValue: "\(escapedSearchText)"+"\u{f8ff}").observeSingleEvent(of: .value, with: {

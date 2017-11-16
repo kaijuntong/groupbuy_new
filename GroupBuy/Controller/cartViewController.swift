@@ -111,7 +111,7 @@ class cartViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             self.cartArray.removeAll()
             
-            let a = snapshot.value as? [String:AnyObject] ?? [:]
+            let a = snapshot.value as? [String:AnyObject]
             print(a)
             
             if let value1 = a as? [String:NSDictionary]{
@@ -144,6 +144,10 @@ class cartViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                 }
                 
+                self.tableView.reloadData()
+            }else{
+                print(self.calculatedEstimatedPrice())
+                self.estimatedPriceLabel.text = "RM \(self.calculatedEstimatedPrice())"
                 self.tableView.reloadData()
             }
         }){
@@ -215,6 +219,14 @@ class cartViewController: UIViewController, UITableViewDelegate, UITableViewData
             let controller:PaymentTableViewController = segue.destination as! PaymentTableViewController
             controller.cartArray = cartArray
             controller.totalPrice = localEstimatedTotal
+        }else if segue.identifier == "showItemDetail"{
+            let destination:ItemDetailViewController = segue.destination as! ItemDetailViewController
+
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
+                destination.passByItemID = true
+                destination.itemKey = cartArray[indexPath.row].itemKey
+            }
+            
         }
     }
     
