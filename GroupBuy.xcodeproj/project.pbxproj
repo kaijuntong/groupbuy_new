@@ -14,6 +14,7 @@
 		8C1BADBE1FAB338D00CDFA6A /* CommentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BADBD1FAB338D00CDFA6A /* CommentObject.swift */; };
 		8C2059D51FA22641008551B0 /* SellerrDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */; };
 		8C224A201FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C224A1F1FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift */; };
+		8C274EBB1FBD4E67008586A3 /* PaymentEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C274EBA1FBD4E66008586A3 /* PaymentEmbeddedViewController.swift */; };
 		8C2914E41FBBC40D00F686D7 /* CustomerBuyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2914E31FBBC40D00F686D7 /* CustomerBuyInfo.swift */; };
 		8C2BF9241FAFC39900406896 /* cartFooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2BF9231FAFC39900406896 /* cartFooterViewCell.swift */; };
 		8C31C59A1FAADAB700C857EA /* ReviewRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31C5991FAADAB700C857EA /* ReviewRatingViewController.swift */; };
@@ -90,6 +91,7 @@
 		8C1BADBD1FAB338D00CDFA6A /* CommentObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentObject.swift; sourceTree = "<group>"; };
 		8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerrDetailViewController.swift; sourceTree = "<group>"; };
 		8C224A1F1FA7744800B71BF6 /* ratingCommentCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ratingCommentCellTableViewCell.swift; sourceTree = "<group>"; };
+		8C274EBA1FBD4E66008586A3 /* PaymentEmbeddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentEmbeddedViewController.swift; sourceTree = "<group>"; };
 		8C2914E31FBBC40D00F686D7 /* CustomerBuyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBuyInfo.swift; sourceTree = "<group>"; };
 		8C2BF9231FAFC39900406896 /* cartFooterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartFooterViewCell.swift; sourceTree = "<group>"; };
 		8C31C5991FAADAB700C857EA /* ReviewRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReviewRatingViewController.swift; path = GroupBuy/Controller/ReviewRatingViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -213,6 +215,7 @@
 		8C925FB11F874B59002761AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8C274EBA1FBD4E66008586A3 /* PaymentEmbeddedViewController.swift */,
 				8CD437A41FBC76EF0093EA9B /* ChatViewController.swift */,
 				8C3CB3401FB9EF38000CF670 /* MyOrderDetailViewController.swift */,
 				8CED95821FB85D3A009B941B /* PasswordTableViewController.swift */,
@@ -221,9 +224,9 @@
 				8C3EB2441FB74D120097B55D /* MyCustomerListViewController.swift */,
 				8CB107311FB47E2E00F39D46 /* PurchasingCheckListViewController.swift */,
 				8CB2106F1FB44D3D00F32654 /* MyPurchasingListViewController.swift */,
-				8C38A8CF1FB34ACC00128507 /* MyOrderlistViewController.swift */,
 				8CADDC7C1FB0AC5900E34D49 /* PaymentTableViewController.swift */,
 				8C2059D41FA22641008551B0 /* SellerrDetailViewController.swift */,
+				8C38A8CF1FB34ACC00128507 /* MyOrderlistViewController.swift */,
 				8C925FBB1F875E40002761AC /* CellController */,
 				8CA167AB1F8645ED00AB6316 /* HomeViewController.swift */,
 				8C31C5991FAADAB700C857EA /* ReviewRatingViewController.swift */,
@@ -483,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C274EBB1FBD4E67008586A3 /* PaymentEmbeddedViewController.swift in Sources */,
 				8C5916541FAB0E190071FDFA /* ratingStarViewCell.swift in Sources */,
 				8C925FB81F875B23002761AC /* CountryItems.swift in Sources */,
 				8C4E27501FAE11A000042652 /* Cart.swift in Sources */,
