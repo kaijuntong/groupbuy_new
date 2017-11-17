@@ -12,7 +12,7 @@ import Firebase
 class HomeViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var collectionView:UICollectionView!
     @IBOutlet var hottestItemsCollectionView:UICollectionView!
-    @IBOutlet var sellerCollectionView:UICollectionView!
+   // @IBOutlet var sellerCollectionView:UICollectionView!
     
     private var countries:[Country] = [Country.init(countryName: "USA", countryImage: UIImage(named: "usa")),
                                        Country.init(countryName: "Taiwan", countryImage: UIImage(named: "taiwan")),
