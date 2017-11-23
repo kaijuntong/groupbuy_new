@@ -132,8 +132,9 @@ class cartViewController: UIViewController, UITableViewDelegate, UITableViewData
                             let itemName:String = value3["itemName"] as! String
                             let itemPrice:Double = value3["itemPrice"] as! Double
                             let itemImage:String = value3["itemImage"] as! String
+                            let sellerID:String = value3["uid"] as! String
                             
-                            let cartItem:Cart = Cart.init(eventKey: eventKey,itemKey:key, itemName: itemName, itemPrice: itemPrice, itemImage: itemImage, itemQuantity: quantity)
+                            let cartItem:Cart = Cart.init(eventKey: eventKey,itemKey:key, itemName: itemName, itemPrice: itemPrice, itemImage: itemImage, itemQuantity: quantity, sellerID:sellerID)
                             self.cartArray.append(cartItem)
                         }
                         self.tableView.reloadData()

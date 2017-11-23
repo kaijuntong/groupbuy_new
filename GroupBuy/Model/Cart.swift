@@ -15,6 +15,7 @@ class Cart{
     var itemQuantity:Int = 0
     var itemKey:String = ""
     var eventKey:String = ""
+    var sellerID:String = ""
     
     init(eventKey:String, itemKey:String,itemName:String, itemPrice:Double, itemImage:String, itemQuantity:Int) {
         self.eventKey = eventKey
@@ -23,6 +24,16 @@ class Cart{
         self.itemPrice = itemPrice
         self.itemImage = itemImage
         self.itemQuantity = itemQuantity
+    }
+    
+    init(eventKey:String, itemKey:String,itemName:String, itemPrice:Double, itemImage:String, itemQuantity:Int, sellerID:String) {
+        self.eventKey = eventKey
+        self.itemKey = itemKey
+        self.itemName = itemName
+        self.itemPrice = itemPrice
+        self.itemImage = itemImage
+        self.itemQuantity = itemQuantity
+        self.sellerID = sellerID
     }
 }
 

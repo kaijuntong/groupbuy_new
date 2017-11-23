@@ -167,6 +167,7 @@ class PaymentTableViewController: UIViewController {
             item["itemCurrentStatus"] = 0
             item["itemImage"] = i.itemImage
             item["eventKey"] = i.eventKey
+            item["sellerID"] = i.sellerID
             
             itemArray[i.itemKey] = item
             

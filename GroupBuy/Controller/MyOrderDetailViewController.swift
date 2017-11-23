@@ -14,6 +14,7 @@ class MyOrderDetailViewController: UITableViewController {
     var orderKey:String!
     var ref:DatabaseReference!
     var userID:String? =  Auth.auth().currentUser?.uid
+    var sellerIDSet = Set<String>()
     
     var addresss:String = ""
     var orderDate:Double = 0.0
@@ -39,6 +40,9 @@ class MyOrderDetailViewController: UITableViewController {
         cellNib = UINib(nibName: "OrderItemCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "OrderItemCell")
         
+        cellNib = UINib(nibName: "myOrderAllSellerCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "myOrderAllSellerCell")
+        
       //  tableView.estimatedRowHeight  = 44
         //tableView.rowHeight = UITableViewAutomaticDimension
 
@@ -58,7 +62,7 @@ class MyOrderDetailViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return orderItemArray.count + 2
+        return orderItemArray.count + 3
     }
 
     
@@ -79,13 +83,16 @@ class MyOrderDetailViewController: UITableViewController {
             let addressLabel = cell.viewWithTag(100) as! UILabel
             addressLabel.text = addresss
             return cell
+        }else if indexPath.row == 2{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "myOrderAllSellerCell", for: indexPath)
+            return cell
         }else{
             var currentRow = indexPath.row
             if !doneLoading{
                 return tableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath)
             }
             
-            currentRow = indexPath.row - 2
+            currentRow = indexPath.row - 3
             let cell =  tableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath) as! OrderItemViewCell
             
             let itemNameLabel = cell.viewWithTag(100) as! UILabel
@@ -149,8 +156,11 @@ class MyOrderDetailViewController: UITableViewController {
                     let itemQuantity = value["itemQuantity"] as! Int
                     let itemImage = value["itemImage"] as! String
                     let eventKey = value["eventKey"] as! String
+                    let sellerID = value["sellerID"] as! String
+                        
+                    self.sellerIDSet.insert(sellerID)
                 
-                    let cartItem:Cart = Cart.init(eventKey: eventKey,itemKey:itemKey, itemName: itemName, itemPrice: itemPrice, itemImage: itemImage, itemQuantity: itemQuantity)
+                let cartItem:Cart = Cart.init(eventKey: eventKey,itemKey:itemKey, itemName: itemName, itemPrice: itemPrice, itemImage: itemImage, itemQuantity: itemQuantity, sellerID:sellerID)
                     self.orderItemArray.append(cartItem)
             }
             self.orderItemArray.sort{$0 < $1}
@@ -212,11 +222,23 @@ class MyOrderDetailViewController: UITableViewController {
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
                 destination.passByItemID = true
                 print(indexPath.row)
-                destination.itemKey = orderItemArray[indexPath.row - 2].itemKey
+                destination.itemKey = orderItemArray[indexPath.row - 3].itemKey
                 
             }
+        }else if segue.identifier == "showAllSeller"{
+            let destination = segue.destination as! CustomerSecondPaymentViewController
+            destination.sellerIDSet = sellerIDSet
+            destination.orderKey = orderKey
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 2{
+            performSegue(withIdentifier: "showAllSeller", sender: nil)
+        }
+    }
+    
+    
 
     
 }

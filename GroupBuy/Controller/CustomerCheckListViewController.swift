@@ -26,7 +26,7 @@ class CustomerCheckListViewController: UITableViewController {
         
         configureDatabase()
         tableView.estimatedRowHeight  = 88
-        tableView.rowHeight = UITableViewAutomaticDimension
+      //  tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -41,29 +41,51 @@ class CustomerCheckListViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+//        let itemLabel:UILabel = cell.viewWithTag(100) as! UILabel
+//        let addressLabel:UILabel = cell.viewWithTag(101) as! UILabel
+//        let emailLabel:UILabel = cell.viewWithTag(102) as! UILabel
+//
+//        let checkedLabel:UILabel = cell.viewWithTag(105) as! UILabel
+//        print("------")
+//        print(customerListArray[indexPath.row].checked)
+//        print("------")
+//        checkedLabel.text = customerListArray[indexPath.row].checked ? "✓" : ""
+//
+//        var itemString:String = ""
+//
+//        let customerBuyItemArray:[CustomerBuyItem] = customerListArray[indexPath.row].itemInfo
+//
+//        for i in customerBuyItemArray{
+//            itemString += i.itemName
+//            itemString += "\tx\(i.itemQuantity)\n"
+//            itemLabel.text = itemString
+//        }
+//
+//        emailLabel.text = customerListArray[indexPath.row].email
+//        addressLabel.text = customerListArray[indexPath.row].address
+//        return cell
+        
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let itemLabel:UILabel = cell.viewWithTag(100) as! UILabel
-        let addressLabel:UILabel = cell.viewWithTag(101) as! UILabel
-        let emailLabel:UILabel = cell.viewWithTag(102) as! UILabel
+        let emailLabel:UILabel = cell.viewWithTag(101) as! UILabel
+        let orderIdLabel:UILabel = cell.viewWithTag(102) as! UILabel
+        let paidStatusLabel:UILabel = cell.viewWithTag(100) as! UILabel
         
-        let checkedLabel:UILabel = cell.viewWithTag(105) as! UILabel
-        print("------")
-        print(customerListArray[indexPath.row].checked)
-        print("------")
-        checkedLabel.text = customerListArray[indexPath.row].checked ? "✓" : ""
-        
-        var itemString:String = ""
-        
-        let customerBuyItemArray:[CustomerBuyItem] = customerListArray[indexPath.row].itemInfo
-        
-        for i in customerBuyItemArray{
-            itemString += i.itemName
-            itemString += "\tx\(i.itemQuantity)\n"
-            itemLabel.text = itemString
-        }
+        ref.child("secondPayment/\(userID!)/\(customerListArray[indexPath.row].orderID)/paidStatus").observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            let value = snapshot.value as? String ?? ""
+            if value == "2"{
+                paidStatusLabel.text = "Paided"
+            }else if value == "1"{
+                paidStatusLabel.text = "Pending"
+            }else{
+                paidStatusLabel.text = "Unpaid"
+            }
+        })
         
         emailLabel.text = customerListArray[indexPath.row].email
-        addressLabel.text = customerListArray[indexPath.row].address
+        orderIdLabel.text = customerListArray[indexPath.row].orderID
+        
         return cell
     }
     
@@ -115,25 +137,40 @@ class CustomerCheckListViewController: UITableViewController {
         })
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell:UITableViewCell = tableView.cellForRow(at: indexPath){
-            let item:CustomerBuyInfo = customerListArray[indexPath.row]
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "secondPaymentVC"{
+            print("Hello")
+            let destination:UINavigationController = segue.destination as! UINavigationController
+            let secondPaymentVC:secondPaymentViewController = destination.topViewController as! secondPaymentViewController
             
-            item.toogleChecked()
-            configureCheckmark(for: cell, with: item)
+            print("text")
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
+                print("Hello")
+                secondPaymentVC.selectedCustomerBuyInfo = customerListArray[indexPath.row]
+            }
         }
-        
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func configureCheckmark(for cell:UITableViewCell, with item:CustomerBuyInfo){
-        let label:UILabel = cell.viewWithTag(105) as! UILabel
-        
-        if item.checked{
-            label.text = "✓"
-        }else{
-            label.text = ""
-        }
-    }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if let cell:UITableViewCell = tableView.cellForRow(at: indexPath){
+//            let item:CustomerBuyInfo = customerListArray[indexPath.row]
+//
+//            item.toogleChecked()
+//            configureCheckmark(for: cell, with: item)
+//        }
+//
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+    
+//    func configureCheckmark(for cell:UITableViewCell, with item:CustomerBuyInfo){
+//        let label:UILabel = cell.viewWithTag(105) as! UILabel
+//
+//        if item.checked{
+//            label.text = "✓"
+//        }else{
+//            label.text = ""
+//        }
+//    }
 
 }
