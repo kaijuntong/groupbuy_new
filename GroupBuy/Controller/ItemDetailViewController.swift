@@ -11,7 +11,7 @@ import Firebase
 
 class ItemDetailViewController: UITableViewController {
     var ref:DatabaseReference!
-    
+    var user:User?
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -25,10 +25,12 @@ class ItemDetailViewController: UITableViewController {
 
     var passByItemID = false
     var itemKey = ""
+    var sellerID1 = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        user = Auth.auth().currentUser
+
         ref = Database.database().reference()
         if passByItemID{
             ref.child("eventItems/\(itemKey)").observeSingleEvent(of: .value, with: {(snapshot) in
@@ -41,6 +43,7 @@ class ItemDetailViewController: UITableViewController {
                     let itemPrice:Double = value["itemPrice"] as! Double
                     let itemImage:String = value["itemImage"] as! String
                     let sellerID:String = value["uid"] as! String
+                    self.sellerID1 = sellerID
                     
                     let eventIdInfo = value["event_id1"] as! [String:AnyObject]
                     
@@ -51,7 +54,7 @@ class ItemDetailViewController: UITableViewController {
                     
                     self.item = countryItem
                     self.loadData()
-                    //self.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             })
         }
@@ -106,7 +109,6 @@ class ItemDetailViewController: UITableViewController {
                 (error) in
                 print(error.localizedDescription)
             }
-            
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -122,10 +124,24 @@ class ItemDetailViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let item = item, let user = user{
+            if item.sellerID == user.uid{
+                 if indexPath.section == 2 && indexPath.row == 0{
+                    return 0
+                 }else{
+                    return super.tableView(tableView, heightForRowAt: indexPath)
+                    
+                }
+            }else{
+                 return super.tableView(tableView, heightForRowAt: indexPath)
+            }
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+    
     func addToCart(){
         if let item = item{
-        ref = Database.database().reference()
-        let user:User? = Auth.auth().currentUser
         if let user = user {
             let uid:String = user.uid
             var cartItem:[String:Any] = [String:Any]()

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class ChatViewController: UITableViewController {
-
+    
     var ref:DatabaseReference!
     var userID:String?
     var chatListArray = [ChatListItem]()
@@ -20,10 +20,10 @@ class ChatViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         ref = Database.database().reference()
         userID =  Auth.auth().currentUser?.uid
-
+        
         //get profile image
         ref.child("users").child(self.userID!).observeSingleEvent(of: .value, with: {(snapshot) in
             let value:NSDictionary? = snapshot.value as? NSDictionary
@@ -41,7 +41,7 @@ class ChatViewController: UITableViewController {
             }
         })
         
-       
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,19 +51,19 @@ class ChatViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Icomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return chatListArray.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath)
         
@@ -82,7 +82,7 @@ class ChatViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.chatListArray[indexPath.row].imageData = data!
                     profileImageView.image = UIImage.init(data: data!)
-                    }
+                }
                 
             }
         }
@@ -90,7 +90,7 @@ class ChatViewController: UITableViewController {
         
         let username = cell.viewWithTag(101) as! UILabel
         username.text = chatListArray[indexPath.row].username
-
+        
         
         let lastMessageLabel = cell.viewWithTag(102) as! UILabel
         lastMessageLabel.text = chatListArray[indexPath.row].lastMessage
@@ -106,48 +106,49 @@ class ChatViewController: UITableViewController {
     func configureDatabase(){
         self.chatListArray.removeAll()
         self.tableView.reloadData()
-
-            ref.child("chatPerson/\(userID!)").observeSingleEvent(of: .value, with: {(snapshot) in
-                let a = snapshot.value as? [String:AnyObject]
-
-                if let value = a{
-                    for(key,withValue) in value{
-                        let otherPerson = withValue["with"] as! String
-                        print(key)
-                        self.ref.child("chat/\(key)").observeSingleEvent(of: .value, with: {(snap) in
-
-                       // self.ref.child("chat/\(key)").observe(.value, with: {(snap) in
-                            print(snap)
+        
+        //get who is chatting with user
+        ref.child("chatPerson/\(userID!)").observeSingleEvent(of: .value, with: {(snapshot) in
+            let a = snapshot.value as? [String:AnyObject]
+            
+            if let value = a{
+                for(key,withValue) in value{
+                    let otherPerson = withValue["with"] as! String
+                    print(key)
+                    
+                    //get the chat message, date, last message
+                    self.ref.child("chat/\(key)").observeSingleEvent(of: .value, with: {(snap) in
+                        
+                        let snapValue = snap.value as? [String:AnyObject]
+                        
+                        if let snapValue = snapValue{
+                            let lastMessage = snapValue["last_message"] as! String
+                            let date = snapValue["date"] as! Double
                             
-                            let snapValue = snap.value as? [String:AnyObject]
-
-                            if let snapValue = snapValue{
-                                let lastMessage = snapValue["last_message"] as! String
-                                let date = snapValue["date"] as! Double
+                            self.ref.child("users/\(otherPerson)/email").observeSingleEvent(of: .value, with: {(snapshot) in
+                                let email = snapshot.value as? String
                                 
-                                self.ref.child("users/\(otherPerson)/email").observeSingleEvent(of: .value, with: {(snapshot) in
-                                    let email = snapshot.value as? String
-                                    
-                                    if let email = email{
-                                        self.ref.child("users/\(otherPerson)/profilePicture").observeSingleEvent(of: .value, with: {(snapshot) in
-                                            let imageLoc = snapshot.value as? String ?? ""
-                                           
-                                            let cartListItem = ChatListItem.init(chatID: key, otherPersonUserID: otherPerson, lastMessage: lastMessage, date:date, username:email, otherPersonImage:imageLoc, imageData: nil)
-                                            
-                                            self.chatListArray.append(cartListItem)
-                                            self.chatListArray.sort{$0 > $1}
-                                            self.tableView.reloadData()
-                                        })
-                                    }
-                                })
                                 
-                            }
-                        })
-                    }
+                                if let email = email{
+                                    self.ref.child("users/\(otherPerson)/profilePicture").observeSingleEvent(of: .value, with: {(snapshot) in
+                                        let imageLoc = snapshot.value as? String ?? ""
+                                        
+                                        let cartListItem = ChatListItem.init(chatID: key, otherPersonUserID: otherPerson, lastMessage: lastMessage, date:date, username:email, otherPersonImage:imageLoc, imageData: nil)
+                                        
+                                        self.chatListArray.append(cartListItem)
+                                        self.chatListArray.sort{$0 > $1}
+                                        self.tableView.reloadData()
+                                    })
+                                }
+                            })
+                            
+                        }
+                    })
                 }
-            })
-        }
-
+            }
+        })
+    }
+    
     
     func displayTimestamp(ts: Double) -> String {
         let date:Date = Date(timeIntervalSince1970: ts)
@@ -176,12 +177,11 @@ class ChatViewController: UITableViewController {
             destination.postID = valueToPass!.chatID
             destination.otherSideProfileImage = valueToPass!.imageData
             destination.selfProfileImage = profileImageData
-        
         }
         
     }
     
     
-
-
+    
+    
 }

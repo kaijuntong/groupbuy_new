@@ -26,6 +26,7 @@ class ChatListItem{
         self.otherPersonImage = otherPersonImage
         self.imageData = imageData
     }
+    
 }
 
 func >(lhs: ChatListItem, rhs: ChatListItem) -> Bool{
