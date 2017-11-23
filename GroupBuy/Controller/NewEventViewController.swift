@@ -9,26 +9,38 @@
 import UIKit
 import Firebase
 
-class NewEventViewController: UITableViewController,UITextFieldDelegate {
+class NewEventViewController: UITableViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet weak var textField:UITextField!
     @IBOutlet weak var saveBarButton:UIBarButtonItem!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var doneBarButton:UIBarButtonItem!
+    @IBOutlet weak var countryLabel: UILabel!
+    
     @IBOutlet var startDatePickerCell: UITableViewCell!
     @IBOutlet var dueDatePickerCell: UITableViewCell!
+    @IBOutlet var countryPickerCell: UITableViewCell!
     
     @IBOutlet weak var startDatePicker:UIDatePicker!
     @IBOutlet weak var dueDatePicker:UIDatePicker!
-
+    @IBOutlet weak var countryPicker: UIPickerView!
+    
     var startDate:Date = Date()
     var dueDate:Date = Date()
+    var country:String = ""
+    
+    var countryNames:[String] = [String]()
     
     var startDatePickerVisible:Bool = false
     var dueDatePickerVisible:Bool = false
+    var countryPickerVisible:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.countryPicker.delegate = self
+        self.countryPicker.dataSource = self
+        
+        countryNames = ["USA","Taiwan","Korea","Australia"]
         
         startDatePicker.minimumDate = startDate
     
@@ -53,7 +65,7 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
         let dueTimeInterval:Int = Int(dueDate.timeIntervalSince1970)
         
         let eventInfo:[String:Any] = ["uid":userID!,
-                         "destination":textField.text?.lowercased() ?? "",
+                         "destination": country.lowercased() ?? "",
                          "departdate": startTimeInterval,
                          "returndate": dueTimeInterval]
         
@@ -63,7 +75,7 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if (indexPath.section == 1 || indexPath.section == 2) && indexPath.row == 0{
+        if (indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2) && indexPath.row == 0{
             return indexPath
         }else{
             return nil
@@ -92,9 +104,44 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
         dueDateLabel.text = formatter.string(from: dueDate)
     }
     
+    
+    func showCountryPicker(){
+        countryPickerVisible = true
+        
+        let indexPathPickerRow:IndexPath = IndexPath(row: 0, section: 0)
+        let indexPathCountryPicker:IndexPath = IndexPath(row: 1, section: 0)
+        
+        if let dateCell = tableView.cellForRow(at: indexPathPickerRow){
+            dateCell.detailTextLabel!.textColor = dateCell.detailTextLabel!.tintColor
+        }
+        
+        tableView.beginUpdates()
+        tableView.insertRows(at: [indexPathCountryPicker], with: .fade)
+        tableView.reloadRows(at: [indexPathPickerRow], with: .none)
+        tableView.endUpdates()
+    }
+    
+    func hideCountryPicker(){
+        if countryPickerVisible{
+            countryPickerVisible = false
+            
+            let indexPathPickerRow:IndexPath = IndexPath(row: 0, section: 0)
+            let indexPathCountryPicker:IndexPath = IndexPath(row: 1, section: 0)
+            
+            if let cell = tableView.cellForRow(at: indexPathPickerRow){
+                cell.detailTextLabel!.textColor = UIColor(white: 0, alpha: 0.5)
+            }
+            
+            tableView.beginUpdates()
+            tableView.reloadRows(at: [indexPathPickerRow], with: .none)
+            tableView.deleteRows(at: [indexPathCountryPicker], with: .fade)
+            tableView.endUpdates()
+        }
+    }
+    
     func showStartDatePicker(){
         hideDueDatePicker()
-        textField.resignFirstResponder()
+        //textField.resignFirstResponder()
         
         startDatePickerVisible = true
         
@@ -133,7 +180,7 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
 
     func showDueDatePicker(){
         hideStartDatePicker()
-        textField.resignFirstResponder()
+       // textField.resignFirstResponder()
         
         dueDatePickerVisible = true
         
@@ -171,7 +218,7 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 1 && startDatePickerVisible) || (section == 2 && dueDatePickerVisible){
+        if (section == 0 && countryPickerVisible) || (section == 1 && startDatePickerVisible) || (section == 2 && dueDatePickerVisible){
             return 2
         }else{
             return super.tableView(tableView, numberOfRowsInSection: section)
@@ -179,7 +226,9 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 1 && indexPath.row == 1{
+        if indexPath.section == 0 && indexPath.row == 1{
+            return countryPickerCell
+        }else if indexPath.section == 1 && indexPath.row == 1{
             return startDatePickerCell
         }else if indexPath.section == 2 && indexPath.row == 1{
             return dueDatePickerCell
@@ -189,6 +238,9 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && indexPath.row == 1{
+            return 162
+        }
         if (indexPath.section == 1 || indexPath.section == 2) && indexPath.row == 1{
             return 217
         }else{
@@ -200,6 +252,13 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.resignFirstResponder()
         
+        if indexPath.section == 0 && indexPath.row == 0{
+            if !countryPickerVisible{
+                showCountryPicker()
+            }else{
+                hideCountryPicker()
+            }
+        }
         if indexPath.section == 1 && indexPath.row == 0{
             if !startDatePickerVisible{
                 showStartDatePicker()
@@ -218,7 +277,7 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         var newIndexPath:IndexPath = indexPath
-        if (indexPath.section == 1 || indexPath.section == 2) && indexPath.row == 1{
+        if (indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2) && indexPath.row == 1{
             newIndexPath = IndexPath(row: 0, section: indexPath.section)
         }
         return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
@@ -227,6 +286,8 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
     @IBAction func startDateChanged(_ datePicker: UIDatePicker){
         startDate = datePicker.date
         updateStartDateLabel()
+        changeDueDateMinumum(min:startDate)
+        updateDueDateLabel()
     }
     
     @IBAction func dueDateChanged(_ datePicker: UIDatePicker){
@@ -234,8 +295,30 @@ class NewEventViewController: UITableViewController,UITextFieldDelegate {
         updateDueDateLabel()
     }
     
+    func changeDueDateMinumum(min:Date){
+        dueDatePicker.minimumDate = min + 1
+        dueDate = min + 1
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         hideStartDatePicker()
         hideDueDatePicker()
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return countryNames.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return countryNames[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        country = countryNames[row]
+        countryLabel.text = country
     }
 }
