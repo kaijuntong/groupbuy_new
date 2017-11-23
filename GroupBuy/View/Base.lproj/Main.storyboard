@@ -2080,7 +2080,7 @@ All Rights Reserved.</string>
                                     <segue destination="P01-nh-ILQ" kind="presentation" id="gmi-GA-OLa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-He-6bl">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-He-6bl">
                                 <rect key="frame" x="164" y="498" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -2121,8 +2121,11 @@ All Rights Reserved.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_UI_blur" translatesAutoresizingMaskIntoConstraints="NO" id="xN5-Hx-if3">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Nrh-8t-3Gt">
-                                <rect key="frame" x="29.5" y="169" width="316" height="218"/>
+                                <rect key="frame" x="29" y="224" width="316" height="218"/>
                                 <subviews>
                                     <textField opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hm2-JC-2BK">
                                         <rect key="frame" x="0.0" y="0.0" width="316" height="47"/>
@@ -2176,14 +2179,22 @@ All Rights Reserved.</string>
                                     <action selector="signInBtnClicked:" destination="P01-nh-ILQ" eventType="touchUpInside" id="OdE-dJ-Lko"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="OQW-q8-08F">
+                                <rect key="frame" x="87" y="41" width="200" height="175"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="1" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SOW-Qc-UNl" firstAttribute="leading" secondItem="DDg-Tb-noN" secondAttribute="leading" id="4o0-7w-6Lt"/>
-                            <constraint firstItem="Nrh-8t-3Gt" firstAttribute="top" secondItem="JTW-CV-MLf" secondAttribute="top" constant="149" id="Bf9-gy-Ek8"/>
+                            <constraint firstItem="Nrh-8t-3Gt" firstAttribute="top" secondItem="JTW-CV-MLf" secondAttribute="top" constant="204" id="Bf9-gy-Ek8"/>
+                            <constraint firstItem="JTW-CV-MLf" firstAttribute="trailing" secondItem="xN5-Hx-if3" secondAttribute="trailing" id="CLq-dP-eVa"/>
                             <constraint firstItem="JTW-CV-MLf" firstAttribute="bottom" secondItem="SOW-Qc-UNl" secondAttribute="bottom" id="LgT-ny-pZT"/>
                             <constraint firstItem="Nrh-8t-3Gt" firstAttribute="centerX" secondItem="DDg-Tb-noN" secondAttribute="centerX" id="a5H-dF-3qO"/>
                             <constraint firstItem="JTW-CV-MLf" firstAttribute="trailing" secondItem="SOW-Qc-UNl" secondAttribute="trailing" id="aW6-gN-Q98"/>
+                            <constraint firstAttribute="bottom" secondItem="xN5-Hx-if3" secondAttribute="bottom" id="lkG-4E-eXL"/>
+                            <constraint firstItem="xN5-Hx-if3" firstAttribute="top" secondItem="JTW-CV-MLf" secondAttribute="top" constant="-20" id="oGA-c6-t9Q"/>
+                            <constraint firstItem="OQW-q8-08F" firstAttribute="centerX" secondItem="DDg-Tb-noN" secondAttribute="centerX" id="oT7-u2-fLX"/>
+                            <constraint firstItem="xN5-Hx-if3" firstAttribute="leading" secondItem="DDg-Tb-noN" secondAttribute="leading" id="zEy-d4-3FB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JTW-CV-MLf"/>
                     </view>
@@ -2195,7 +2206,7 @@ All Rights Reserved.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TU7-zR-1Fi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4327" y="-863"/>
+            <point key="canvasLocation" x="-4327.1999999999998" y="-863.1184407796103"/>
         </scene>
         <!--Cart-->
         <scene sceneID="Z5U-hc-Ckw">

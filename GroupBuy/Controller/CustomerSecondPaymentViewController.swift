@@ -130,7 +130,7 @@ class CustomerSecondPaymentViewController: UITableViewController {
         cell.priceLabel.text = "Price RM \(sellerArray[indexPath.row].price)"
         cell.curriorLabel.text = "Currior Company \(sellerArray[indexPath.row].curriorCompany)"
         cell.trackingNumberLabel.text = "Tracking Number \(sellerArray[indexPath.row].trackingNum)"
-        cell.weightLabel.text = "Weight \(sellerArray[indexPath.row].weight)"
+        cell.weightLabel.text = "Weight(KG) \(sellerArray[indexPath.row].weight)"
         
         return cell
     }
